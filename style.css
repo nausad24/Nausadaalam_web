@@ -125,16 +125,6 @@ body {
   filter: drop-shadow(0 0 8px var(--accent-cyan));
 }
 
-.loader-text {
-  margin-top: 18px;
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  letter-spacing: 5px;
-  color: var(--accent-cyan);
-  opacity: 0.9;
-  text-transform: lowercase;
-}
-
 @keyframes spinRing {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
