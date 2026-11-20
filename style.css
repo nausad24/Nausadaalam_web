@@ -10,6 +10,9 @@
   --card-hover: rgba(26, 32, 50, 0.85);
   --border-color: rgba(255, 255, 255, 0.08);
   --border-glow: rgba(0, 240, 255, 0.35);
+  --loader-color-1: #00f0ff;
+  --loader-color-2: #7000ff;
+  --loader-glow: rgba(0, 240, 255, 0.45);
   --accent-cyan: #00f0ff;
   --accent-purple: #7000ff;
   --accent-pink: #ff007a;
@@ -100,10 +103,10 @@ body {
   font-size: 3.2rem;
   font-weight: 800;
   letter-spacing: -2px;
-  background: linear-gradient(135deg, #ffffff 10%, var(--accent-cyan) 60%, var(--accent-purple) 100%);
+  background: linear-gradient(135deg, #ffffff 10%, var(--loader-color-1, var(--accent-cyan)) 55%, var(--loader-color-2, var(--accent-purple)) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 0 16px rgba(0, 240, 255, 0.45));
+  filter: drop-shadow(0 0 16px var(--loader-glow, rgba(0, 240, 255, 0.45)));
 }
 
 .letter.n {
@@ -119,10 +122,10 @@ body {
   inset: 0;
   border-radius: 50%;
   border: 2px solid transparent;
-  border-top-color: var(--accent-cyan);
-  border-right-color: var(--accent-purple);
+  border-top-color: var(--loader-color-1, var(--accent-cyan));
+  border-right-color: var(--loader-color-2, var(--accent-purple));
   animation: spinRing 0.9s linear infinite;
-  filter: drop-shadow(0 0 8px var(--accent-cyan));
+  filter: drop-shadow(0 0 10px var(--loader-glow, var(--accent-cyan)));
 }
 
 @keyframes spinRing {

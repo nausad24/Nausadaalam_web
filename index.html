@@ -21,6 +21,52 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Dynamic Cyber Color Palette (Randomized & Guaranteed Fresh on Every Refresh) -->
+  <script>
+    (function () {
+      const PALETTES = [
+        { name: 'Cyber Cyan & Purple', c1: '#00f0ff', c2: '#7000ff', glow: 'rgba(0, 240, 255, 0.65)' },
+        { name: 'Neon Emerald & Aqua', c1: '#00ff88', c2: '#00d2ff', glow: 'rgba(0, 255, 136, 0.65)' },
+        { name: 'Hyper Pink & Violet', c1: '#ff007a', c2: '#7928ca', glow: 'rgba(255, 0, 122, 0.65)' },
+        { name: 'Solar Amber & Coral', c1: '#ff9900', c2: '#ff0055', glow: 'rgba(255, 153, 0, 0.65)' },
+        { name: 'Cosmic Violet & Ice', c1: '#b537f2', c2: '#00f0ff', glow: 'rgba(181, 55, 242, 0.65)' },
+        { name: 'Acid Lime & Cyan', c1: '#39ff14', c2: '#00e5ff', glow: 'rgba(57, 255, 20, 0.65)' },
+        { name: 'Azure Sky & Royal Blue', c1: '#00c6ff', c2: '#0072ff', glow: 'rgba(0, 198, 255, 0.65)' },
+        { name: 'Cyberpunk Gold & Ruby', c1: '#ffd700', c2: '#ff2a6d', glow: 'rgba(255, 215, 0, 0.65)' },
+        { name: 'Electric Magenta & Blue', c1: '#ff00cc', c2: '#3333ff', glow: 'rgba(255, 0, 204, 0.65)' },
+        { name: 'Teal Aurora & Lime', c1: '#05ffa1', c2: '#b967ff', glow: 'rgba(5, 255, 161, 0.65)' }
+      ];
+
+      try {
+        let lastIdx = parseInt(sessionStorage.getItem('na_palette_idx'), 10);
+        let nextIdx;
+        if (isNaN(lastIdx) || lastIdx < 0 || lastIdx >= PALETTES.length) {
+          nextIdx = Math.floor(Math.random() * PALETTES.length);
+        } else {
+          // Guaranteed a different vibrant color palette on every refresh
+          nextIdx = (lastIdx + 1 + Math.floor(Math.random() * (PALETTES.length - 1))) % PALETTES.length;
+        }
+        sessionStorage.setItem('na_palette_idx', nextIdx);
+
+        const p = PALETTES[nextIdx];
+        const root = document.documentElement;
+        root.style.setProperty('--loader-color-1', p.c1);
+        root.style.setProperty('--loader-color-2', p.c2);
+        root.style.setProperty('--loader-glow', p.glow);
+        root.style.setProperty('--accent-cyan', p.c1);
+        root.style.setProperty('--accent-purple', p.c2);
+        root.style.setProperty('--border-glow', p.glow);
+
+        const favicon = document.querySelector('link[rel="icon"]');
+        if (favicon) {
+          favicon.href = `data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='${encodeURIComponent(p.c1)}'>NA</text></svg>`;
+        }
+      } catch (e) {
+        // Fallback gracefully
+      }
+    })();
+  </script>
 </head>
 <body>
   <!-- Pure CSS Loading Screen with 'NA' -->
@@ -847,10 +893,21 @@
         }
       }, { passive: true });
 
+      function hexToRgba(hex, alpha) {
+        let c = hex.replace('#', '').trim();
+        if (c.length === 3) c = c.split('').map(x => x + x).join('');
+        const num = parseInt(c, 16);
+        return `rgba(${(num >> 16) & 255}, ${(num >> 8) & 255}, ${num & 255}, ${alpha})`;
+      }
+
       function animate() {
         ctx.clearRect(0, 0, width, height);
 
         if (mouse.active) {
+          const rootStyle = getComputedStyle(document.documentElement);
+          const c1 = rootStyle.getPropertyValue('--loader-color-1').trim() || '#00f0ff';
+          const c2 = rootStyle.getPropertyValue('--loader-color-2').trim() || '#7000ff';
+
           points[0].x += (mouse.x - points[0].x) * 0.42;
           points[0].y += (mouse.y - points[0].y) * 0.42;
 
@@ -872,13 +929,13 @@
             ctx.lineTo(p2.x, p2.y);
 
             ctx.strokeStyle = i < TOTAL_POINTS * 0.45 
-              ? `rgba(0, 240, 255, ${alpha})` 
-              : `rgba(112, 0, 255, ${alpha})`;
+              ? hexToRgba(c1, alpha) 
+              : hexToRgba(c2, alpha);
             ctx.lineWidth = lineWidth;
             ctx.lineCap = 'round';
             ctx.lineJoin = 'round';
             ctx.shadowBlur = 12;
-            ctx.shadowColor = '#00f0ff';
+            ctx.shadowColor = c1;
             ctx.stroke();
           }
         }
