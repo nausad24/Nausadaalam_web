@@ -3,44 +3,604 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nausad Aalam</title>
+  <title>Nausad Aalam | CA Aspirant & Tech Enthusiast</title>
+  <meta name="description" content="Personal Portfolio of Nausad Aalam — Chartered Accountancy (CA Intermediate) student under ICAI, +2 & SEE graduate, and tech & web enthusiast from Siraha, Nepal.">
+  <meta name="keywords" content="Nausad Aalam, Portfolio, Chartered Accountancy, CA Student, ICAI, Nepal, Siraha, Web Development, YouTube">
+  <meta name="author" content="Nausad Aalam">
+
+  <!-- OpenGraph / Social Sharing -->
+  <meta property="og:title" content="Nausad Aalam | CA Aspirant & Tech Enthusiast">
+  <meta property="og:description" content="Personal Portfolio of Nausad Aalam — Pursuing CA Intermediate (ICAI), +2 & SEE Graduate, Web & Tech Enthusiast.">
+  <meta property="og:image" content="Nausad_Portrait.jpeg">
+  <meta property="og:type" content="website">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>NS</text></svg>">
+
   <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;600;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
   <!-- Pure CSS Loading Screen with 'NS' -->
-  <div class="loader-overlay" aria-hidden="true">
+  <div class="loader-overlay" id="loader" aria-hidden="true">
     <div class="loader-content">
       <div class="ns-logo">
         <span class="letter n">N</span>
         <span class="letter s">S</span>
       </div>
       <div class="loader-ring"></div>
+      <span class="loader-text">NAUSAD AALAM</span>
     </div>
   </div>
 
-  <!-- Interactive Main Content -->
-  <main class="main-container">
-    <div class="ambient-glow"></div>
+  <!-- Interactive Line Following Cursor -->
+  <canvas id="cursor-trail"></canvas>
+
+  <!-- Navigation Bar -->
+  <header class="navbar-wrapper">
+    <nav class="navbar">
+      <a href="#hero" class="nav-logo" aria-label="Nausad Aalam Home">
+        <span class="logo-box">NS</span>
+        <span class="logo-text">Nausad<span>.</span></span>
+      </a>
+
+      <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle navigation menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#hero" class="nav-link active">Home</a></li>
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#journey" class="nav-link">Journey</a></li>
+        <li><a href="#skills" class="nav-link">Skills</a></li>
+        <li><a href="#media" class="nav-link">YouTube</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="https://github.com/nausad24" target="_blank" rel="noopener noreferrer" class="nav-btn github-pill" title="View GitHub Profile">
+          <svg class="pill-icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+          <span>nausad24</span>
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="hero" class="hero-section">
+    <div class="ambient-glow glow-1"></div>
+    <div class="ambient-glow glow-2"></div>
     
     <div class="content-wrapper">
       <div class="profile-info">
-        <div class="badge">Portfolio</div>
+        <div class="badges-row">
+          <div class="badge cyber-badge">CA Aspirant (ICAI)</div>
+          <div class="badge-sub">Tech &amp; Web Enthusiast</div>
+        </div>
+
         <h1 class="name-display" data-text="Nausad Aalam">
           <span>Nausad</span> <span>Aalam</span>
         </h1>
-        <p class="sub-caption">Hover or tap to interact</p>
+
+        <p class="role-tagline">
+          Pursuing <strong>CA Intermediate</strong> under ICAI &bull; +2 &amp; SEE Graduate &bull; Passionate about Financial Analysis, Corporate Laws &amp; Modern Web Tech.
+        </p>
+
+        <p class="sub-caption">
+          <span class="live-pulse"></span>
+          From Siraha, Nepal &bull; Dedicated to Continuous Growth &amp; Innovation
+        </p>
+
+        <!-- Call to Actions -->
+        <div class="hero-cta-group">
+          <a href="#journey" class="btn btn-primary">
+            <span>Explore Journey</span>
+            <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+          </a>
+          <a href="#contact" class="btn btn-secondary">
+            <span>Get in Touch</span>
+          </a>
+          <a href="https://github.com/nausad24/Nausadaalam_web" target="_blank" rel="noopener noreferrer" class="btn btn-ghost" title="GitHub Repository">
+            <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+            </svg>
+            <span>Project Repo</span>
+          </a>
+        </div>
       </div>
 
       <div class="profile-avatar">
         <div class="avatar-frame">
-          <img src="Nausad_Portrait.jpeg" alt="Nausad Aalam" class="avatar-img">
+          <img src="Nausad_Portrait.jpeg" alt="Nausad Aalam portrait" class="avatar-img">
+        </div>
+        <div class="avatar-status-pill">
+          <span class="status-indicator-dot"></span>
+          <span>Open to Connect</span>
         </div>
       </div>
     </div>
-  </main>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="section about-section">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-pill">Biography</span>
+        <h2 class="section-title">About Me</h2>
+        <p class="section-subtitle">Bridging financial rigor, corporate law, and the dynamic world of technology.</p>
+      </div>
+
+      <div class="about-grid">
+        <div class="about-card glass-panel">
+          <h3 class="card-title">Who I Am</h3>
+          <p class="bio-text">
+            Hello! I am <strong>Nausad Aalam</strong>, a passionate learner and Chartered Accountancy student registered with <strong>The Institute of Chartered Accountants of India (ICAI)</strong>. I was raised in Siraha, Nepal, where I completed my foundational schooling and secondary education.
+          </p>
+          <p class="bio-text">
+            My academic journey started with a fascination for commerce, financial structures, and business mathematics. After completing my <strong>SEE</strong> and earning my <strong>+2 in Management/Commerce</strong>, I took on the prestigious challenge of Chartered Accountancy. Having successfully cleared <strong>CA Foundation</strong>, I am actively preparing for <strong>CA Intermediate</strong> examinations.
+          </p>
+          <p class="bio-text">
+            Beyond accounting ledgers and legal provisions, I have a deep curiosity for modern web design, frontend coding, and video content creation. I believe the future belongs to professionals who can speak both the language of finance and the language of technology.
+          </p>
+
+          <div class="quick-facts-row">
+            <div class="fact-item">
+              <span class="fact-label">Origin:</span>
+              <span class="fact-val">Siraha, Madhesh, Nepal</span>
+            </div>
+            <div class="fact-item">
+              <span class="fact-label">Current Studies:</span>
+              <span class="fact-val">CA Intermediate (ICAI)</span>
+            </div>
+            <div class="fact-item">
+              <span class="fact-label">Languages:</span>
+              <span class="fact-val">English, Nepali, Hindi, Urdu</span>
+            </div>
+            <div class="fact-item">
+              <span class="fact-label">Focus Areas:</span>
+              <span class="fact-val">Accounting, Tax, Corporate Law &amp; Web</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="metrics-grid">
+          <div class="metric-card glass-panel">
+            <div class="metric-icon">🎓</div>
+            <div class="metric-value">CA Inter</div>
+            <div class="metric-label">Currently Pursuing</div>
+            <p class="metric-desc">Registered with ICAI, covering Group 1 &amp; Group 2 subjects with intense discipline.</p>
+          </div>
+
+          <div class="metric-card glass-panel">
+            <div class="metric-icon">🏆</div>
+            <div class="metric-value">Foundation</div>
+            <div class="metric-label">Cleared with Dedication</div>
+            <p class="metric-desc">Cleared ICAI CA Foundation (January 2025), proving strong analytical and accounting basics.</p>
+          </div>
+
+          <div class="metric-card glass-panel">
+            <div class="metric-icon">📚</div>
+            <div class="metric-value">+2 &amp; SEE</div>
+            <div class="metric-label">Academic Bedrock</div>
+            <p class="metric-desc">Commerce &amp; Management background with excellence from Shree Secondary School, Siraha.</p>
+          </div>
+
+          <div class="metric-card glass-panel">
+            <div class="metric-icon">⚡</div>
+            <div class="metric-value">Tech &amp; Media</div>
+            <div class="metric-label">Creative Dimension</div>
+            <p class="metric-desc">Crafting sleek interactive websites, Git version control, and sharing short-form video content.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Journey & Education Timeline Section -->
+  <section id="journey" class="section journey-section">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-pill">Milestones</span>
+        <h2 class="section-title">Academic &amp; Professional Journey</h2>
+        <p class="section-subtitle">Every milestone is a step toward excellence in commerce, finance, and leadership.</p>
+      </div>
+
+      <div class="timeline">
+        <!-- Timeline Item 1: CA Inter -->
+        <div class="timeline-item active">
+          <div class="timeline-dot">
+            <span class="dot-inner"></span>
+          </div>
+          <div class="timeline-card glass-panel">
+            <div class="card-badge current-badge">In Progress</div>
+            <span class="timeline-date">2025 &mdash; Present</span>
+            <h3 class="timeline-role">Chartered Accountancy &bull; CA Intermediate</h3>
+            <h4 class="timeline-inst">The Institute of Chartered Accountants of India (ICAI)</h4>
+            <p class="timeline-desc">
+              Rigorous preparation for CA Intermediate (Group 1 &amp; Group 2), mastering advanced financial disciplines and regulatory frameworks:
+            </p>
+            <ul class="timeline-points">
+              <li><strong>Advanced Financial Accounting:</strong> Company accounts, amalgamation, cash flow statements, and accounting standards.</li>
+              <li><strong>Corporate &amp; Other Laws:</strong> Companies Act 2013, contract law, LLP, interpretation of statutes, and FEMA.</li>
+              <li><strong>Taxation:</strong> Comprehensive study of Direct Taxation (Income Tax Act) &amp; Indirect Taxation (GST law, input tax credit, TDS/TCS).</li>
+              <li><strong>Cost &amp; Management Accounting &amp; Auditing:</strong> Standard costing, budgetary control, variance analysis, and audit procedures.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Timeline Item 2: CA Foundation -->
+        <div class="timeline-item">
+          <div class="timeline-dot">
+            <span class="dot-inner"></span>
+          </div>
+          <div class="timeline-card glass-panel">
+            <div class="card-badge success-badge">Cleared &bull; Jan 2025</div>
+            <span class="timeline-date">January 2025</span>
+            <h3 class="timeline-role">Chartered Accountancy &bull; CA Foundation</h3>
+            <h4 class="timeline-inst">The Institute of Chartered Accountants of India (ICAI)</h4>
+            <p class="timeline-desc">
+              Successfully passed the national CA Foundation examination conducted by ICAI on the first serious stride, demonstrating proficiency in Principles and Practice of Accounting, Business Laws, Quantitative Aptitude (Mathematics, Statistics, Logical Reasoning), and Business Economics.
+            </p>
+          </div>
+        </div>
+
+        <!-- Timeline Item 3: +2 Commerce -->
+        <div class="timeline-item">
+          <div class="timeline-dot">
+            <span class="dot-inner"></span>
+          </div>
+          <div class="timeline-card glass-panel">
+            <div class="card-badge">Completed</div>
+            <span class="timeline-date">Higher Secondary</span>
+            <h3 class="timeline-role">+2 Higher Secondary Education &bull; Commerce &amp; Management</h3>
+            <h4 class="timeline-inst">National Examination Board (NEB), Nepal</h4>
+            <p class="timeline-desc">
+              Specialized in Accountancy, Economics, Business Studies, and Mathematics. Established a robust foundation in financial accounting, commercial arithmetic, and economic principles that inspired me to pursue Chartered Accountancy.
+            </p>
+          </div>
+        </div>
+
+        <!-- Timeline Item 4: SEE -->
+        <div class="timeline-item">
+          <div class="timeline-dot">
+            <span class="dot-inner"></span>
+          </div>
+          <div class="timeline-card glass-panel">
+            <div class="card-badge">Completed</div>
+            <span class="timeline-date">Secondary School</span>
+            <h3 class="timeline-role">Secondary Education Examination (SEE)</h3>
+            <h4 class="timeline-inst">Shree Secondary School Ramaul Makhanaha, Manpur, Siraha-4, Nepal</h4>
+            <p class="timeline-desc">
+              Graduated with strong academic performance in Mathematics, Science, and Social Studies, developing early analytical discipline, teamwork, and an enduring curiosity for knowledge.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills" class="section skills-section">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-pill">Capabilities</span>
+        <h2 class="section-title">Skills &amp; Competencies</h2>
+        <p class="section-subtitle">A balanced fusion of corporate financial depth and modern digital capabilities.</p>
+      </div>
+
+      <div class="skills-grid">
+        <!-- Skill Category 1 -->
+        <div class="skill-group-card glass-panel">
+          <div class="skill-group-header">
+            <div class="group-icon">📈</div>
+            <div>
+              <h3 class="group-title">Accounting &amp; Finance</h3>
+              <span class="group-subtitle">ICAI Curriculum &amp; Standards</span>
+            </div>
+          </div>
+          <div class="skill-tags">
+            <span class="tag">Advanced Accounting</span>
+            <span class="tag">Financial Statements</span>
+            <span class="tag">Corporate Law</span>
+            <span class="tag">Direct Tax (Income Tax)</span>
+            <span class="tag">GST &amp; Indirect Tax</span>
+            <span class="tag">Cost Accounting</span>
+            <span class="tag">Auditing Principles</span>
+            <span class="tag">TDS / TCS Provisions</span>
+            <span class="tag">Amalgamation &amp; Cash Flow</span>
+          </div>
+        </div>
+
+        <!-- Skill Category 2 -->
+        <div class="skill-group-card glass-panel">
+          <div class="skill-group-header">
+            <div class="group-icon">💻</div>
+            <div>
+              <h3 class="group-title">Web &amp; Frontend Tech</h3>
+              <span class="group-subtitle">Modern Development &amp; Design</span>
+            </div>
+          </div>
+          <div class="skill-tags">
+            <span class="tag">HTML5 Semantic Structure</span>
+            <span class="tag">Modern CSS3 &amp; Animations</span>
+            <span class="tag">JavaScript (ES6+)</span>
+            <span class="tag">Git &amp; GitHub Version Control</span>
+            <span class="tag">Canvas 2D Particle Effects</span>
+            <span class="tag">Responsive / Mobile Layouts</span>
+            <span class="tag">Glassmorphic UI Design</span>
+            <span class="tag">Cyber Dark Aesthetics</span>
+          </div>
+        </div>
+
+        <!-- Skill Category 3 -->
+        <div class="skill-group-card glass-panel">
+          <div class="skill-group-header">
+            <div class="group-icon">📊</div>
+            <div>
+              <h3 class="group-title">Productivity &amp; Tools</h3>
+              <span class="group-subtitle">Software &amp; Digital Utilities</span>
+            </div>
+          </div>
+          <div class="skill-tags">
+            <span class="tag">Microsoft Excel (Formulas &amp; Sheets)</span>
+            <span class="tag">Microsoft Word &amp; Docs</span>
+            <span class="tag">PowerPoint Presentations</span>
+            <span class="tag">ICAI SSP Portal Navigation</span>
+            <span class="tag">Research &amp; Case Study Review</span>
+            <span class="tag">Command Line &amp; Terminal</span>
+          </div>
+        </div>
+
+        <!-- Skill Category 4 -->
+        <div class="skill-group-card glass-panel">
+          <div class="skill-group-header">
+            <div class="group-icon">🎙️</div>
+            <div>
+              <h3 class="group-title">Media &amp; Professional</h3>
+              <span class="group-subtitle">Communication &amp; Creativity</span>
+            </div>
+          </div>
+          <div class="skill-tags">
+            <span class="tag">YouTube Content Creation</span>
+            <span class="tag">Spiritual &amp; Quranic Recitations</span>
+            <span class="tag">Short-form Video Production</span>
+            <span class="tag">Analytical Problem Solving</span>
+            <span class="tag">Disciplined Time Management</span>
+            <span class="tag">Multilingual Communication</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- YouTube & Media Section -->
+  <section id="media" class="section media-section">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-pill">Content &amp; YouTube</span>
+        <h2 class="section-title">YouTube &amp; Creative Media</h2>
+        <p class="section-subtitle">Sharing uplifting recitations, heartfelt duas, and thoughtful reflections with the world.</p>
+      </div>
+
+      <div class="media-grid">
+        <!-- Video Card 1 -->
+        <div class="media-card glass-panel">
+          <div class="media-thumb-box">
+            <div class="thumb-overlay">
+              <svg class="play-btn-icon" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+            </div>
+            <div class="video-badge">Shorts &bull; Recitation</div>
+          </div>
+          <div class="media-content">
+            <h3 class="media-title">Surah Attahiyat &amp; Tashahhud</h3>
+            <p class="media-desc">Clear and beautiful recitation of Tashahhud with accurate pronunciation and peaceful rhythm.</p>
+            <a href="https://youtube.com/shorts/RSPootnufX4?si=0qPloRLq-mzD80J5" target="_blank" rel="noopener noreferrer" class="media-link">
+              <span>Watch on YouTube</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Video Card 2 -->
+        <div class="media-card glass-panel">
+          <div class="media-thumb-box thumb-dua">
+            <div class="thumb-overlay">
+              <svg class="play-btn-icon" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+            </div>
+            <div class="video-badge">Shorts &bull; Prayer</div>
+          </div>
+          <div class="media-content">
+            <h3 class="media-title">Dua-e-Masura in Salah</h3>
+            <p class="media-desc">Step-by-step recitation of Dua-e-Masura for Namaz, helping learners recite correctly with reverence.</p>
+            <a href="https://youtube.com/shorts/NOsQW8qWWIw?si=wh1Zic4Y3h6n1VnQ" target="_blank" rel="noopener noreferrer" class="media-link">
+              <span>Watch on YouTube</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Video Card 3 -->
+        <div class="media-card glass-panel">
+          <div class="media-thumb-box thumb-durood">
+            <div class="thumb-overlay">
+              <svg class="play-btn-icon" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+            </div>
+            <div class="video-badge">Shorts &bull; Blessings</div>
+          </div>
+          <div class="media-content">
+            <h3 class="media-title">Durood-e-Ibrahimi &amp; Durood Sharif</h3>
+            <p class="media-desc">Heartfelt recitations of Durood Sharif with text presentation for memorization and reflection.</p>
+            <a href="https://www.youtube.com/shorts/f5kAMUpYRjM" target="_blank" rel="noopener noreferrer" class="media-link">
+              <span>Watch on YouTube</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Video Card 4 -->
+        <div class="media-card glass-panel">
+          <div class="media-thumb-box thumb-motivation">
+            <div class="thumb-overlay">
+              <svg class="play-btn-icon" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+            </div>
+            <div class="video-badge">Motivation &bull; Reflections</div>
+          </div>
+          <div class="media-content">
+            <h3 class="media-title">Reflections &amp; Motivation</h3>
+            <p class="media-desc">Insightful messages on determination, patience, faith, and purposeful striving in life and studies.</p>
+            <a href="https://youtube.com/shorts/wpr-7Uwg1Qk?si=0t1oAu33zoecVxS5" target="_blank" rel="noopener noreferrer" class="media-link">
+              <span>Watch on YouTube</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="section contact-section">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-pill">Communication</span>
+        <h2 class="section-title">Get In Touch</h2>
+        <p class="section-subtitle">Have a question, an opportunity, or want to discuss CA studies and technology? Reach out anytime!</p>
+      </div>
+
+      <div class="contact-grid">
+        <!-- Contact Channels -->
+        <div class="contact-info-col">
+          <div class="contact-card glass-panel">
+            <div class="contact-card-icon email-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div class="contact-card-body">
+              <span class="contact-card-label">Direct Email</span>
+              <a href="mailto:nausadalam9714@gmail.com" class="contact-card-value">nausadalam9714@gmail.com</a>
+            </div>
+            <button class="copy-btn" onclick="copyEmail(this)" title="Copy Email">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            </button>
+          </div>
+
+          <div class="contact-card glass-panel">
+            <div class="contact-card-icon whatsapp-icon">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 2C6.495 2 2 6.496 2 12.031c0 1.954.558 3.784 1.523 5.334L2 22l4.821-1.503c1.478.877 3.208 1.385 5.21 1.385 5.536 0 10.031-4.496 10.031-10.031C22.062 6.496 17.567 2 12.031 2zm5.836 14.199c-.244.686-1.42 1.312-1.956 1.365-.516.052-1.19.074-3.419-.848-2.617-1.083-4.298-3.774-4.428-3.947-.13-.173-1.058-1.41-1.058-2.689 0-1.279.667-1.91 1.002-2.235.335-.325.731-.407.975-.407.243 0 .487.002.7.012.224.01.524-.085.82 0.627.306.732 1.042 2.545 1.134 2.731.091.186.152.404.03.647-.122.243-.183.395-.365.608-.183.213-.385.476-.55.639-.182.18-.373.376-.16.741.213.365.947 1.564 2.032 2.531 1.397 1.244 2.574 1.63 2.94 1.813.365.183.578.152.791-.092.213-.243.913-1.065 1.157-1.431.244-.366.487-.305.82-.183.335.122 2.129 1.004 2.494 1.187.365.183.608.274.7.426.091.152.091.882-.153 1.568z"/></svg>
+            </div>
+            <div class="contact-card-body">
+              <span class="contact-card-label">WhatsApp (Chat Directly)</span>
+              <a href="https://wa.me/9779816732482" target="_blank" rel="noopener noreferrer" class="contact-card-value">+977 9816732482</a>
+            </div>
+            <a href="https://wa.me/9779816732482" target="_blank" rel="noopener noreferrer" class="card-action-link" title="Open WhatsApp">↗</a>
+          </div>
+
+          <div class="contact-card glass-panel">
+            <div class="contact-card-icon telegram-icon">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/></svg>
+            </div>
+            <div class="contact-card-body">
+              <span class="contact-card-label">Telegram</span>
+              <a href="http://t.me/Na0241" target="_blank" rel="noopener noreferrer" class="contact-card-value">@Na0241</a>
+            </div>
+            <a href="http://t.me/Na0241" target="_blank" rel="noopener noreferrer" class="card-action-link" title="Open Telegram">↗</a>
+          </div>
+
+          <div class="contact-card glass-panel">
+            <div class="contact-card-icon github-icon">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            </div>
+            <div class="contact-card-body">
+              <span class="contact-card-label">GitHub</span>
+              <a href="https://github.com/nausad24" target="_blank" rel="noopener noreferrer" class="contact-card-value">github.com/nausad24</a>
+            </div>
+            <a href="https://github.com/nausad24" target="_blank" rel="noopener noreferrer" class="card-action-link" title="Open GitHub Profile">↗</a>
+          </div>
+        </div>
+
+        <!-- Interactive Direct Message Form -->
+        <div class="contact-form-col">
+          <form class="message-form glass-panel" id="contact-form" onsubmit="handleFormSubmit(event)">
+            <h3 class="form-title">Send a Quick Note</h3>
+            <p class="form-desc">Fill in the fields below to compose an instant message directly to Nausad.</p>
+
+            <div class="form-group">
+              <label for="form-name">Your Name</label>
+              <input type="text" id="form-name" placeholder="John Doe" required>
+            </div>
+
+            <div class="form-group">
+              <label for="form-email">Your Email</label>
+              <input type="email" id="form-email" placeholder="name@example.com" required>
+            </div>
+
+            <div class="form-group">
+              <label for="form-subject">Subject</label>
+              <input type="text" id="form-subject" placeholder="Academic / Tech / Collaboration Inquiry" required>
+            </div>
+
+            <div class="form-group">
+              <label for="form-message">Message</label>
+              <textarea id="form-message" rows="4" placeholder="Hello Nausad, I came across your portfolio..." required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-submit" id="submit-btn">
+              <span>Send Message</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            </button>
+            <div class="form-toast" id="form-toast"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-left">
+        <div class="footer-logo">
+          <span class="brand-monogram">NS</span>
+          <span class="footer-name">Nausad Aalam</span>
+        </div>
+        <p class="footer-tagline">Chartered Accountancy Aspirant &bull; Web &amp; Technology Enthusiast</p>
+      </div>
+
+      <div class="footer-center">
+        <ul class="footer-nav">
+          <li><a href="#hero">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#journey">Journey</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#media">YouTube</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-right">
+        <a href="#hero" class="back-to-top" title="Back to top">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg>
+          <span>Top</span>
+        </a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Nausad Aalam. All rights reserved. Crafted with passion &amp; precision.</p>
+    </div>
+  </footer>
 
   <!-- Floating Contact Buttons (Bottom Right) -->
   <div class="floating-actions">
@@ -71,10 +631,82 @@
     </a>
   </div>
 
-  <!-- Interactive Line Following Cursor -->
-  <canvas id="cursor-trail"></canvas>
-
+  <!-- Interactive JavaScript Logic -->
   <script>
+    // Smooth scrolling & active nav state
+    const navLinks = document.querySelectorAll('.nav-links .nav-link');
+    const sections = document.querySelectorAll('section');
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 120;
+        if (window.scrollY >= sectionTop) {
+          current = section.getAttribute('id');
+        }
+      });
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${current}`) {
+          link.classList.add('active');
+        }
+      });
+    });
+
+    // Mobile nav toggle
+    const mobileToggle = document.getElementById('mobile-toggle');
+    const navMenu = document.getElementById('nav-links');
+
+    if (mobileToggle && navMenu) {
+      mobileToggle.addEventListener('click', () => {
+        navMenu.classList.toggle('nav-open');
+        mobileToggle.classList.toggle('active');
+      });
+
+      navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          navMenu.classList.remove('nav-open');
+          mobileToggle.classList.remove('active');
+        });
+      });
+    }
+
+    // Copy Email Functionality
+    function copyEmail(button) {
+      const email = 'nausadalam9714@gmail.com';
+      navigator.clipboard.writeText(email).then(() => {
+        const originalHTML = button.innerHTML;
+        button.innerHTML = '<span style="color: #00f0ff; font-size: 0.75rem; font-weight: 700;">COPIED!</span>';
+        setTimeout(() => {
+          button.innerHTML = originalHTML;
+        }, 2200);
+      }).catch(err => {
+        console.error('Copy failed: ', err);
+      });
+    }
+
+    // Handle Contact Form Submit -> Pre-filled Mailto
+    function handleFormSubmit(event) {
+      event.preventDefault();
+      const name = document.getElementById('form-name').value;
+      const email = document.getElementById('form-email').value;
+      const subject = document.getElementById('form-subject').value;
+      const message = document.getElementById('form-message').value;
+      const toast = document.getElementById('form-toast');
+
+      const mailtoUrl = `mailto:nausadalam9714@gmail.com?subject=${encodeURIComponent(subject + ' - from ' + name)}&body=${encodeURIComponent('From: ' + name + ' (' + email + ')\n\n' + message)}`;
+      window.location.href = mailtoUrl;
+
+      if (toast) {
+        toast.textContent = '✓ Opening email client with pre-filled message...';
+        toast.style.display = 'block';
+        setTimeout(() => {
+          toast.style.display = 'none';
+        }, 4000);
+      }
+    }
+
+    // Line Following Cursor Ribbon Canvas
     (function () {
       const canvas = document.getElementById('cursor-trail');
       if (!canvas) return;
@@ -88,7 +720,6 @@
         height = canvas.height = window.innerHeight;
       });
 
-      // Chain of points for the smooth trailing ribbon line
       const TOTAL_POINTS = 28;
       const points = [];
       let mouse = { x: width / 2, y: height / 2, active: false };
@@ -120,17 +751,14 @@
         ctx.clearRect(0, 0, width, height);
 
         if (mouse.active) {
-          // Lead point tracks cursor
           points[0].x += (mouse.x - points[0].x) * 0.42;
           points[0].y += (mouse.y - points[0].y) * 0.42;
 
-          // Each following point lerps toward previous point
           for (let i = 1; i < TOTAL_POINTS; i++) {
             points[i].x += (points[i - 1].x - points[i].x) * 0.35;
             points[i].y += (points[i - 1].y - points[i].y) * 0.35;
           }
 
-          // Render glowing line segments with tapered width and cyber colors
           for (let i = 0; i < TOTAL_POINTS - 1; i++) {
             const p1 = points[i];
             const p2 = points[i + 1];
