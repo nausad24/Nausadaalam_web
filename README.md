@@ -23,7 +23,7 @@ Welcome to my personal portfolio repository! I am **Nausad Aalam**, a Chartered 
 - 🏆 **Major Honor**: **First Prize Winner** at the **KIST Inter-College IT Competition (February 2024)**
 - 🌟 **Academic Milestone**: **3.72 GPA** in +2 Management from **Trinity International Secondary School & College**, Kathmandu (2022–2024)
 - 🎯 **Professional Milestone**: Successfully cleared **CA Foundation** (January 2025)
-- 🏫 **Schooling**: **SEE** from Shree Secondary School Ramaul Makhanaha, Manpur, Siraha-4, Nepal
+- 🏫 **Schooling**: **SEE (3.5 GPA / Grade A)** from Shree Secondary School Ramaul Makhanaha, Manpur, Siraha-4, Nepal
 - 💻 **Tech Interests**: Modern Web Technologies, HTML5, CSS3, JavaScript, Git & GitHub
 
 ---
@@ -55,7 +55,7 @@ Welcome to my personal portfolio repository! I am **Nausad Aalam**, a Chartered 
 ## 🎓 Academic & Professional Journey
 
 ```
-  [ SEE Distinction ] ──────► [ Trinity College (+2 Mgmt) ] ──────► [ CA Foundation (Cleared) ] ──────► [ CA Intermediate ]
+  [ SEE 3.5 GPA (A) ] ────────► [ Trinity College (+2 Mgmt) ] ──────► [ CA Foundation (Cleared) ] ──────► [ CA Intermediate ]
 Shree Secondary School,            GPA 3.72 & 1st Prize Winner              ICAI (January 2025)                 ICAI (Present)
 Siraha, Nepal                      KIST IT Competition (2024)                                           Tax, Law, Accounts, Costing
 ```
@@ -72,8 +72,9 @@ Siraha, Nepal                      KIST IT Competition (2024)                   
 * **Academic Record:** Graduated with an outstanding **3.72 GPA** under the National Examination Board (NEB).
 * **Leadership & Tech:** Won 1st Prize at the KIST Inter-College IT Competition (2024).
 
-### 3. Secondary Education Examination (SEE)
+### 3. Secondary Education Examination (SEE) &bull; GPA: 3.5 (Grade A)
 * **School:** Shree Secondary School Ramaul Makhanaha, Manpur, Siraha-4, Nepal.
+* **Result:** Graduated with distinction — **3.5 GPA (Grade A)**.
 
 ---
 
