@@ -334,6 +334,29 @@ body {
   align-items: center;
 }
 
+.contact-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0, 240, 255, 0.08);
+  border: 1px solid rgba(0, 240, 255, 0.25);
+  padding: 0.45rem 1.1rem;
+  border-radius: 999px;
+  color: #ffffff;
+  text-decoration: none;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: var(--transition);
+}
+
+.contact-pill:hover {
+  background: rgba(0, 240, 255, 0.2);
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.35);
+  transform: translateY(-2px);
+}
+
 .github-pill {
   display: inline-flex;
   align-items: center;
