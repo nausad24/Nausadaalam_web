@@ -1,0 +1,536 @@
+/* Reset & Variables */
+:root {
+  --bg-color: #090a0f;
+  --card-bg: rgba(255, 255, 255, 0.03);
+  --border-color: rgba(255, 255, 255, 0.08);
+  --accent-cyan: #00f0ff;
+  --accent-purple: #7000ff;
+  --accent-pink: #ff007a;
+  --text-main: #f5f5f7;
+  --text-muted: #86868b;
+  --font-heading: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  font-family: var(--font-body);
+  overflow: hidden;
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* =========================================================
+   1. PURE CSS LOADING SCREEN ("NS") - Lasts ~1 second
+   ========================================================= */
+.loader-overlay {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background: radial-gradient(circle at center, #111422 0%, #050608 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  /* Stay for ~1 second, then fade out and disappear */
+  animation: loaderFadeOut 0.6s cubic-bezier(0.7, 0, 0.3, 1) 1.2s forwards;
+  pointer-events: all;
+}
+
+.loader-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 140px;
+  height: 140px;
+  animation: loaderPulse 1.2s ease-in-out infinite;
+}
+
+/* Monogram 'NS' */
+.ns-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  font-family: var(--font-heading);
+  font-size: 3rem;
+  font-weight: 800;
+  letter-spacing: -2px;
+  background: linear-gradient(135deg, #ffffff 10%, var(--accent-cyan) 60%, var(--accent-purple) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 16px rgba(0, 240, 255, 0.45));
+}
+
+.letter.n {
+  animation: floatN 1.2s ease-in-out infinite alternate;
+}
+
+.letter.s {
+  animation: floatS 1.2s ease-in-out infinite alternate;
+}
+
+/* Circular spinning indicator */
+.loader-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  border-top-color: var(--accent-cyan);
+  border-right-color: var(--accent-purple);
+  animation: spinRing 0.9s linear infinite;
+  filter: drop-shadow(0 0 8px var(--accent-cyan));
+}
+
+@keyframes spinRing {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes loaderPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@keyframes floatN {
+  0% { transform: translateY(-2px); }
+  100% { transform: translateY(2px); }
+}
+
+@keyframes floatS {
+  0% { transform: translateY(2px); }
+  100% { transform: translateY(-2px); }
+}
+
+/* Loader vanishing animation */
+@keyframes loaderFadeOut {
+  0% {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+  }
+  99% {
+    opacity: 0;
+    visibility: visible;
+    transform: scale(1.08);
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    display: none;
+  }
+}
+
+/* =========================================================
+   2. MAIN INTERACTIVE CONTENT ("Nausad Aalam")
+   ========================================================= */
+.main-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at 50% 50%, #0d111e 0%, #06070a 100%);
+  perspective: 1000px;
+  opacity: 0;
+  /* Entrance animation starts right as loader fades */
+  animation: contentReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) 1.2s forwards;
+}
+
+@keyframes contentReveal {
+  0% {
+    opacity: 0;
+    transform: scale(0.96) translateY(12px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Interactive Ambient Background Glow */
+.ambient-glow {
+  position: absolute;
+  width: 550px;
+  height: 550px;
+  background: radial-gradient(circle, rgba(112, 0, 255, 0.25) 0%, rgba(0, 240, 255, 0.15) 40%, transparent 70%);
+  filter: blur(80px);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: ambientFloat 8s ease-in-out infinite alternate;
+  z-index: 1;
+}
+
+@keyframes ambientFloat {
+  0% {
+    transform: translate(-15%, -10%) scale(0.9);
+  }
+  50% {
+    transform: translate(15%, 12%) scale(1.1);
+  }
+  100% {
+    transform: translate(-10%, 15%) scale(1);
+  }
+}
+
+/* Card / Wrapper */
+.content-wrapper {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  text-align: left;
+  gap: 3.5rem;
+  max-width: 960px;
+  width: 90%;
+  padding: 3.5rem 4rem;
+  background: var(--card-bg);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--border-color);
+  border-radius: 32px;
+  box-shadow: 
+    0 20px 50px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1),
+              box-shadow 0.5s ease,
+              border-color 0.5s ease;
+  cursor: pointer;
+}
+
+/* Interactive hover on the card */
+.content-wrapper:hover {
+  transform: translateY(-6px) rotateX(2deg) scale(1.015);
+  border-color: rgba(0, 240, 255, 0.3);
+  box-shadow: 
+    0 30px 70px rgba(0, 0, 0, 0.7),
+    0 0 35px rgba(0, 240, 255, 0.2),
+    inset 0 1px 1px rgba(255, 255, 255, 0.2);
+}
+
+/* Left Profile Info */
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex: 1;
+}
+
+/* Minimal Badge */
+.badge {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--accent-cyan);
+  background: rgba(0, 240, 255, 0.08);
+  border: 1px solid rgba(0, 240, 255, 0.2);
+  padding: 0.35rem 1rem;
+  border-radius: 999px;
+  margin-bottom: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.content-wrapper:hover .badge {
+  background: rgba(0, 240, 255, 0.16);
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 12px rgba(0, 240, 255, 0.3);
+  transform: scale(1.05);
+}
+
+/* Interactive Name Display */
+.name-display {
+  font-family: var(--font-heading);
+  font-size: clamp(2.4rem, 5.5vw, 4.8rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  background: linear-gradient(135deg, #ffffff 20%, #e2e8f0 40%, var(--accent-cyan) 75%, var(--accent-purple) 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: all 0.5s ease;
+  display: flex;
+  gap: 0.35em;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.name-display span {
+  display: inline-block;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Interactive hover effect on each word */
+.content-wrapper:hover .name-display {
+  background-position: right center;
+  filter: drop-shadow(0 0 24px rgba(0, 240, 255, 0.4));
+}
+
+.content-wrapper:hover .name-display span:first-child {
+  transform: translateX(-4px) translateY(-2px);
+}
+
+.content-wrapper:hover .name-display span:last-child {
+  transform: translateX(4px) translateY(-2px);
+}
+
+/* Interactive click / active state */
+.content-wrapper:active {
+  transform: scale(0.98);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+}
+
+/* Sub-caption hint */
+.sub-caption {
+  margin-top: 1.2rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+  font-weight: 300;
+  transition: color 0.3s ease, opacity 0.3s ease;
+  opacity: 0.7;
+}
+
+.content-wrapper:hover .sub-caption {
+  color: #c4c4cc;
+  opacity: 1;
+}
+
+/* Right Side Circular Portrait Frame */
+.profile-avatar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Ambient glow ring around portrait */
+.profile-avatar::before {
+  content: '';
+  position: absolute;
+  inset: -12px;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, var(--accent-cyan), var(--accent-purple), var(--accent-pink), var(--accent-cyan));
+  filter: blur(14px);
+  opacity: 0.45;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  z-index: 0;
+}
+
+.content-wrapper:hover .profile-avatar::before {
+  opacity: 0.85;
+  transform: scale(1.08);
+}
+
+.avatar-frame {
+  position: relative;
+  z-index: 1;
+  width: clamp(190px, 20vw, 240px);
+  height: clamp(190px, 20vw, 240px);
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 
+    0 12px 30px rgba(0, 0, 0, 0.6),
+    inset 0 0 15px rgba(0, 0, 0, 0.4);
+  background: #111422;
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.content-wrapper:hover .avatar-frame {
+  border-color: var(--accent-cyan);
+  box-shadow: 
+    0 15px 40px rgba(0, 0, 0, 0.8),
+    0 0 25px rgba(0, 240, 255, 0.4);
+}
+
+/* Exact framing: shows the face and slight lower */
+.avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 46% 45%;
+  transform: scale(1.85);
+  transform-origin: 46% 45%;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.content-wrapper:hover .avatar-img {
+  transform: scale(1.95);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .content-wrapper {
+    flex-direction: column-reverse;
+    align-items: center;
+    text-align: center;
+    padding: 2.5rem 1.8rem;
+    gap: 2rem;
+  }
+
+  .profile-info {
+    align-items: center;
+  }
+
+  .name-display {
+    justify-content: center;
+    gap: 0.2em;
+  }
+
+  .avatar-frame {
+    width: 175px;
+    height: 175px;
+  }
+}
+
+/* =========================================================
+   3. FLOATING CONTACT ACTIONS (BOTTOM RIGHT: TELEGRAM & WHATSAPP)
+   ========================================================= */
+.floating-actions {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
+}
+
+.contact-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 18px 11px 14px;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 999px;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(20px) scale(0.9);
+  /* Reveal right after the loader finishes */
+  animation: actionsReveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.3s ease;
+}
+
+@keyframes actionsReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Telegram Button (Directly above WhatsApp) */
+.telegram-btn {
+  background: linear-gradient(135deg, #2AABEE 0%, #229ED9 100%);
+  box-shadow: 
+    0 10px 25px rgba(42, 171, 238, 0.35),
+    0 2px 6px rgba(0, 0, 0, 0.4),
+    inset 0 1px 1px rgba(255, 255, 255, 0.3);
+  animation-delay: 1.25s;
+}
+
+.telegram-btn:hover {
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 
+    0 14px 32px rgba(42, 171, 238, 0.55),
+    0 0 22px rgba(42, 171, 238, 0.45),
+    inset 0 1px 1px rgba(255, 255, 255, 0.4);
+}
+
+/* WhatsApp Button */
+.whatsapp-btn {
+  background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+  box-shadow: 
+    0 10px 25px rgba(37, 211, 102, 0.35),
+    0 2px 6px rgba(0, 0, 0, 0.4),
+    inset 0 1px 1px rgba(255, 255, 255, 0.3);
+  animation-delay: 1.35s;
+}
+
+.whatsapp-btn:hover {
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 
+    0 14px 32px rgba(37, 211, 102, 0.55),
+    0 0 22px rgba(37, 211, 102, 0.45),
+    inset 0 1px 1px rgba(255, 255, 255, 0.4);
+}
+
+.contact-icon {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+.contact-label {
+  white-space: nowrap;
+}
+
+.contact-btn:hover .contact-icon {
+  transform: rotate(-8deg) scale(1.1);
+}
+
+.contact-btn:active {
+  transform: translateY(-1px) scale(0.98);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+
+@media (max-width: 640px) {
+  .floating-actions {
+    bottom: 20px;
+    right: 20px;
+    gap: 10px;
+  }
+  .contact-btn {
+    padding: 10px 14px 10px 12px;
+    font-size: 0.85rem;
+  }
+  .contact-icon {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+/* =========================================================
+   4. CURSOR TRAILING LINE CANVAS
+   ========================================================= */
+#cursor-trail {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 10;
+}
+
+

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nausad Aalam</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;600;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Pure CSS Loading Screen with 'NS' -->
+  <div class="loader-overlay" aria-hidden="true">
+    <div class="loader-content">
+      <div class="ns-logo">
+        <span class="letter n">N</span>
+        <span class="letter s">S</span>
+      </div>
+      <div class="loader-ring"></div>
+    </div>
+  </div>
+
+  <!-- Interactive Main Content -->
+  <main class="main-container">
+    <div class="ambient-glow"></div>
+    
+    <div class="content-wrapper">
+      <div class="profile-info">
+        <div class="badge">Portfolio</div>
+        <h1 class="name-display" data-text="Nausad Aalam">
+          <span>Nausad</span> <span>Aalam</span>
+        </h1>
+        <p class="sub-caption">Hover or tap to interact</p>
+      </div>
+
+      <div class="profile-avatar">
+        <div class="avatar-frame">
+          <img src="Nausad_Portrait.jpeg" alt="Nausad Aalam" class="avatar-img">
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Floating Contact Buttons (Bottom Right) -->
+  <div class="floating-actions">
+    <!-- Telegram Link (Above WhatsApp) -->
+    <a href="http://t.me/Na0241" 
+       class="contact-btn telegram-btn" 
+       target="_blank" 
+       rel="noopener noreferrer" 
+       aria-label="Chat on Telegram"
+       title="Chat with Nausad on Telegram">
+      <svg class="contact-icon" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
+      </svg>
+      <span class="contact-label">Telegram</span>
+    </a>
+
+    <!-- WhatsApp Link -->
+    <a href="https://wa.me/9779816732482" 
+       class="contact-btn whatsapp-btn" 
+       target="_blank" 
+       rel="noopener noreferrer" 
+       aria-label="Chat on WhatsApp"
+       title="Chat with Nausad on WhatsApp">
+      <svg class="contact-icon" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12.031 2C6.495 2 2 6.496 2 12.031c0 1.954.558 3.784 1.523 5.334L2 22l4.821-1.503c1.478.877 3.208 1.385 5.21 1.385 5.536 0 10.031-4.496 10.031-10.031C22.062 6.496 17.567 2 12.031 2zm5.836 14.199c-.244.686-1.42 1.312-1.956 1.365-.516.052-1.19.074-3.419-.848-2.617-1.083-4.298-3.774-4.428-3.947-.13-.173-1.058-1.41-1.058-2.689 0-1.279.667-1.91 1.002-2.235.335-.325.731-.407.975-.407.243 0 .487.002.7.012.224.01.524-.085.82 0.627.306.732 1.042 2.545 1.134 2.731.091.186.152.404.03.647-.122.243-.183.395-.365.608-.183.213-.385.476-.55.639-.182.18-.373.376-.16.741.213.365.947 1.564 2.032 2.531 1.397 1.244 2.574 1.63 2.94 1.813.365.183.578.152.791-.092.213-.243.913-1.065 1.157-1.431.244-.366.487-.305.82-.183.335.122 2.129 1.004 2.494 1.187.365.183.608.274.7.426.091.152.091.882-.153 1.568z"/>
+      </svg>
+      <span class="contact-label">WhatsApp</span>
+    </a>
+  </div>
+
+  <!-- Interactive Line Following Cursor -->
+  <canvas id="cursor-trail"></canvas>
+
+  <script>
+    (function () {
+      const canvas = document.getElementById('cursor-trail');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+
+      let width = (canvas.width = window.innerWidth);
+      let height = (canvas.height = window.innerHeight);
+
+      window.addEventListener('resize', () => {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+      });
+
+      // Chain of points for the smooth trailing ribbon line
+      const TOTAL_POINTS = 28;
+      const points = [];
+      let mouse = { x: width / 2, y: height / 2, active: false };
+
+      for (let i = 0; i < TOTAL_POINTS; i++) {
+        points.push({ x: width / 2, y: height / 2 });
+      }
+
+      function updateMousePos(x, y) {
+        mouse.x = x;
+        mouse.y = y;
+        if (!mouse.active) {
+          mouse.active = true;
+          for (let p of points) {
+            p.x = x;
+            p.y = y;
+          }
+        }
+      }
+
+      window.addEventListener('mousemove', (e) => updateMousePos(e.clientX, e.clientY));
+      window.addEventListener('touchmove', (e) => {
+        if (e.touches.length > 0) {
+          updateMousePos(e.touches[0].clientX, e.touches[0].clientY);
+        }
+      }, { passive: true });
+
+      function animate() {
+        ctx.clearRect(0, 0, width, height);
+
+        if (mouse.active) {
+          // Lead point tracks cursor
+          points[0].x += (mouse.x - points[0].x) * 0.42;
+          points[0].y += (mouse.y - points[0].y) * 0.42;
+
+          // Each following point lerps toward previous point
+          for (let i = 1; i < TOTAL_POINTS; i++) {
+            points[i].x += (points[i - 1].x - points[i].x) * 0.35;
+            points[i].y += (points[i - 1].y - points[i].y) * 0.35;
+          }
+
+          // Render glowing line segments with tapered width and cyber colors
+          for (let i = 0; i < TOTAL_POINTS - 1; i++) {
+            const p1 = points[i];
+            const p2 = points[i + 1];
+
+            const progress = i / (TOTAL_POINTS - 1);
+            const alpha = 1 - progress * 0.85;
+            const lineWidth = Math.max(0.8, (1 - progress) * 3.6);
+
+            ctx.beginPath();
+            ctx.moveTo(p1.x, p1.y);
+            ctx.lineTo(p2.x, p2.y);
+
+            ctx.strokeStyle = i < TOTAL_POINTS * 0.45 
+              ? `rgba(0, 240, 255, ${alpha})` 
+              : `rgba(112, 0, 255, ${alpha})`;
+            ctx.lineWidth = lineWidth;
+            ctx.lineCap = 'round';
+            ctx.lineJoin = 'round';
+            ctx.shadowBlur = 12;
+            ctx.shadowColor = '#00f0ff';
+            ctx.stroke();
+          }
+        }
+
+        requestAnimationFrame(animate);
+      }
+
+      requestAnimationFrame(animate);
+    })();
+  </script>
+</body>
+</html>
