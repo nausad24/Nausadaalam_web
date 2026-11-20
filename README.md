@@ -55,7 +55,7 @@ Welcome to my personal portfolio repository! I am **Nausad Aalam**, a Chartered 
 ## 🎓 Academic & Professional Journey
 
 ```
-  [ SEE 3.50 GPA (A) ] ───────► [ Trinity (+2: 11: 3.67 / 12: 3.72 A+) ] ──────► [ CA Foundation (Cleared) ] ──────► [ CA Intermediate ]
+  [ SEE 3.50 GPA (A) ] ───────► [ Trinity (+2 Mgmt: GPA 3.72) ] ──────► [ CA Foundation (Cleared) ] ──────► [ CA Intermediate ]
 Adarsha Secondary School,          1st Prize Winner &bull; KIST IT (2024)                 ICAI (January 2025)                 ICAI (Present)
 Biratnagar-7, Morang               Trinity Intra-College 2nd Position                                           Tax, Law, Accounts, Costing
 ```
