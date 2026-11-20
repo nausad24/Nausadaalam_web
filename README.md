@@ -23,7 +23,7 @@ Welcome to my personal portfolio repository! I am **Nausad Aalam**, a Chartered 
 - 🏆 **Major Honor**: **First Prize Winner** at the **KIST Inter-College IT Competition (February 2024)**
 - 🌟 **Academic Milestone**: **Class 11: 3.67 GPA (A+) &bull; Class 12: 3.72 GPA (A+)** in +2 Management from **Trinity International Secondary School & College**, Kathmandu (2022–2024)
 - 🎯 **Professional Milestone**: Successfully cleared **CA Foundation** (January 2025)
-- 🏫 **Schooling**: **SEE (3.5 GPA / Grade A)** from Shree Secondary School Ramaul Makhanaha, Manpur, Siraha-4, Nepal
+- 🏫 **Schooling**: **SEE (3.50 GPA / Grade A)** from Adarsha Secondary School, Biratnagar-7, Morang, Nepal
 - 💻 **Tech Interests**: Modern Web Technologies, HTML5, CSS3, JavaScript, Git & GitHub
 
 ---
@@ -55,9 +55,9 @@ Welcome to my personal portfolio repository! I am **Nausad Aalam**, a Chartered 
 ## 🎓 Academic & Professional Journey
 
 ```
-  [ SEE 3.5 GPA (A) ] ────────► [ Trinity (+2: 11: 3.67 / 12: 3.72 A+) ] ──────► [ CA Foundation (Cleared) ] ──────► [ CA Intermediate ]
-Shree Secondary School,            1st Prize Winner &bull; KIST IT (2024)                 ICAI (January 2025)                 ICAI (Present)
-Siraha, Nepal                      Trinity Intra-College 2nd Position                                           Tax, Law, Accounts, Costing
+  [ SEE 3.50 GPA (A) ] ───────► [ Trinity (+2: 11: 3.67 / 12: 3.72 A+) ] ──────► [ CA Foundation (Cleared) ] ──────► [ CA Intermediate ]
+Adarsha Secondary School,          1st Prize Winner &bull; KIST IT (2024)                 ICAI (January 2025)                 ICAI (Present)
+Biratnagar-7, Morang               Trinity Intra-College 2nd Position                                           Tax, Law, Accounts, Costing
 ```
 
 ### 1. Chartered Accountancy (CA Intermediate)
@@ -72,9 +72,9 @@ Siraha, Nepal                      Trinity Intra-College 2nd Position           
 * **Academic Record:** Graduated with consistent A+ distinction under the National Examination Board (NEB) — **3.67 GPA (Grade A+) in Class 11** and **3.72 GPA (Grade A+) in Class 12**.
 * **Leadership & Tech:** Won 1st Prize at the KIST Inter-College IT Competition (2024) and 2nd Position at Trinity SciTech Expo (2024).
 
-### 3. Secondary Education Examination (SEE) &bull; GPA: 3.5 (Grade A)
-* **School:** Shree Secondary School Ramaul Makhanaha, Manpur, Siraha-4, Nepal.
-* **Result:** Graduated with distinction — **3.5 GPA (Grade A)**.
+### 3. Secondary Education Examination (SEE) &bull; GPA: 3.50 (Grade A)
+* **School:** Adarsha Secondary School, Biratnagar-7, Morang, Nepal.
+* **Result:** Graduated with distinction — **3.50 GPA (Grade A)**.
 
 ---
 
