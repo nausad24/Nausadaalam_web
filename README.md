@@ -28,15 +28,27 @@ Welcome to my personal portfolio repository! I am **Nausad Aalam**, a Chartered 
 
 ---
 
-## 🏆 Featured Award & Project
+## 🏆 Featured Awards & Verified Credentials
 
-### First Prize Winner &bull; KIST Inter-College IT Competition
-* **Event:** National KIST Inter-College IT Competition (KIST IT Fair 2024)
-* **Date:** February 9, 2024
+### 1. First Prize Winner &bull; KIST Inter-College IT Competition
+* **Event:** National KIST Inter-College IT Competition (KIST FAIR 2080)
+* **Date:** February 9, 2024 (26 Magh 2080)
 * **Organized By:** KIST College & SS, Kathmandu, Nepal
 * **Representing:** Trinity International Secondary School & College (+2 Management)
 * **Team Members:** Abhisek Karki, **Nausad Aalam**, Shirish Babu Tiwari, Priyanshu Begwani & Saugat Poudel
 * **Achievement:** Developed and presented an innovative IT solution competing against premier colleges across Nepal, securing the **First Prize (Winner Trophy & Medals)**.
+
+### 2. Second Position &bull; Trinity Intra-College IT Exhibition 2024
+* **Event:** Trinity SciTech-&-Mgmt EXPO 2024 (Exhibitions-cum-Competitions)
+* **Date:** January 30, 2024
+* **Organized By:** Trinity International Secondary School & College, Kathmandu
+* **Achievement:** Awarded **Certificate of Achievement for Securing the Second Position** in the Intra-College IT Exhibition.
+
+### 3. Executive Public Speaking & Communication Certification
+* **Workshop:** 4-Day Intensive Public Speaking Workshop with Lead Trainer Mr. Saunak Bhatta
+* **Dates:** May 25 &ndash; May 28, 2025
+* **Venue:** Ambition Guru Hall, Putalisadak, Kathmandu
+* **Certification:** Awarded **Certificate of Participation** by Ambition Guru for exceptional enthusiasm, curiosity, and impactful communication.
 
 ---
 

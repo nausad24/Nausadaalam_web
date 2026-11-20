@@ -262,6 +262,8 @@
             <ul class="timeline-points">
               <li><strong>Academic Excellence:</strong> Specialized in Accountancy, Economics, Business Studies, and Commercial Mathematics.</li>
               <li><strong>First Prize Winner:</strong> Led the Trinity college team to victory at the <strong>KIST Inter-College IT Competition (February 2024)</strong>.</li>
+              <li><strong>Second Position:</strong> Secured 2nd Place at the <strong>Trinity Intra-College IT Exhibition-cum-Competition (January 2024)</strong>.</li>
+              <li><strong>Public Speaking Leadership:</strong> Completed the 4-Day Public Speaking Masterclass with Saunak Bhatta at Ambition Guru.</li>
               <li>Built the rock-solid quantitative and analytical foundation that empowered my entry into Chartered Accountancy.</li>
             </ul>
           </div>
@@ -394,6 +396,77 @@
               <a href="#journey" class="btn btn-secondary btn-sm">
                 <span>View Full Timeline</span>
               </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Official Certificates & Honors Showcase -->
+        <div class="certificates-section-wrapper">
+          <div class="sub-header-center">
+            <span class="sub-badge award-badge">Verified Credentials</span>
+            <h3 class="sub-section-title">Certificates &amp; Achievements</h3>
+            <p class="sub-section-desc">Click or tap any certificate to view the high-resolution official document</p>
+          </div>
+
+          <div class="certificates-grid">
+            <!-- Cert 1: KIST 1st Position -->
+            <div class="cert-card glass-panel" onclick="openCertModal('cert_kist_first_position.jpg', 'KIST FAIR 2080 — First Position Certificate (Inter-College IT & Management Competition)')">
+              <div class="cert-thumb-wrapper">
+                <img src="cert_kist_first_position.jpg" alt="KIST Fair 2080 First Position Certificate" class="cert-thumb" loading="lazy">
+                <div class="cert-overlay">
+                  <span class="cert-zoom-icon">🔍</span>
+                  <span>View Full Certificate</span>
+                </div>
+                <div class="cert-tag gold-tag">🏆 1st Position &bull; Winner</div>
+              </div>
+              <div class="cert-body">
+                <h4 class="cert-title">KIST Fair 2080 &bull; 1st Position</h4>
+                <p class="cert-inst">KIST College &amp; SS &bull; Inter-College Mgmt &amp; IT Project</p>
+                <div class="cert-meta-row">
+                  <span class="cert-date">📅 26 Magh 2080 (February 9, 2024)</span>
+                  <span class="cert-authority">🏛️ IOE Dean &amp; Executive Director</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Cert 2: Trinity 2nd Position -->
+            <div class="cert-card glass-panel" onclick="openCertModal('cert_trinity_second_position.jpg', 'Trinity SciTech & Mgmt Expo 2024 — Second Position Certificate (Intra-College IT Exhibition)')">
+              <div class="cert-thumb-wrapper">
+                <img src="cert_trinity_second_position.jpg" alt="Trinity Intra-College IT Exhibition Second Position Certificate" class="cert-thumb" loading="lazy">
+                <div class="cert-overlay">
+                  <span class="cert-zoom-icon">🔍</span>
+                  <span>View Full Certificate</span>
+                </div>
+                <div class="cert-tag cyan-tag">🥈 2nd Position &bull; Intra-College</div>
+              </div>
+              <div class="cert-body">
+                <h4 class="cert-title">Trinity SciTech Expo &bull; 2nd Position</h4>
+                <p class="cert-inst">Trinity International SS &amp; College &bull; IT Exhibition 2024</p>
+                <div class="cert-meta-row">
+                  <span class="cert-date">📅 January 30, 2024</span>
+                  <span class="cert-authority">🏛️ Trinity CEO, Principal &amp; Chair</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Cert 3: Ambition Guru Public Speaking -->
+            <div class="cert-card glass-panel" onclick="openCertModal('cert_public_speaking.jpg', 'Ambition Guru — 4-Day Public Speaking Workshop with Saunak Bhatta')">
+              <div class="cert-thumb-wrapper cert-landscape-thumb">
+                <img src="cert_public_speaking.jpg" alt="Public Speaking Workshop Certificate" class="cert-thumb" loading="lazy">
+                <div class="cert-overlay">
+                  <span class="cert-zoom-icon">🔍</span>
+                  <span>View Full Certificate</span>
+                </div>
+                <div class="cert-tag purple-tag">🎙️ Executive Public Speaking</div>
+              </div>
+              <div class="cert-body">
+                <h4 class="cert-title">Executive Public Speaking</h4>
+                <p class="cert-inst">Ambition Guru &bull; 4-Day Intensive Workshop</p>
+                <div class="cert-meta-row">
+                  <span class="cert-date">📅 May 25–28, 2025</span>
+                  <span class="cert-authority">🏛️ Saunak Bhatta (Lead Trainer)</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -647,8 +720,42 @@
     </a>
   </div>
 
+  <!-- Certificate Lightbox Modal -->
+  <div class="cert-modal-backdrop" id="cert-modal" onclick="closeCertModal(event)" aria-hidden="true">
+    <div class="cert-modal-content" onclick="event.stopPropagation()">
+      <button class="cert-modal-close" onclick="closeCertModal()" aria-label="Close modal">&times;</button>
+      <img src="" alt="Enlarged Certificate" class="cert-modal-img" id="cert-modal-img">
+      <div class="cert-modal-caption" id="cert-modal-caption"></div>
+    </div>
+  </div>
+
   <!-- Interactive JavaScript Logic -->
   <script>
+    // Certificate Lightbox Functions
+    function openCertModal(imageSrc, captionText) {
+      const modal = document.getElementById('cert-modal');
+      const modalImg = document.getElementById('cert-modal-img');
+      const caption = document.getElementById('cert-modal-caption');
+      if (modal && modalImg) {
+        modalImg.src = imageSrc;
+        caption.textContent = captionText;
+        modal.classList.add('modal-active');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
+    function closeCertModal() {
+      const modal = document.getElementById('cert-modal');
+      if (modal) {
+        modal.classList.remove('modal-active');
+        document.body.style.overflow = 'auto';
+      }
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeCertModal();
+    });
+
     // Smooth scrolling & active nav state
     const navLinks = document.querySelectorAll('.nav-links .nav-link');
     const sections = document.querySelectorAll('section');
