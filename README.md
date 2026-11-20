@@ -21,7 +21,7 @@ Welcome to my personal portfolio repository! I am **Nausad Aalam**, a Chartered 
 
 - 🎓 **Currently**: Pursuing **CA Intermediate** (Group 1 & Group 2) with ICAI
 - 🏆 **Major Honor**: **First Prize Winner** at the **KIST Inter-College IT Competition (February 2024)**
-- 🌟 **Academic Milestone**: **3.72 GPA** in +2 Management from **Trinity International Secondary School & College**, Kathmandu (2022–2024)
+- 🌟 **Academic Milestone**: **Class 11: 3.67 GPA (A+) &bull; Class 12: 3.72 GPA (A+)** in +2 Management from **Trinity International Secondary School & College**, Kathmandu (2022–2024)
 - 🎯 **Professional Milestone**: Successfully cleared **CA Foundation** (January 2025)
 - 🏫 **Schooling**: **SEE (3.5 GPA / Grade A)** from Shree Secondary School Ramaul Makhanaha, Manpur, Siraha-4, Nepal
 - 💻 **Tech Interests**: Modern Web Technologies, HTML5, CSS3, JavaScript, Git & GitHub
@@ -55,9 +55,9 @@ Welcome to my personal portfolio repository! I am **Nausad Aalam**, a Chartered 
 ## 🎓 Academic & Professional Journey
 
 ```
-  [ SEE 3.5 GPA (A) ] ────────► [ Trinity College (+2 Mgmt) ] ──────► [ CA Foundation (Cleared) ] ──────► [ CA Intermediate ]
-Shree Secondary School,            GPA 3.72 & 1st Prize Winner              ICAI (January 2025)                 ICAI (Present)
-Siraha, Nepal                      KIST IT Competition (2024)                                           Tax, Law, Accounts, Costing
+  [ SEE 3.5 GPA (A) ] ────────► [ Trinity (+2: 11: 3.67 / 12: 3.72 A+) ] ──────► [ CA Foundation (Cleared) ] ──────► [ CA Intermediate ]
+Shree Secondary School,            1st Prize Winner &bull; KIST IT (2024)                 ICAI (January 2025)                 ICAI (Present)
+Siraha, Nepal                      Trinity Intra-College 2nd Position                                           Tax, Law, Accounts, Costing
 ```
 
 ### 1. Chartered Accountancy (CA Intermediate)
@@ -66,11 +66,11 @@ Siraha, Nepal                      KIST IT Competition (2024)                   
 * **Key Areas:** Advanced Accounting, Corporate and Other Laws, Direct & Indirect Taxation (GST/TDS), Cost and Management Accounting, Auditing & Ethics.
 * **Foundation:** Cleared CA Foundation in January 2025.
 
-### 2. Higher Secondary Education (+2 Management) &bull; GPA: 3.72
+### 2. Higher Secondary Education (+2 Management) &bull; Class 11: 3.67 GPA (A+) | Class 12: 3.72 GPA (A+)
 * **Institution:** Trinity International Secondary School & College, Dillibazar, Kathmandu, Nepal
 * **Session:** 2022 &ndash; 2024 AD (2079 &ndash; 2081 BS)
-* **Academic Record:** Graduated with an outstanding **3.72 GPA** under the National Examination Board (NEB).
-* **Leadership & Tech:** Won 1st Prize at the KIST Inter-College IT Competition (2024).
+* **Academic Record:** Graduated with consistent A+ distinction under the National Examination Board (NEB) — **3.67 GPA (Grade A+) in Class 11** and **3.72 GPA (Grade A+) in Class 12**.
+* **Leadership & Tech:** Won 1st Prize at the KIST Inter-College IT Competition (2024) and 2nd Position at Trinity SciTech Expo (2024).
 
 ### 3. Secondary Education Examination (SEE) &bull; GPA: 3.5 (Grade A)
 * **School:** Shree Secondary School Ramaul Makhanaha, Manpur, Siraha-4, Nepal.
