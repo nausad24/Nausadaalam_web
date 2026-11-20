@@ -4,7 +4,7 @@
   <img src="Nausad_Portrait.jpeg" alt="Nausad Aalam" width="160" height="160" style="border-radius: 50%; border: 3px solid #00f0ff; object-fit: cover; object-position: center;" />
 </p>
 
-<h3 align="center">Chartered Accountancy Aspirant (ICAI) • +2 & SEE Graduate • Tech & Web Enthusiast</h3>
+<h3 align="center">Chartered Accountancy Aspirant (ICAI) • IT Competition Winner • +2 Management (GPA 3.72) • Tech Enthusiast</h3>
 
 <p align="center">
   <a href="https://github.com/nausad24"><img src="https://img.shields.io/badge/GitHub-nausad24-181717?style=for-the-badge&logo=github" alt="GitHub"></a>
@@ -17,22 +17,35 @@
 
 ## 🌟 About Me
 
-Welcome to my personal portfolio repository! I am **Nausad Aalam**, a Chartered Accountancy student pursuing the CA course under **The Institute of Chartered Accountants of India (ICAI)**. Originally from **Siraha, Nepal**, I combine a deep passion for financial accounting, corporate laws, and taxation with a strong interest in modern web design, software tools, and digital media production.
+Welcome to my personal portfolio repository! I am **Nausad Aalam**, a Chartered Accountancy student pursuing the CA course under **The Institute of Chartered Accountants of India (ICAI)**. Originally from **Siraha, Nepal**, I combine a deep passion for financial accounting, corporate laws, and taxation with a proven track record in technology and team problem-solving.
 
 - 🎓 **Currently**: Pursuing **CA Intermediate** (Group 1 & Group 2) with ICAI
-- 🏆 **Milestone**: Successfully cleared **CA Foundation** (January 2025)
-- 📚 **Academic Roots**: Completed **+2 in Management/Commerce** and **SEE** from Shree Secondary School Ramaul Makhanaha, Manpur, Siraha
+- 🏆 **Major Honor**: **First Prize Winner** at the **KIST Inter-College IT Competition (February 2024)**
+- 🌟 **Academic Milestone**: **3.72 GPA** in +2 Management from **Trinity International Secondary School & College**, Kathmandu (2022–2024)
+- 🎯 **Professional Milestone**: Successfully cleared **CA Foundation** (January 2025)
+- 🏫 **Schooling**: **SEE** from Shree Secondary School Ramaul Makhanaha, Manpur, Siraha-4, Nepal
 - 💻 **Tech Interests**: Modern Web Technologies, HTML5, CSS3, JavaScript, Git & GitHub
-- 🎥 **Content Creation**: Sharing educational, motivational, and spiritual recitations on YouTube
+
+---
+
+## 🏆 Featured Award & Project
+
+### First Prize Winner &bull; KIST Inter-College IT Competition
+* **Event:** National KIST Inter-College IT Competition (KIST IT Fair 2024)
+* **Date:** February 9, 2024
+* **Organized By:** KIST College & SS, Kathmandu, Nepal
+* **Representing:** Trinity International Secondary School & College (+2 Management)
+* **Team Members:** Abhisek Karki, **Nausad Aalam**, Shirish Babu Tiwari, Priyanshu Begwani & Saugat Poudel
+* **Achievement:** Developed and presented an innovative IT solution competing against premier colleges across Nepal, securing the **First Prize (Winner Trophy & Medals)**.
 
 ---
 
 ## 🎓 Academic & Professional Journey
 
 ```
-  [ SEE Graduate ] ──────► [ +2 Commerce/Mgmt ] ──────► [ CA Foundation (Cleared) ] ──────► [ CA Intermediate ]
-Shree Secondary School,         Accounting, Economics,          ICAI (January 2025)                 ICAI (Present)
-Siraha, Nepal                   & Business Studies                                          Tax, Law, Accounts, Costing
+  [ SEE Distinction ] ──────► [ Trinity College (+2 Mgmt) ] ──────► [ CA Foundation (Cleared) ] ──────► [ CA Intermediate ]
+Shree Secondary School,            GPA 3.72 & 1st Prize Winner              ICAI (January 2025)                 ICAI (Present)
+Siraha, Nepal                      KIST IT Competition (2024)                                           Tax, Law, Accounts, Costing
 ```
 
 ### 1. Chartered Accountancy (CA Intermediate)
@@ -41,8 +54,11 @@ Siraha, Nepal                   & Business Studies                              
 * **Key Areas:** Advanced Accounting, Corporate and Other Laws, Direct & Indirect Taxation (GST/TDS), Cost and Management Accounting, Auditing & Ethics.
 * **Foundation:** Cleared CA Foundation in January 2025.
 
-### 2. Higher Secondary Education (+2 Commerce / Management)
-* Built strong foundational expertise in double-entry bookkeeping, financial statements, commercial arithmetic, and business management.
+### 2. Higher Secondary Education (+2 Management) &bull; GPA: 3.72
+* **Institution:** Trinity International Secondary School & College, Dillibazar, Kathmandu, Nepal
+* **Session:** 2022 &ndash; 2024 AD (2079 &ndash; 2081 BS)
+* **Academic Record:** Graduated with an outstanding **3.72 GPA** under the National Examination Board (NEB).
+* **Leadership & Tech:** Won 1st Prize at the KIST Inter-College IT Competition (2024).
 
 ### 3. Secondary Education Examination (SEE)
 * **School:** Shree Secondary School Ramaul Makhanaha, Manpur, Siraha-4, Nepal.
@@ -52,23 +68,24 @@ Siraha, Nepal                   & Business Studies                              
 ## 🛠️ Skills & Expertise
 
 ### 💼 Finance & Corporate
-- Financial Accounting & Reporting
-- Corporate & Commercial Laws
+- Financial Accounting & Reporting (AS / Ind AS)
+- Corporate & Commercial Laws (Companies Act 2013, FEMA, LLP)
 - Direct & Indirect Taxation (GST, TDS, Income Tax)
 - Cost & Management Accounting
 - Auditing Principles & ICAI Standards
 
 ### 💻 Web & Technology
-- HTML5, CSS3 (Modern Glassmorphism, Flexbox, CSS Grid, Cyber Aesthetics)
+- HTML5, CSS3 (Glassmorphism, Flexbox, Grid, Cyber Aesthetics)
 - JavaScript & Interactive DOM Manipulation
 - Canvas 2D Graphics & Particle/Cursor Trail Animation
 - Git & GitHub Version Control
 - Responsive & Mobile-First Web Design
+- GitHub Pages Deployment
 
-### 📊 Tools & Media
+### 📊 Productivity & Systems
 - ICAI Portals & Self-Service Portal (SSP)
 - Microsoft Office (Excel, Word, PowerPoint)
-- Video & Audio Editing (YouTube Shorts & Media Production)
+- Technical Problem-Solving & Case Study Analysis
 
 ---
 
@@ -76,9 +93,10 @@ Siraha, Nepal                   & Business Studies                              
 
 This portfolio features an immersive cyberpunk / dark-neon aesthetic:
 - **Monogram Loading Screen:** Pure CSS animated `NS` logo with cyan-purple glowing ring.
-- **Interactive Cursor Trail:** 28-point glowing ribbon canvas animation that follows user movements.
+- **Interactive Cursor Trail:** 28-point glowing ribbon canvas animation that tracks user cursor.
 - **Dynamic Profile Card:** 3D tilt, holographic ambient backdrop, and avatar frame with rotating conic gradient ring.
-- **Comprehensive Sections:** Navigation Bar, About Me, Academic Timeline, Skills Matrix, YouTube Media Showcase, and Contact Form.
+- **Projects & Awards Showcase:** Prominently highlights the 1st Prize Trophy win from the KIST Inter-College IT Competition.
+- **Academic Timeline:** Complete progression across SEE, Trinity College (+2 Management GPA 3.72), and ICAI Chartered Accountancy.
 - **Floating Contact Hub:** Quick-access Telegram and WhatsApp buttons.
 
 ---
@@ -92,9 +110,8 @@ This portfolio features an immersive cyberpunk / dark-neon aesthetic:
    ```
 
 2. **Open `index.html`:**
-   Double click `index.html` or open with any modern web browser:
+   Double click `index.html` or run in PowerShell:
    ```bash
-   # On Windows PowerShell
    Start-Process index.html
    ```
 
