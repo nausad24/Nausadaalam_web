@@ -1595,7 +1595,7 @@ body {
    ========================================================= */
 .skills-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
 }
 
@@ -1674,6 +1674,15 @@ body {
   align-items: center;
   gap: 1.2rem;
   position: relative;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(0, 240, 255, 0.35);
+  box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 240, 255, 0.15);
 }
 
 .contact-card-icon {
@@ -1738,7 +1747,8 @@ body {
   transition: color 0.3s ease;
 }
 
-.contact-card-value:hover {
+.contact-card-value:hover,
+.contact-card:hover .contact-card-value {
   color: var(--accent-cyan);
 }
 
@@ -1765,7 +1775,8 @@ body {
   height: 17px;
 }
 
-.copy-btn:hover, .card-action-link:hover {
+.copy-btn:hover, .card-action-link:hover,
+.contact-card:hover .card-action-link {
   background: rgba(0, 240, 255, 0.15);
   border-color: var(--accent-cyan);
   color: var(--accent-cyan);
