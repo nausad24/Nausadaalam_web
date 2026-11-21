@@ -783,16 +783,6 @@
 
       <!-- Chat Stream Body -->
       <div class="ai-chat-messages" id="ai-chat-messages">
-        <!-- Initial Bot Greeting Bubble (Clean & Modern) -->
-        <div class="ai-msg-row bot-row">
-          <div class="bot-avatar-mini">
-            <img src="robert_robot.png" alt="Robert AI" class="bot-avatar-img">
-          </div>
-          <div class="ai-bubble bot-bubble">
-            <p>Hello! I am <strong>Robert</strong>, Nausad's AI Assistant powered by <strong>Google Gemini</strong>. 🤖✨<br><br>Ask me anything about his CA studies, KIST Champion Award, or credentials, or pick a topic below:</p>
-          </div>
-        </div>
-
         <div class="ai-prompt-heading">Suggested Topics</div>
         
         <!-- Quick Action Prompt Chips -->
@@ -1166,15 +1156,6 @@
       const msgContainer = document.getElementById('ai-chat-messages');
       if (!msgContainer) return;
       msgContainer.innerHTML = `
-        <div class="ai-msg-row bot-row">
-          <div class="bot-avatar-mini">
-            <img src="robert_robot.png" alt="Robert AI" class="bot-avatar-img">
-          </div>
-          <div class="ai-bubble bot-bubble">
-            <p>Hello! I am <strong>Robert</strong>, Nausad's AI Assistant powered by <strong>Google Gemini</strong>. 🤖✨<br><br>Ask me anything about his CA studies, KIST Champion Award, or credentials, or pick a topic below:</p>
-          </div>
-        </div>
-
         <div class="ai-prompt-heading">Suggested Topics</div>
         
         <div class="ai-quick-prompts" id="ai-quick-prompts">
