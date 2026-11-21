@@ -718,98 +718,187 @@
     </a>
   </div>
 
-  <!-- AI Robot (Robert) Assistant Widget -->
+  <!-- AI Robot (Robert) 2.0 Assistant Widget -->
   <div class="ai-robot-container" id="ai-robot-container">
     <!-- Chat Flyout Window -->
     <div class="ai-chat-window" id="ai-chat-window" aria-hidden="true">
+      <!-- Chat Header -->
       <div class="ai-chat-header">
-        <div class="ai-header-info">
-          <div class="ai-robot-avatar">
-            <svg viewBox="0 0 40 40" class="robot-face-svg">
-              <rect x="8" y="10" width="24" height="22" rx="7" fill="url(#botGrad)" stroke="#00f0ff" stroke-width="1.5" />
-              <line x1="20" y1="10" x2="20" y2="4" stroke="#00f0ff" stroke-width="2" stroke-linecap="round" />
-              <circle cx="20" cy="3" r="2.5" fill="#00f0ff" class="antenna-light" />
-              <rect x="5" y="16" width="3" height="10" rx="1.5" fill="#00f0ff" />
-              <rect x="32" y="16" width="3" height="10" rx="1.5" fill="#00f0ff" />
-              <rect x="12" y="15" width="16" height="7" rx="3.5" fill="#090d16" />
-              <circle cx="16" cy="18.5" r="2" fill="#00f0ff" class="robot-eye" />
-              <circle cx="24" cy="18.5" r="2" fill="#00f0ff" class="robot-eye" />
-              <line x1="16" y1="26" x2="24" y2="26" stroke="#00f0ff" stroke-width="1.5" stroke-linecap="round" />
+        <div class="ai-header-left">
+          <div class="ai-header-avatar-orb">
+            <svg viewBox="0 0 100 100" class="cyber-robot-svg">
               <defs>
-                <linearGradient id="botGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stop-color="#141c2e" />
-                  <stop offset="100%" stop-color="#1c253d" />
+                <linearGradient id="hdrHelmGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#1e293b" />
+                  <stop offset="50%" stop-color="#0f172a" />
+                  <stop offset="100%" stop-color="#020617" />
+                </linearGradient>
+                <linearGradient id="hdrCyanEnergy" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#00f0ff" />
+                  <stop offset="100%" stop-color="#7000ff" />
+                </linearGradient>
+                <linearGradient id="hdrVisorGlass" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stop-color="#050814" />
+                  <stop offset="100%" stop-color="#0d1527" />
                 </linearGradient>
               </defs>
+              <path d="M38 78 L62 78 L66 88 L34 88 Z" fill="#0f172a" stroke="#00f0ff" stroke-width="1.5" stroke-opacity="0.6" />
+              <line x1="42" y1="83" x2="58" y2="83" stroke="#00f0ff" stroke-width="2" />
+              <rect x="10" y="42" width="8" height="24" rx="4" fill="#0f172a" stroke="#00f0ff" stroke-width="1.5" />
+              <circle cx="14" cy="54" r="2" fill="#00f0ff" />
+              <rect x="82" y="42" width="8" height="24" rx="4" fill="#0f172a" stroke="#00f0ff" stroke-width="1.5" />
+              <circle cx="86" cy="54" r="2" fill="#00f0ff" />
+              <line x1="50" y1="24" x2="50" y2="10" stroke="#00f0ff" stroke-width="2.5" stroke-linecap="round" />
+              <polygon points="50,4 56,10 50,16 44,10" fill="url(#hdrCyanEnergy)" class="antenna-diamond" />
+              <rect x="16" y="22" width="68" height="58" rx="26" fill="url(#hdrHelmGrad)" stroke="#00f0ff" stroke-width="2" />
+              <path d="M32 22 Q50 18 68 22" fill="none" stroke="url(#hdrCyanEnergy)" stroke-width="2" />
+              <rect x="23" y="34" width="54" height="28" rx="14" fill="url(#hdrVisorGlass)" stroke="#1e293b" stroke-width="1.5" />
+              <g class="robot-eyes-group">
+                <path d="M32 45 Q40 43 44 47 Q40 49 32 47 Z" fill="#00f0ff" class="cyber-eye" />
+                <path d="M68 45 Q60 43 56 47 Q60 49 68 47 Z" fill="#00f0ff" class="cyber-eye" />
+              </g>
+              <g class="voice-mouth" opacity="0.9">
+                <rect x="38" y="68" width="3" height="4" rx="1.5" fill="#00f0ff" />
+                <rect x="44" y="66" width="3" height="8" rx="1.5" fill="#00f0ff" />
+                <rect x="50" y="65" width="3" height="10" rx="1.5" fill="#00f0ff" class="mouth-pulse" />
+                <rect x="56" y="66" width="3" height="8" rx="1.5" fill="#00f0ff" />
+                <rect x="62" y="68" width="3" height="4" rx="1.5" fill="#00f0ff" />
+              </g>
             </svg>
-            <span class="online-indicator"></span>
+            <span class="header-online-dot"></span>
           </div>
-          <div>
-            <h4 class="ai-name">Robert <span class="ai-badge">AI BOT</span></h4>
-            <span class="ai-status">Online &bull; Nausad's Assistant</span>
+          <div class="ai-header-text">
+            <div class="ai-header-title-row">
+              <span class="ai-header-name">ROBERT</span>
+              <span class="ai-neural-tag">AI 2.0</span>
+            </div>
+            <span class="ai-header-desc">⚡ Nausad's Autonomous Assistant</span>
           </div>
         </div>
         <div class="ai-header-actions">
-          <button type="button" class="ai-action-btn" onclick="resetAiChat()" title="Clear Chat">
+          <button type="button" class="ai-btn-icon" onclick="resetAiChat()" title="Reset Conversation" aria-label="Reset Conversation">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
           </button>
-          <button type="button" class="ai-action-btn" onclick="toggleAiChat()" title="Close">
+          <button type="button" class="ai-btn-icon" onclick="toggleAiChat()" title="Close Chat" aria-label="Close Chat">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
           </button>
         </div>
       </div>
 
-      <!-- Messages Stream -->
+      <!-- Chat Stream Body -->
       <div class="ai-chat-messages" id="ai-chat-messages">
-        <div class="ai-msg bot-msg">
-          <div class="ai-msg-bubble">
-            <p>👋 Hello! I am <strong>Robert</strong>, Nausad's AI Assistant. Ask me anything about his CA studies with ICAI, Trinity College GPA, KIST IT 1st Prize, or how to contact him!</p>
+        <!-- Welcoming Hero Card -->
+        <div class="ai-welcome-card">
+          <div class="welcome-top">
+            <span class="welcome-badge">🤖 Meet Robert</span>
+            <span class="welcome-status">Online 24/7</span>
+          </div>
+          <p class="welcome-text">
+            I'm <strong>Robert</strong>, Nausad's AI companion. Trained on his CA studies under ICAI, +2 academic excellence at Trinity, KIST Fair 1st Position award, and verified credentials.
+          </p>
+          <div class="welcome-metrics">
+            <span class="w-metric">🎓 CA Inter (ICAI)</span>
+            <span class="w-metric">🏆 1st Prize KIST</span>
+            <span class="w-metric">⭐ 3.72 GPA</span>
           </div>
         </div>
-        <!-- Quick Prompts -->
+
+        <div class="ai-prompt-heading">Suggested Topics</div>
+        
+        <!-- Quick Action Prompt Chips -->
         <div class="ai-quick-prompts" id="ai-quick-prompts">
-          <button type="button" class="quick-chip" onclick="askAiQuestion('Tell me about Nausad')">👤 Who is Nausad?</button>
-          <button type="button" class="quick-chip" onclick="askAiQuestion('Tell me about his CA studies with ICAI')">🎓 CA &amp; ICAI</button>
-          <button type="button" class="quick-chip" onclick="askAiQuestion('Tell me about the KIST IT Competition 1st Prize')">🏆 KIST 1st Prize</button>
-          <button type="button" class="quick-chip" onclick="askAiQuestion('What are his key skills?')">💼 Key Skills</button>
-          <button type="button" class="quick-chip" onclick="askAiQuestion('How can I contact Nausad?')">📬 Contact Info</button>
+          <button type="button" class="quick-chip" onclick="askAiQuestion('Who is Nausad Aalam?')">
+            <span class="chip-icon">👤</span>
+            <span>About Nausad</span>
+          </button>
+          <button type="button" class="quick-chip" onclick="askAiQuestion('Tell me about his CA studies under ICAI')">
+            <span class="chip-icon">🎓</span>
+            <span>CA &amp; ICAI Path</span>
+          </button>
+          <button type="button" class="quick-chip" onclick="askAiQuestion('Tell me about the KIST IT Fair 1st Prize')">
+            <span class="chip-icon">🏆</span>
+            <span>KIST 1st Prize</span>
+          </button>
+          <button type="button" class="quick-chip" onclick="askAiQuestion('What are his academic results?')">
+            <span class="chip-icon">🏫</span>
+            <span>Trinity GPA 3.72</span>
+          </button>
+          <button type="button" class="quick-chip" onclick="askAiQuestion('What are his key skills?')">
+            <span class="chip-icon">💡</span>
+            <span>Core Skills</span>
+          </button>
+          <button type="button" class="quick-chip" onclick="askAiQuestion('How can I contact Nausad directly?')">
+            <span class="chip-icon">📬</span>
+            <span>Direct Contact</span>
+          </button>
         </div>
       </div>
 
-      <!-- Input Area -->
+      <!-- Input Capsule -->
       <form class="ai-chat-input-bar" onsubmit="handleAiSubmit(event)">
-        <input type="text" id="ai-user-input" placeholder="Ask Robert a question..." autocomplete="off">
-        <button type="submit" class="ai-send-btn" id="ai-send-btn" aria-label="Send message">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-        </button>
+        <div class="input-wrapper">
+          <input type="text" id="ai-user-input" placeholder="Ask Robert anything about Nausad..." autocomplete="off">
+          <button type="submit" class="ai-send-btn" id="ai-send-btn" aria-label="Send message">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
       </form>
     </div>
 
     <!-- Floating Robot Trigger Button -->
-    <div class="ai-robot-trigger" onclick="toggleAiChat()" id="ai-robot-trigger" title="Chat with AI Robert">
-      <div class="robot-speech-bubble" id="robot-speech-bubble">
-        <span>Ask Robert! 🤖</span>
+    <div class="ai-robot-trigger" onclick="toggleAiChat()" id="ai-robot-trigger" title="Chat with Robert AI">
+      <!-- Floating holographic bubble -->
+      <div class="robot-pill-banner" id="robot-speech-bubble">
+        <span class="live-status-dot"></span>
+        <div class="banner-text">
+          <span class="banner-title">Robert AI</span>
+          <span class="banner-sub">Ask anything ⚡</span>
+        </div>
       </div>
-      <div class="robot-trigger-icon">
-        <svg viewBox="0 0 40 40" class="robot-trigger-svg">
-          <rect x="8" y="10" width="24" height="22" rx="7" fill="url(#triggerBotGrad)" stroke="#00f0ff" stroke-width="1.8" />
-          <line x1="20" y1="10" x2="20" y2="3.5" stroke="#00f0ff" stroke-width="2.2" stroke-linecap="round" />
-          <circle cx="20" cy="2.5" r="3" fill="#00f0ff" class="antenna-pulse" />
-          <rect x="4.5" y="16" width="3.5" height="10" rx="1.5" fill="#00f0ff" />
-          <rect x="32" y="16" width="3.5" height="10" rx="1.5" fill="#00f0ff" />
-          <rect x="12" y="15" width="16" height="7.5" rx="3.5" fill="#070a12" />
-          <circle cx="16" cy="18.5" r="2.2" fill="#00f0ff" class="robot-eye" />
-          <circle cx="24" cy="18.5" r="2.2" fill="#00f0ff" class="robot-eye" />
-          <line x1="16" y1="26.5" x2="24" y2="26.5" stroke="#00f0ff" stroke-width="1.8" stroke-linecap="round" />
-          <defs>
-            <linearGradient id="triggerBotGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#0f172a" />
-              <stop offset="100%" stop-color="#1e293b" />
-            </linearGradient>
-          </defs>
-        </svg>
-        <span class="robot-glow-ring"></span>
-        <span class="robot-status-dot"></span>
+      <div class="robot-orb-button">
+        <div class="orb-spin-ring"></div>
+        <div class="orb-core">
+          <svg viewBox="0 0 100 100" class="cyber-robot-svg">
+            <defs>
+              <linearGradient id="orbHelmGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#1e293b" />
+                <stop offset="50%" stop-color="#0f172a" />
+                <stop offset="100%" stop-color="#020617" />
+              </linearGradient>
+              <linearGradient id="orbCyanEnergy" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#00f0ff" />
+                <stop offset="100%" stop-color="#7000ff" />
+              </linearGradient>
+              <linearGradient id="orbVisorGlass" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#050814" />
+                <stop offset="100%" stop-color="#0d1527" />
+              </linearGradient>
+            </defs>
+            <path d="M38 78 L62 78 L66 88 L34 88 Z" fill="#0f172a" stroke="#00f0ff" stroke-width="1.5" stroke-opacity="0.6" />
+            <line x1="42" y1="83" x2="58" y2="83" stroke="#00f0ff" stroke-width="2" />
+            <rect x="10" y="42" width="8" height="24" rx="4" fill="#0f172a" stroke="#00f0ff" stroke-width="1.5" />
+            <circle cx="14" cy="54" r="2" fill="#00f0ff" />
+            <rect x="82" y="42" width="8" height="24" rx="4" fill="#0f172a" stroke="#00f0ff" stroke-width="1.5" />
+            <circle cx="86" cy="54" r="2" fill="#00f0ff" />
+            <line x1="50" y1="24" x2="50" y2="10" stroke="#00f0ff" stroke-width="2.5" stroke-linecap="round" />
+            <polygon points="50,4 56,10 50,16 44,10" fill="url(#orbCyanEnergy)" class="antenna-diamond" />
+            <rect x="16" y="22" width="68" height="58" rx="26" fill="url(#orbHelmGrad)" stroke="#00f0ff" stroke-width="2" />
+            <path d="M32 22 Q50 18 68 22" fill="none" stroke="url(#orbCyanEnergy)" stroke-width="2" />
+            <rect x="23" y="34" width="54" height="28" rx="14" fill="url(#orbVisorGlass)" stroke="#1e293b" stroke-width="1.5" />
+            <g class="robot-eyes-group">
+              <path d="M32 45 Q40 43 44 47 Q40 49 32 47 Z" fill="#00f0ff" class="cyber-eye" />
+              <path d="M68 45 Q60 43 56 47 Q60 49 68 47 Z" fill="#00f0ff" class="cyber-eye" />
+            </g>
+            <g class="voice-mouth" opacity="0.9">
+              <rect x="38" y="68" width="3" height="4" rx="1.5" fill="#00f0ff" />
+              <rect x="44" y="66" width="3" height="8" rx="1.5" fill="#00f0ff" />
+              <rect x="50" y="65" width="3" height="10" rx="1.5" fill="#00f0ff" class="mouth-pulse" />
+              <rect x="56" y="66" width="3" height="8" rx="1.5" fill="#00f0ff" />
+              <rect x="62" y="68" width="3" height="4" rx="1.5" fill="#00f0ff" />
+            </g>
+          </svg>
+        </div>
+        <span class="orb-beacon-dot"></span>
       </div>
     </div>
   </div>
@@ -1090,17 +1179,48 @@
       const msgContainer = document.getElementById('ai-chat-messages');
       if (!msgContainer) return;
       msgContainer.innerHTML = `
-        <div class="ai-msg bot-msg">
-          <div class="ai-msg-bubble">
-            <p>👋 Hello! I am <strong>Robert</strong>, Nausad's AI Assistant. Ask me anything about his CA studies with ICAI, Trinity College GPA, KIST IT 1st Prize, or how to contact him!</p>
+        <div class="ai-welcome-card">
+          <div class="welcome-top">
+            <span class="welcome-badge">🤖 Meet Robert</span>
+            <span class="welcome-status">Online 24/7</span>
+          </div>
+          <p class="welcome-text">
+            I'm <strong>Robert</strong>, Nausad's AI companion. Trained on his CA studies under ICAI, +2 academic excellence at Trinity, KIST Fair 1st Position award, and verified credentials.
+          </p>
+          <div class="welcome-metrics">
+            <span class="w-metric">🎓 CA Inter (ICAI)</span>
+            <span class="w-metric">🏆 1st Prize KIST</span>
+            <span class="w-metric">⭐ 3.72 GPA</span>
           </div>
         </div>
+
+        <div class="ai-prompt-heading">Suggested Topics</div>
+        
         <div class="ai-quick-prompts" id="ai-quick-prompts">
-          <button type="button" class="quick-chip" onclick="askAiQuestion('Tell me about Nausad')">👤 Who is Nausad?</button>
-          <button type="button" class="quick-chip" onclick="askAiQuestion('Tell me about his CA studies with ICAI')">🎓 CA &amp; ICAI</button>
-          <button type="button" class="quick-chip" onclick="askAiQuestion('Tell me about the KIST IT Competition 1st Prize')">🏆 KIST 1st Prize</button>
-          <button type="button" class="quick-chip" onclick="askAiQuestion('What are his key skills?')">💼 Key Skills</button>
-          <button type="button" class="quick-chip" onclick="askAiQuestion('How can I contact Nausad?')">📬 Contact Info</button>
+          <button type="button" class="quick-chip" onclick="askAiQuestion('Who is Nausad Aalam?')">
+            <span class="chip-icon">👤</span>
+            <span>About Nausad</span>
+          </button>
+          <button type="button" class="quick-chip" onclick="askAiQuestion('Tell me about his CA studies under ICAI')">
+            <span class="chip-icon">🎓</span>
+            <span>CA &amp; ICAI Path</span>
+          </button>
+          <button type="button" class="quick-chip" onclick="askAiQuestion('Tell me about the KIST IT Fair 1st Prize')">
+            <span class="chip-icon">🏆</span>
+            <span>KIST 1st Prize</span>
+          </button>
+          <button type="button" class="quick-chip" onclick="askAiQuestion('What are his academic results?')">
+            <span class="chip-icon">🏫</span>
+            <span>Trinity GPA 3.72</span>
+          </button>
+          <button type="button" class="quick-chip" onclick="askAiQuestion('What are his key skills?')">
+            <span class="chip-icon">💡</span>
+            <span>Core Skills</span>
+          </button>
+          <button type="button" class="quick-chip" onclick="askAiQuestion('How can I contact Nausad directly?')">
+            <span class="chip-icon">📬</span>
+            <span>Direct Contact</span>
+          </button>
         </div>
       `;
     }
@@ -1108,43 +1228,43 @@
     const robertKnowledgeBase = [
       {
         patterns: ['who', 'about', 'nausad', 'aalam', 'introduce', 'profile', 'bio', 'background'],
-        answer: "<strong>Nausad Aalam</strong> is a dedicated Chartered Accountancy (CA Intermediate) student under <strong>The Institute of Chartered Accountants of India (ICAI)</strong>, a high-achieving +2 Management graduate from <strong>Trinity International College (GPA 3.72)</strong>, and 1st Prize Winner of the national <strong>KIST Inter-College IT Competition</strong> from Siraha, Nepal! 🌟"
+        answer: "<strong>Nausad Aalam</strong> is a high-achieving Chartered Accountancy (CA Intermediate) aspirant registered with <strong>The Institute of Chartered Accountants of India (ICAI)</strong>.<br><br>He graduated +2 Management from <strong>Trinity International College</strong> with an outstanding <strong>3.72 GPA</strong> and led his team to <strong>1st Position</strong> at the national <strong>KIST Inter-College IT Competition</strong> from Siraha, Nepal! 🌟"
       },
       {
         patterns: ['ca', 'icai', 'intermediate', 'foundation', 'chartered', 'accountancy', 'accountant', 'group', 'fro'],
-        answer: "Nausad is registered with <strong>ICAI</strong> (Student Reg: <code>FRO0592267</code>).<br><br>He cleared the competitive <strong>CA Foundation</strong> in January 2025 and is currently preparing for <strong>CA Intermediate</strong> Group 1 & Group 2 (covering Advanced Accounting, Corporate Law, Direct Tax, GST, Cost Accounting, and Auditing Standards). 📚"
+        answer: "Nausad is registered under <strong>ICAI</strong> (Student Reg: <code>FRO0592267</code>).<br><br>• Passed competitive <strong>CA Foundation</strong> in January 2025.<br>• Currently preparing for <strong>CA Intermediate</strong> Group 1 & Group 2 (covering Advanced Accounting, Corporate Law, Direct Tax, GST, Cost & Management Accounting, and Auditing Standards). 📚"
       },
       {
         patterns: ['trinity', 'college', '+2', 'management', 'gpa', 'see', 'school', 'adarsha', 'education', 'study', 'academic', 'marks'],
-        answer: "<strong>Academic Achievements:</strong><br>• <strong>Trinity International College:</strong> +2 Management with <strong>3.72 GPA</strong> in Class 12 (3.67 GPA in Class 11) & Academic Excellence Award.<br>• <strong>Adarsha Secondary School:</strong> SEE with <strong>3.50 GPA (Grade A)</strong> in Biratnagar-7, Morang. 🎓"
+        answer: "<strong>Academic Excellence:</strong><br>• <strong>Trinity International College:</strong> +2 Management &bull; <strong>3.72 GPA</strong> in Grade 12 (3.67 GPA in Grade 11) &bull; College Academic Excellence Award.<br>• <strong>Adarsha Secondary School:</strong> Completed SEE with <strong>3.50 GPA (Grade A)</strong> in Biratnagar-7, Morang. 🎓"
       },
       {
         patterns: ['kist', 'it', 'competition', 'prize', 'winner', 'fair', 'trophy', 'champion', 'first', 'award', 'project'],
-        answer: "🏆 <strong>KIST Fair 2080 Champion:</strong><br>Nausad led his team to <strong>1st Position</strong> among top colleges across Nepal in the prestigious Inter-College IT & Management Competition at KIST College, winning the championship trophy, gold medals, and national recognition!"
+        answer: "🏆 <strong>KIST Fair 2080 Champion (1st Prize):</strong><br>Nausad led his team to <strong>1st Position</strong> among top colleges across Nepal in the Inter-College IT & Management Competition at KIST College, winning the Championship Trophy, Gold Medals, and national recognition!"
       },
       {
         patterns: ['skill', 'skills', 'tools', 'excel', 'word', 'powerpoint', 'software', 'competenc', 'abilities'],
-        answer: "💡 <strong>Key Skills & Competencies:</strong><br>• <strong>Accounting & Finance:</strong> ICAI Standards, Corporate Law, Financial Statements, Direct/Indirect Tax, Auditing.<br>• <strong>Productivity & Systems:</strong> Microsoft Excel (Formulas & Data Sheets), Word, PowerPoint, ICAI SSP Portal Navigation.<br>• <strong>Leadership:</strong> IT Project Direction, Inter-College Competitions, High-Pressure Execution."
+        answer: "💡 <strong>Key Skills & Capabilities:</strong><br>• <strong>Accounting & Finance:</strong> ICAI Standards, Corporate Law (Companies Act), Financial Statements, Direct Tax/TDS, GST, Auditing.<br>• <strong>Digital & Systems:</strong> Advanced Microsoft Excel (Formulas & Data Sheets), Word, PowerPoint, ICAI SSP Portal.<br>• <strong>Leadership:</strong> IT Project Direction, Inter-College Competitions, High-Pressure Execution."
       },
       {
         patterns: ['certificate', 'cert', 'certif', 'proof', 'achievement', 'speaking'],
-        answer: "📜 <strong>Official Certifications:</strong><br>1. <strong>KIST Fair 2080</strong> &bull; 1st Position Trophy & Certificate<br>2. <strong>Trinity College</strong> &bull; Academic Excellence Award (2nd Position in Grade 12)<br>3. <strong>Public Speaking Mastery</strong> &bull; Lead trainer Saunak Bhatta.<br>You can click on any certificate in the 'Academic Recognition' section to view the full verified document!"
+        answer: "📜 <strong>Official Verified Credentials:</strong><br>1. <strong>KIST Fair 2080</strong> &bull; 1st Position Trophy & Certificate<br>2. <strong>Trinity College</strong> &bull; Academic Excellence Award (2nd Position in Grade 12)<br>3. <strong>Public Speaking Mastery</strong> &bull; Lead trainer Saunak Bhatta.<br><br>👉 You can view the enlarged verified certificates directly in the 'Academic Recognition' section above!"
       },
       {
         patterns: ['contact', 'email', 'phone', 'number', 'whatsapp', 'telegram', 'message', 'reach', 'hire', 'call', 'mail'],
-        answer: "📬 <strong>Connect with Nausad:</strong><br>• <strong>WhatsApp:</strong> <a href='https://wa.me/9779816732482' target='_blank' style='color:#00f0ff; text-decoration:underline;'>Chat on WhatsApp ↗</a><br>• <strong>Telegram:</strong> <a href='https://t.me/Na0241' target='_blank' style='color:#00f0ff; text-decoration:underline;'>@Na0241 on Telegram ↗</a><br>• <strong>Direct Email:</strong> <a href='mailto:nausadalam9714@gmail.com' style='color:#00f0ff; text-decoration:underline;'>nausadalam9714@gmail.com ↗</a><br>Or use the <em>Send a Quick Note</em> form right on this website!"
+        answer: "📬 <strong>Connect with Nausad directly:</strong><br>• <strong>WhatsApp:</strong> <a href='https://wa.me/9779816732482' target='_blank'>Chat on WhatsApp ↗</a><br>• <strong>Telegram:</strong> <a href='https://t.me/Na0241' target='_blank'>@Na0241 on Telegram ↗</a><br>• <strong>Direct Email:</strong> <a href='mailto:nausadalam9714@gmail.com'>nausadalam9714@gmail.com ↗</a><br><br>You can also type a note into the <em>'Send a Quick Note'</em> form on this website!"
       },
       {
         patterns: ['robert', 'robot', 'bot', 'who are you', 'what are you', 'ai', 'name'],
-        answer: "I am <strong>Robert</strong>, Nausad's interactive AI Robot Assistant! 🤖 I'm here 24/7 to help you discover everything about Nausad's CA journey, IT champion projects, and contact channels. Ask me anything!"
+        answer: "I am <strong>Robert 2.0</strong>, Nausad's Autonomous AI Robot Assistant! 🤖<br><br>I'm built right into his portfolio to assist visitors 24/7 with questions about his CA studies, KIST champion award, and direct contact options. Ask me anything!"
       },
       {
         patterns: ['hello', 'hi', 'hey', 'namaste', 'greetings', 'morning', 'afternoon', 'evening'],
-        answer: "Namaste & Hello! 👋 I'm Robert, Nausad's AI Assistant. How can I help you today? Try asking about his CA studies, KIST 1st Prize, or his skills!"
+        answer: "Namaste & Greetings! 👋 I'm Robert, Nausad's AI Assistant. How can I help you today? Choose one of the suggested topics or type your question below!"
       },
       {
         patterns: ['thank', 'thanks', 'cool', 'awesome', 'great', 'good', 'nice'],
-        answer: "You're most welcome! 😊 Feel free to ask more, or click the WhatsApp / Telegram button to connect with Nausad directly."
+        answer: "You're most welcome! 😊 Feel free to explore more, or reach out to Nausad directly via WhatsApp or Telegram!"
       }
     ];
 
@@ -1159,7 +1279,7 @@
         }
       }
 
-      return "I'm <strong>Robert</strong>, Nausad's AI Assistant! 🤖 I specialize in Nausad's background:<br>• <strong>CA Studies:</strong> ICAI Intermediate & Foundation<br>• <strong>Academics:</strong> Trinity College (+2 GPA 3.72)<br>• <strong>Award:</strong> KIST IT Competition 1st Position<br>• <strong>Contact:</strong> WhatsApp, Telegram & Email<br><br>Feel free to click any suggestion below or ask about these topics!";
+      return "I'm <strong>Robert</strong>, Nausad's AI Assistant! 🤖 I specialize in his profile:<br>• <strong>CA Journey:</strong> ICAI Intermediate & Foundation (FRO0592267)<br>• <strong>Academics:</strong> Trinity College (+2 GPA 3.72)<br>• <strong>Major Award:</strong> KIST Fair 1st Position Trophy<br>• <strong>Direct Contact:</strong> WhatsApp, Telegram & Email<br><br>Feel free to click any suggestion below or ask about these topics!";
     }
 
     function askAiQuestion(questionText) {
@@ -1181,8 +1301,8 @@
 
       // 1. Append User Message
       const userMsgDiv = document.createElement('div');
-      userMsgDiv.className = 'ai-msg user-msg';
-      userMsgDiv.innerHTML = `<div class="ai-msg-bubble"><p>${escapeHtml(userText)}</p></div>`;
+      userMsgDiv.className = 'ai-msg-row user-row';
+      userMsgDiv.innerHTML = `<div class="ai-bubble user-bubble"><p>${escapeHtml(userText)}</p></div>`;
       msgContainer.appendChild(userMsgDiv);
 
       inputEl.value = '';
@@ -1190,9 +1310,23 @@
 
       // 2. Append Typing Indicator
       const typingDiv = document.createElement('div');
-      typingDiv.className = 'ai-typing-indicator';
+      typingDiv.className = 'ai-typing-row';
       typingDiv.id = 'ai-typing-active';
-      typingDiv.innerHTML = '<span class="typing-dot"></span><span class="typing-dot"></span><span class="typing-dot"></span>';
+      typingDiv.innerHTML = `
+        <div class="bot-avatar-mini">
+          <svg viewBox="0 0 100 100" class="cyber-robot-svg">
+            <rect x="16" y="22" width="68" height="58" rx="26" fill="#1e293b" stroke="#00f0ff" stroke-width="2" />
+            <rect x="23" y="34" width="54" height="28" rx="14" fill="#050814" />
+            <circle cx="38" cy="48" r="3" fill="#00f0ff" />
+            <circle cx="62" cy="48" r="3" fill="#00f0ff" />
+          </svg>
+        </div>
+        <div class="ai-typing-bubble">
+          <span class="typing-dot"></span>
+          <span class="typing-dot"></span>
+          <span class="typing-dot"></span>
+        </div>
+      `;
       msgContainer.appendChild(typingDiv);
       msgContainer.scrollTop = msgContainer.scrollHeight;
 
@@ -1203,11 +1337,21 @@
 
         const botReply = getRobertResponse(userText);
         const botMsgDiv = document.createElement('div');
-        botMsgDiv.className = 'ai-msg bot-msg';
-        botMsgDiv.innerHTML = `<div class="ai-msg-bubble"><p>${botReply}</p></div>`;
+        botMsgDiv.className = 'ai-msg-row bot-row';
+        botMsgDiv.innerHTML = `
+          <div class="bot-avatar-mini">
+            <svg viewBox="0 0 100 100" class="cyber-robot-svg">
+              <rect x="16" y="22" width="68" height="58" rx="26" fill="#1e293b" stroke="#00f0ff" stroke-width="2" />
+              <rect x="23" y="34" width="54" height="28" rx="14" fill="#050814" />
+              <circle cx="38" cy="48" r="3" fill="#00f0ff" />
+              <circle cx="62" cy="48" r="3" fill="#00f0ff" />
+            </svg>
+          </div>
+          <div class="ai-bubble bot-bubble"><p>${botReply}</p></div>
+        `;
         msgContainer.appendChild(botMsgDiv);
         msgContainer.scrollTop = msgContainer.scrollHeight;
-      }, 500);
+      }, 450);
     }
 
     function escapeHtml(text) {
