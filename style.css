@@ -2300,64 +2300,90 @@ body {
   line-height: 1.2;
 }
 
-/* 3D Cybernetic Orb Trigger */
-.robot-orb-button {
+/* 3D Cute Robot Character Button */
+.robot-character-btn {
   position: relative;
-  width: 66px;
-  height: 66px;
-  border-radius: 50%;
+  width: 78px;
+  height: 72px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  animation: orbFloat 4s ease-in-out infinite;
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
+  cursor: pointer;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.robot-orb-button:hover {
-  transform: translateY(-5px) scale(1.08);
+.robot-character-3d-img {
+  width: 74px;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.65)) drop-shadow(0 0 16px rgba(0, 240, 255, 0.45));
+  animation: robotFloat 3.6s ease-in-out infinite;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), filter 0.35s ease;
+  z-index: 2;
 }
 
-.orb-spin-ring {
+.robot-character-btn:hover .robot-character-3d-img {
+  transform: translateY(-8px) scale(1.12);
+  filter: drop-shadow(0 14px 26px rgba(0, 0, 0, 0.75)) drop-shadow(0 0 24px rgba(0, 240, 255, 0.8));
+}
+
+.robot-aura-glow {
   position: absolute;
-  inset: -3px;
+  top: 10px;
+  width: 54px;
+  height: 54px;
   border-radius: 50%;
-  background: conic-gradient(from 0deg, #00f0ff, #7000ff, #ff007a, #00f0ff);
-  animation: spinRing 6s linear infinite;
-  opacity: 0.85;
-  filter: blur(1px);
-}
-
-.orb-core {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  background: radial-gradient(circle at 35% 30%, #1e293b 0%, #0c1222 65%, #050811 100%);
-  border: 2px solid rgba(255, 255, 255, 0.15);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.2), 0 10px 30px rgba(0, 0, 0, 0.7);
+  background: radial-gradient(circle, rgba(0, 240, 255, 0.4) 0%, rgba(112, 0, 255, 0.2) 60%, transparent 100%);
+  filter: blur(8px);
   z-index: 1;
+  pointer-events: none;
+  animation: auraPulse 3.6s ease-in-out infinite;
 }
 
-.cyber-robot-svg {
-  width: 44px;
-  height: 44px;
-  filter: drop-shadow(0 0 8px rgba(0, 240, 255, 0.55));
-}
-
-.orb-beacon-dot {
+.robot-character-shadow {
   position: absolute;
-  bottom: 2px;
-  right: 2px;
+  bottom: 0px;
+  width: 48px;
+  height: 9px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.7) 0%, rgba(0, 240, 255, 0.3) 50%, transparent 80%);
+  filter: blur(2.5px);
+  z-index: 1;
+  animation: shadowPulse 3.6s ease-in-out infinite;
+}
+
+.character-online-dot {
+  position: absolute;
+  bottom: 6px;
+  right: 6px;
   width: 14px;
   height: 14px;
   border-radius: 50%;
   background: var(--accent-green);
-  border: 2.5px solid #08090e;
+  border: 2.5px solid #080d1a;
   box-shadow: 0 0 10px var(--accent-green);
-  z-index: 2;
+  z-index: 3;
+}
+
+@keyframes robotFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-7px); }
+}
+
+@keyframes shadowPulse {
+  0%, 100% { transform: scale(1); opacity: 0.7; }
+  50% { transform: scale(0.72); opacity: 0.32; }
+}
+
+@keyframes auraPulse {
+  0%, 100% { transform: scale(1); opacity: 0.75; }
+  50% { transform: scale(1.25); opacity: 1; }
+}
+
+/* Legacy orb compatibility */
+.robot-orb-button {
+  display: none;
 }
 
 @keyframes spinRing {
@@ -2461,15 +2487,22 @@ body {
 
 .ai-header-avatar-orb {
   position: relative;
-  width: 42px;
-  height: 42px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
-  background: radial-gradient(circle at 35% 30%, #1e293b 0%, #0c1222 100%);
+  background: radial-gradient(circle at 50% 35%, rgba(255, 255, 255, 0.16) 0%, #0d1527 100%);
   border: 1.5px solid rgba(0, 240, 255, 0.5);
-  box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
+  box-shadow: 0 0 16px rgba(0, 240, 255, 0.3);
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.ai-header-robot-img {
+  width: 36px;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.6));
 }
 
 .ai-header-avatar-orb svg {
@@ -2709,16 +2742,24 @@ body {
 }
 
 .bot-avatar-mini {
-  width: 30px;
-  height: 30px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
-  background: #0f172a;
+  background: radial-gradient(circle at 50% 35%, rgba(255, 255, 255, 0.14) 0%, #0c1222 100%);
   border: 1px solid rgba(0, 240, 255, 0.45);
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.2);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
   margin-top: 2px;
+}
+
+.bot-avatar-img {
+  width: 25px;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
 }
 
 .bot-avatar-mini svg {
@@ -3044,6 +3085,15 @@ body {
     max-width: 380px;
     height: 520px;
     bottom: 76px;
+  }
+
+  .robot-character-btn {
+    width: 68px;
+    height: 62px;
+  }
+
+  .robot-character-3d-img {
+    width: 62px;
   }
 
   .robot-orb-button {
