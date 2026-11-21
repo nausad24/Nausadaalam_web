@@ -642,10 +642,16 @@
               <textarea id="form-message" name="message" rows="4" placeholder="Hello Nausad, I came across your portfolio..." required></textarea>
             </div>
 
-            <button type="submit" class="btn btn-primary btn-submit" id="submit-btn">
-              <span id="submit-btn-text">Send Message</span>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-            </button>
+            <div class="form-btn-row">
+              <button type="submit" class="btn btn-primary btn-submit" id="submit-btn">
+                <span id="submit-btn-text">Send to Gmail</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              </button>
+              <button type="button" class="btn btn-whatsapp-form" onclick="sendViaWhatsApp()" title="Send formatted note via WhatsApp">
+                <span>Send via WhatsApp</span>
+                <svg viewBox="0 0 24 24" fill="currentColor" style="width: 17px; height: 17px;"><path d="M12.031 2C6.495 2 2 6.496 2 12.031c0 1.954.558 3.784 1.523 5.334L2 22l4.821-1.503c1.478.877 3.208 1.385 5.21 1.385 5.536 0 10.031-4.496 10.031-10.031C22.062 6.496 17.567 2 12.031 2zm5.836 14.199c-.244.686-1.42 1.312-1.956 1.365-.516.052-1.19.074-3.419-.848-2.617-1.083-4.298-3.774-4.428-3.947-.13-.173-1.058-1.41-1.058-2.689 0-1.279.667-1.91 1.002-2.235.335-.325.731-.407.975-.407.243 0 .487.002.7.012.224.01.524-.085.82 0.627.306.732 1.042 2.545 1.134 2.731.091.186.152.404.03.647-.122.243-.183.395-.365.608-.183.213-.385.476-.55.639-.182.18-.373.376-.16.741.213.365.947 1.564 2.032 2.531 1.397 1.244 2.574 1.63 2.94 1.813.365.183.578.152.791-.092.213-.243.913-1.065 1.157-1.431.244-.366.487-.305.82-.183.335.122 2.129 1.004 2.494 1.187.365.183.608.274.7.426.091.152.091.882-.153 1.568z"/></svg>
+              </button>
+            </div>
             <div class="form-toast" id="form-toast"></div>
           </form>
         </div>
@@ -991,6 +997,29 @@
       });
     }
 
+    // Send form content via WhatsApp
+    function sendViaWhatsApp() {
+      const name = document.getElementById('form-name').value.trim() || 'A Visitor';
+      const email = document.getElementById('form-email').value.trim();
+      const subject = document.getElementById('form-subject').value.trim();
+      const message = document.getElementById('form-message').value.trim();
+
+      if (!message) {
+        alert('Please write a message first before sending via WhatsApp.');
+        document.getElementById('form-message').focus();
+        return;
+      }
+
+      let text = `Hello Nausad! 👋\n\n`;
+      if (name) text += `*Name:* ${name}\n`;
+      if (email) text += `*Email:* ${email}\n`;
+      if (subject) text += `*Subject:* ${subject}\n\n`;
+      text += `*Message:*\n${message}`;
+
+      const waUrl = `https://wa.me/9779816732482?text=${encodeURIComponent(text)}`;
+      window.open(waUrl, '_blank');
+    }
+
     // Handle Contact Form Submit -> Direct submission via FormSubmit AJAX
     async function handleFormSubmit(event) {
       event.preventDefault();
@@ -1008,11 +1037,11 @@
       submitBtn.disabled = true;
       submitBtn.style.opacity = '0.7';
       submitBtn.style.cursor = 'not-allowed';
-      if (submitText) submitText.textContent = 'Sending Message...';
+      if (submitText) submitText.textContent = 'Sending...';
 
       if (toast) {
         toast.style.display = 'none';
-        toast.classList.remove('error');
+        toast.className = 'form-toast';
       }
 
       try {
@@ -1027,14 +1056,26 @@
 
         const data = await response.json();
 
-        if (response.ok || data.success === 'true' || data.success === true) {
+        // Accurately check FormSubmit's actual status flag
+        const isSuccess = data.success === 'true' || data.success === true;
+        const respMsg = (data.message || '').toLowerCase();
+        const needsActivation = respMsg.includes('activation') || respMsg.includes('actived') || respMsg.includes('activate');
+
+        if (isSuccess) {
           form.reset();
           if (toast) {
-            toast.classList.remove('error');
-            toast.textContent = '✓ Thank you! Your message has been sent directly to Nausad.';
+            toast.className = 'form-toast';
+            toast.textContent = '✓ Message delivered directly to Nausad\'s Gmail inbox!';
             toast.style.display = 'block';
           }
-          if (submitText) submitText.textContent = 'Message Sent!';
+          if (submitText) submitText.textContent = 'Message Delivered!';
+        } else if (needsActivation) {
+          if (toast) {
+            toast.className = 'form-toast warning';
+            toast.innerHTML = '📬 <strong>Action Required in your Gmail:</strong> FormSubmit sent an activation email to <strong>nausadalam9714@gmail.com</strong>. Please open Gmail (check Spam &amp; Promotions folders too) and click the <em>"Activate Form"</em> button. Once clicked once, all future messages will arrive directly in your inbox!';
+            toast.style.display = 'block';
+          }
+          if (submitText) submitText.textContent = 'Check Gmail Activation';
         } else {
           throw new Error(data.message || 'Submission failed');
         }
@@ -1043,18 +1084,18 @@
         // Fallback for user in case of connection failure
         const mailtoUrl = `mailto:nausadalam9714@gmail.com?subject=${encodeURIComponent(subject + ' - from ' + name)}&body=${encodeURIComponent('From: ' + name + ' (' + email + ')\n\n' + message)}`;
         if (toast) {
-          toast.classList.add('error');
-          toast.innerHTML = 'Unable to send online right now. <a href="' + mailtoUrl + '" style="color: #00f0ff; text-decoration: underline; font-weight: 700;">Click here to send via Email client &rarr;</a>';
+          toast.className = 'form-toast error';
+          toast.innerHTML = 'Direct online delivery failed. <a href="' + mailtoUrl + '" style="color: #00f0ff; text-decoration: underline; font-weight: 700;">Click to send via your email app &rarr;</a> or use the <strong>Send via WhatsApp</strong> button above.';
           toast.style.display = 'block';
         }
-        if (submitText) submitText.textContent = 'Failed to Send';
+        if (submitText) submitText.textContent = 'Delivery Error';
       } finally {
         setTimeout(() => {
           submitBtn.disabled = false;
           submitBtn.style.opacity = '1';
           submitBtn.style.cursor = 'pointer';
-          if (submitText) submitText.textContent = 'Send Message';
-        }, 3500);
+          if (submitText) submitText.textContent = 'Send to Gmail';
+        }, 4000);
       }
     }
 
