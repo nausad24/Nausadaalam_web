@@ -776,12 +776,15 @@
           <div class="ai-header-text">
             <div class="ai-header-title-row">
               <span class="ai-header-name">ROBERT</span>
-              <span class="ai-neural-tag">AI 2.0</span>
+              <span class="ai-neural-tag" id="ai-neural-tag">GEMINI AI</span>
             </div>
-            <span class="ai-header-desc">⚡ Nausad's Autonomous Assistant</span>
+            <span class="ai-header-desc">⚡ Powered by Google Gemini</span>
           </div>
         </div>
         <div class="ai-header-actions">
+          <button type="button" class="ai-btn-icon" onclick="openGeminiModal()" title="Gemini AI Settings / API Key" aria-label="Gemini AI Settings">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.4 5.6 5.6 2.4-5.6 2.4L12 18l-2.4-5.6-5.6-2.4 5.6-2.4L12 2zM18 16l1.2 2.8 2.8 1.2-2.8 1.2L18 24l-1.2-2.8-2.8-1.2 2.8-1.2L18 16z"/></svg>
+          </button>
           <button type="button" class="ai-btn-icon" onclick="resetAiChat()" title="Reset Conversation" aria-label="Reset Conversation">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
           </button>
@@ -791,21 +794,45 @@
         </div>
       </div>
 
+      <!-- Gemini Settings Overlay -->
+      <div class="gemini-key-overlay" id="gemini-key-overlay" style="display:none;">
+        <div class="gemini-card">
+          <div class="gemini-card-header">
+            <div class="gemini-card-title">
+              <span>✨ Google Gemini AI</span>
+            </div>
+            <button type="button" class="gemini-card-close" onclick="closeGeminiModal()">&times;</button>
+          </div>
+          <p class="gemini-card-info">
+            Robert is connected to Google Gemini. You can also paste your own Google Gemini API key to run queries directly:
+          </p>
+          <div class="gemini-field">
+            <input type="password" id="gemini-custom-key" placeholder="AIzaSy... (Gemini API Key)" autocomplete="off">
+          </div>
+          <div class="gemini-card-btns">
+            <button type="button" class="btn-gemini-save" onclick="saveGeminiKey()">Save &amp; Activate</button>
+            <button type="button" class="btn-gemini-clear" onclick="clearGeminiKey()">Clear</button>
+          </div>
+          <div class="gemini-card-note">
+            <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener">Get free API Key from Google AI Studio ↗</a>
+          </div>
+        </div>
+      </div>
+
       <!-- Chat Stream Body -->
       <div class="ai-chat-messages" id="ai-chat-messages">
-        <!-- Welcoming Hero Card -->
-        <div class="ai-welcome-card">
-          <div class="welcome-top">
-            <span class="welcome-badge">🤖 Meet Robert</span>
-            <span class="welcome-status">Online 24/7</span>
+        <!-- Initial Bot Greeting Bubble (Clean & Modern) -->
+        <div class="ai-msg-row bot-row">
+          <div class="bot-avatar-mini">
+            <svg viewBox="0 0 100 100" class="cyber-robot-svg">
+              <rect x="16" y="22" width="68" height="58" rx="26" fill="#1e293b" stroke="#00f0ff" stroke-width="2" />
+              <rect x="23" y="34" width="54" height="28" rx="14" fill="#050814" />
+              <circle cx="38" cy="48" r="3" fill="#00f0ff" />
+              <circle cx="62" cy="48" r="3" fill="#00f0ff" />
+            </svg>
           </div>
-          <p class="welcome-text">
-            I'm <strong>Robert</strong>, Nausad's AI companion. Trained on his CA studies under ICAI, +2 academic excellence at Trinity, KIST Fair 1st Position award, and verified credentials.
-          </p>
-          <div class="welcome-metrics">
-            <span class="w-metric">🎓 CA Inter (ICAI)</span>
-            <span class="w-metric">🏆 1st Prize KIST</span>
-            <span class="w-metric">⭐ 3.72 GPA</span>
+          <div class="ai-bubble bot-bubble">
+            <p>Hello! I am <strong>Robert</strong>, Nausad's AI Assistant powered by <strong>Google Gemini</strong>. 🤖✨<br><br>Ask me anything about his CA studies, KIST Champion Award, or credentials, or pick a topic below:</p>
           </div>
         </div>
 
@@ -857,7 +884,7 @@
       <div class="robot-pill-banner" id="robot-speech-bubble">
         <span class="live-status-dot"></span>
         <div class="banner-text">
-          <span class="banner-title">Robert AI</span>
+          <span class="banner-title">Robert • Gemini AI</span>
           <span class="banner-sub">Ask anything ⚡</span>
         </div>
       </div>
@@ -1220,18 +1247,17 @@
       const msgContainer = document.getElementById('ai-chat-messages');
       if (!msgContainer) return;
       msgContainer.innerHTML = `
-        <div class="ai-welcome-card">
-          <div class="welcome-top">
-            <span class="welcome-badge">🤖 Meet Robert</span>
-            <span class="welcome-status">Online 24/7</span>
+        <div class="ai-msg-row bot-row">
+          <div class="bot-avatar-mini">
+            <svg viewBox="0 0 100 100" class="cyber-robot-svg">
+              <rect x="16" y="22" width="68" height="58" rx="26" fill="#1e293b" stroke="#00f0ff" stroke-width="2" />
+              <rect x="23" y="34" width="54" height="28" rx="14" fill="#050814" />
+              <circle cx="38" cy="48" r="3" fill="#00f0ff" />
+              <circle cx="62" cy="48" r="3" fill="#00f0ff" />
+            </svg>
           </div>
-          <p class="welcome-text">
-            I'm <strong>Robert</strong>, Nausad's AI companion. Trained on his CA studies under ICAI, +2 academic excellence at Trinity, KIST Fair 1st Position award, and verified credentials.
-          </p>
-          <div class="welcome-metrics">
-            <span class="w-metric">🎓 CA Inter (ICAI)</span>
-            <span class="w-metric">🏆 1st Prize KIST</span>
-            <span class="w-metric">⭐ 3.72 GPA</span>
+          <div class="ai-bubble bot-bubble">
+            <p>Hello! I am <strong>Robert</strong>, Nausad's AI Assistant powered by <strong>Google Gemini</strong>. 🤖✨<br><br>Ask me anything about his CA studies, KIST Champion Award, or credentials, or pick a topic below:</p>
           </div>
         </div>
 
@@ -1266,6 +1292,75 @@
       `;
     }
 
+    // Gemini AI Modal & Key Handlers
+    function openGeminiModal() {
+      const overlay = document.getElementById('gemini-key-overlay');
+      const input = document.getElementById('gemini-custom-key');
+      if (overlay) overlay.style.display = 'flex';
+      if (input) {
+        input.value = localStorage.getItem('robert_gemini_key') || '';
+        setTimeout(() => input.focus(), 150);
+      }
+    }
+
+    function closeGeminiModal() {
+      const overlay = document.getElementById('gemini-key-overlay');
+      if (overlay) overlay.style.display = 'none';
+    }
+
+    function saveGeminiKey() {
+      const input = document.getElementById('gemini-custom-key');
+      if (!input) return;
+      const key = input.value.trim();
+      if (key) {
+        localStorage.setItem('robert_gemini_key', key);
+        updateGeminiBadge(true);
+        closeGeminiModal();
+        appendRobertSystemNotice("✨ Google Gemini API Key saved! Live AI responses active.");
+      } else {
+        alert("Please paste your Gemini API Key.");
+      }
+    }
+
+    function clearGeminiKey() {
+      localStorage.removeItem('robert_gemini_key');
+      const input = document.getElementById('gemini-custom-key');
+      if (input) input.value = '';
+      updateGeminiBadge(false);
+      closeGeminiModal();
+      appendRobertSystemNotice("Gemini custom key cleared. Using server default assistant.");
+    }
+
+    function updateGeminiBadge(isActive) {
+      const badge = document.getElementById('ai-neural-tag');
+      if (!badge) return;
+      if (isActive || localStorage.getItem('robert_gemini_key')) {
+        badge.textContent = 'GEMINI ACTIVE';
+        badge.style.background = 'linear-gradient(135deg, #00f0ff, #00ff88)';
+        badge.style.color = '#020617';
+      } else {
+        badge.textContent = 'GEMINI AI';
+        badge.style.background = 'linear-gradient(135deg, #00f0ff, #7000ff)';
+        badge.style.color = '#ffffff';
+      }
+    }
+
+    function appendRobertSystemNotice(msg) {
+      const msgContainer = document.getElementById('ai-chat-messages');
+      if (!msgContainer) return;
+      const row = document.createElement('div');
+      row.style.textAlign = 'center';
+      row.style.margin = '8px 0';
+      row.innerHTML = `<span style="display:inline-block; padding: 4px 12px; background: rgba(0,240,255,0.1); border: 1px solid rgba(0,240,255,0.25); border-radius: 999px; font-size: 0.75rem; color: #00f0ff;">${escapeHtml(msg)}</span>`;
+      msgContainer.appendChild(row);
+      msgContainer.scrollTop = msgContainer.scrollHeight;
+    }
+
+    // Call badge update on init
+    document.addEventListener('DOMContentLoaded', () => {
+      updateGeminiBadge(false);
+    });
+
     const robertKnowledgeBase = [
       {
         patterns: ['phone', 'mobile', 'number', 'call', 'whatsapp', 'contact', 'reach', 'email', 'mail', 'hire', 'message', 'text'],
@@ -1273,19 +1368,19 @@
       },
       {
         patterns: ['ca', 'icai', 'intermediate', 'foundation', 'chartered', 'accountancy', 'accountant', 'group 1', 'group 2', 'fro0592267'],
-        answer: "Nausad is registered under <strong>ICAI</strong> (Student Reg: <code>FRO0592267</code>).<br><br>• Passed competitive <strong>CA Foundation</strong> in January 2025.<br>• Currently preparing for <strong>CA Intermediate</strong> Group 1 &amp; Group 2 (covering Advanced Accounting, Corporate Law, Direct Tax, GST, Cost &amp; Management Accounting, and Auditing Standards). 📚"
+        answer: "Nausad is registered under <strong>ICAI</strong> (Student Reg: <code>FRO0592267</code>).<br><br>• Passed competitive <strong>CA Foundation</strong> in January 2025 on his first attempt.<br>• Currently preparing for <strong>CA Intermediate</strong> Group 1 &amp; Group 2 (covering Advanced Accounting, Corporate Law, Direct Tax, GST, Cost Accounting, and Auditing Standards). 📚"
       },
       {
         patterns: ['kist', 'it fair', 'competition', '1st prize', 'champion', 'first position', 'trophy', 'award', 'gold medal'],
-        answer: "🏆 <strong>KIST Fair 2080 Champion (1st Prize):</strong><br>Nausad led his team to <strong>1st Position</strong> among top colleges across Nepal in the Inter-College IT &amp; Management Competition at KIST College, winning the Championship Trophy, Gold Medals, and national recognition!"
+        answer: "🏆 <strong>KIST Fair 2080 Champion (1st Prize):</strong><br>Nausad led his college team to <strong>1st Position</strong> among top colleges across Nepal in the national Inter-College IT &amp; Management Competition at KIST College, winning the Championship Trophy, Gold Medals, and national recognition!"
       },
       {
         patterns: ['trinity', 'college', '+2', 'management', 'gpa', '3.72', 'see', 'school', 'adarsha', 'education', 'study', 'academic', 'marks', 'grade 12', 'grade 11'],
-        answer: "<strong>Academic Excellence:</strong><br>• <strong>Trinity International College:</strong> +2 Management &bull; <strong>3.72 GPA</strong> in Grade 12 (3.67 GPA in Grade 11) &bull; College Academic Excellence Award.<br>• <strong>Adarsha Secondary School:</strong> Completed SEE with <strong>3.50 GPA (Grade A)</strong> in Biratnagar-7, Morang. 🎓"
+        answer: "<strong>Academic Excellence:</strong><br>• <strong>Trinity International College:</strong> +2 Management &bull; <strong>3.72 GPA</strong> in Grade 12 (3.67 GPA in Grade 11) &bull; College Academic Excellence Award.<br>• <strong>Adarsha Secondary School:</strong> Completed SEE with <strong>3.50 GPA (Grade A)</strong> in Biratnagar-7, Morang, Nepal. 🎓"
       },
       {
         patterns: ['skill', 'skills', 'tools', 'excel', 'word', 'powerpoint', 'software', 'competenc', 'abilities'],
-        answer: "💡 <strong>Key Skills &amp; Capabilities:</strong><br>• <strong>Accounting &amp; Finance:</strong> ICAI Standards, Corporate Law (Companies Act), Financial Statements, Direct Tax/TDS, GST, Auditing.<br>• <strong>Digital &amp; Systems:</strong> Advanced Microsoft Excel (Formulas &amp; Data Sheets), Word, PowerPoint, ICAI SSP Portal.<br>• <strong>Leadership:</strong> IT Project Direction, Inter-College Competitions, High-Pressure Execution."
+        answer: "💡 <strong>Key Skills &amp; Capabilities:</strong><br>• <strong>Accounting &amp; Finance:</strong> ICAI Standards, Corporate Law (Companies Act), Financial Statements, Direct Tax/TDS, GST, Auditing.<br>• <strong>Digital Systems:</strong> Advanced Microsoft Excel (Financial modeling, audit sheets, formulas), Word, PowerPoint.<br>• <strong>Leadership:</strong> Team Direction, Inter-College Competition Execution, Public Speaking Mastery."
       },
       {
         patterns: ['certificate', 'cert', 'certif', 'proof', 'achievement', 'speaking'],
@@ -1296,12 +1391,12 @@
         answer: "<strong>Nausad Aalam</strong> is a high-achieving Chartered Accountancy (CA Intermediate) aspirant registered with <strong>The Institute of Chartered Accountants of India (ICAI)</strong>.<br><br>He graduated +2 Management from <strong>Trinity International College</strong> with an outstanding <strong>3.72 GPA</strong> and led his team to <strong>1st Position</strong> at the national <strong>KIST Inter-College IT Competition</strong> from Siraha, Nepal! 🌟"
       },
       {
-        patterns: ['robert', 'who are you', 'what are you', 'ai bot', 'what can you do', 'your name'],
-        answer: "I am <strong>Robert 2.0</strong>, Nausad's Autonomous AI Robot Assistant! 🤖<br><br>I'm built right into his portfolio to assist visitors 24/7 with questions about his CA studies, KIST champion award, and direct contact options. Ask me anything!"
+        patterns: ['robert', 'who are you', 'what are you', 'ai bot', 'what can you do', 'your name', 'gemini'],
+        answer: "I am <strong>Robert</strong>, Nausad's AI Assistant powered by <strong>Google Gemini</strong>! 🤖✨<br><br>I can answer questions regarding Nausad's CA journey, academic awards, technical capabilities, or connect you directly with him on WhatsApp (+977 9816732482)!"
       },
       {
         patterns: ['hello', 'hi', 'hey', 'namaste', 'greetings', 'morning', 'afternoon', 'evening'],
-        answer: "Namaste &amp; Greetings! 👋 I'm Robert, Nausad's AI Assistant. How can I help you today? Choose one of the suggested topics or type your question below!"
+        answer: "Namaste &amp; Greetings! 👋 I'm Robert, Nausad's AI Assistant powered by Google Gemini. How can I assist you today? Ask me anything or select a topic above!"
       },
       {
         patterns: ['thank', 'thanks', 'cool', 'awesome', 'great', 'good', 'nice'],
@@ -1332,6 +1427,82 @@
       <span style="font-size:0.75rem; color:var(--text-muted);">Clicking above opens WhatsApp with your question ready to send!</span>`;
     }
 
+    const NAUSAD_SYSTEM_PROMPT = `You are Robert, the official AI companion on Nausad Aalam's personal portfolio.
+Nausad Aalam's Profile:
+- Chartered Accountancy (CA Intermediate) student under ICAI (Student Reg: FRO0592267). Passed CA Foundation in Jan 2025 on first attempt. Preparing for CA Intermediate Group 1 & Group 2.
+- Graduated +2 Management from Trinity International College with 3.72 GPA (3.67 in Grade 11), Academic Excellence Award. SEE from Adarsha Secondary School with 3.50 GPA (Grade A) in Biratnagar-7, Morang, Nepal.
+- 1st Position (Championship Trophy & Gold Medal) at national KIST Inter-College IT Competition (KIST Fair 2080).
+- Certified in Public Speaking Mastery under Saunak Bhatta.
+- Core Skills: ICAI Standards, Corporate Law, Financial Reporting, Direct Tax, GST, Cost Accounting, Auditing, Advanced MS Excel, Word, PowerPoint.
+- Contact: WhatsApp/Mobile +977 9816732482, Telegram @Na0241, Email nausadalam9714@gmail.com.
+Guidelines:
+Be concise, polite, professional, and helpful. Use emojis nicely. If asked for direct contact, meeting, or an unknown question, guide the user to WhatsApp (+977 9816732482).`;
+
+    function formatMarkdown(text) {
+      if (!text) return '';
+      let html = escapeHtml(text);
+      html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+      html = html.replace(/\*(.*?)\*/g, '<em>$1</em>');
+      html = html.replace(/^\s*[\*\-]\s+(.*)$/gim, '• $1<br>');
+      html = html.replace(/\n\n+/g, '<br><br>').replace(/\n/g, '<br>');
+      html = html.replace(/(\+?977\s*9816732482)/g, `<a href="https://wa.me/9779816732482" target="_blank" style="color:#25D366; font-weight:700;">$1 ↗</a>`);
+      return html;
+    }
+
+    async function fetchAiReply(userText) {
+      // 1. Try Vercel Serverless Function /api/chat
+      try {
+        const response = await fetch('/api/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message: userText })
+        });
+        if (response.ok) {
+          const data = await response.json();
+          if (data && data.reply) {
+            return formatMarkdown(data.reply);
+          }
+        }
+      } catch (err) {
+        // Fall through to next provider
+      }
+
+      // 2. Try direct client Google Gemini API if user has stored API Key
+      const customKey = localStorage.getItem('robert_gemini_key');
+      if (customKey) {
+        try {
+          const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${encodeURIComponent(customKey)}`;
+          const directRes = await fetch(geminiUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              contents: [{
+                parts: [{
+                  text: `${NAUSAD_SYSTEM_PROMPT}\n\nVisitor Question: ${userText}\nRobert:`
+                }]
+              }],
+              generationConfig: {
+                temperature: 0.7,
+                maxOutputTokens: 350
+              }
+            })
+          });
+          if (directRes.ok) {
+            const data = await directRes.json();
+            const reply = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+            if (reply) {
+              return formatMarkdown(reply);
+            }
+          }
+        } catch (err) {
+          console.warn("Direct Gemini call error:", err);
+        }
+      }
+
+      // 3. Fallback to Robert's local engine + WhatsApp redirect
+      return getRobertResponse(userText);
+    }
+
     function askAiQuestion(questionText) {
       const inputEl = document.getElementById('ai-user-input');
       if (inputEl) {
@@ -1340,7 +1511,7 @@
       }
     }
 
-    function handleAiSubmit(e) {
+    async function handleAiSubmit(e) {
       e.preventDefault();
       const inputEl = document.getElementById('ai-user-input');
       const msgContainer = document.getElementById('ai-chat-messages');
@@ -1380,12 +1551,12 @@
       msgContainer.appendChild(typingDiv);
       msgContainer.scrollTop = msgContainer.scrollHeight;
 
-      // 3. Generate Robert's Answer after small realistic delay
-      setTimeout(() => {
+      // 3. Query Gemini or smart local knowledge base
+      try {
+        const botReply = await fetchAiReply(userText);
         const activeTyping = document.getElementById('ai-typing-active');
         if (activeTyping) activeTyping.remove();
 
-        const botReply = getRobertResponse(userText);
         const botMsgDiv = document.createElement('div');
         botMsgDiv.className = 'ai-msg-row bot-row';
         botMsgDiv.innerHTML = `
@@ -1401,7 +1572,27 @@
         `;
         msgContainer.appendChild(botMsgDiv);
         msgContainer.scrollTop = msgContainer.scrollHeight;
-      }, 450);
+      } catch (err) {
+        const activeTyping = document.getElementById('ai-typing-active');
+        if (activeTyping) activeTyping.remove();
+
+        const fallbackReply = getRobertResponse(userText);
+        const botMsgDiv = document.createElement('div');
+        botMsgDiv.className = 'ai-msg-row bot-row';
+        botMsgDiv.innerHTML = `
+          <div class="bot-avatar-mini">
+            <svg viewBox="0 0 100 100" class="cyber-robot-svg">
+              <rect x="16" y="22" width="68" height="58" rx="26" fill="#1e293b" stroke="#00f0ff" stroke-width="2" />
+              <rect x="23" y="34" width="54" height="28" rx="14" fill="#050814" />
+              <circle cx="38" cy="48" r="3" fill="#00f0ff" />
+              <circle cx="62" cy="48" r="3" fill="#00f0ff" />
+            </svg>
+          </div>
+          <div class="ai-bubble bot-bubble"><p>${fallbackReply}</p></div>
+        `;
+        msgContainer.appendChild(botMsgDiv);
+        msgContainer.scrollTop = msgContainer.scrollHeight;
+      }
     }
 
     function escapeHtml(text) {
