@@ -619,28 +619,31 @@
             <h3 class="form-title">Send a Quick Note</h3>
             <p class="form-desc">Fill in the fields below to compose an instant message directly to Nausad.</p>
 
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_template" value="table">
+
             <div class="form-group">
               <label for="form-name">Your Name</label>
-              <input type="text" id="form-name" placeholder="John Doe" required>
+              <input type="text" id="form-name" name="name" placeholder="John Doe" required>
             </div>
 
             <div class="form-group">
               <label for="form-email">Your Email</label>
-              <input type="email" id="form-email" placeholder="name@example.com" required>
+              <input type="email" id="form-email" name="email" placeholder="name@example.com" required>
             </div>
 
             <div class="form-group">
               <label for="form-subject">Subject</label>
-              <input type="text" id="form-subject" placeholder="Academic / Tech / Collaboration Inquiry" required>
+              <input type="text" id="form-subject" name="_subject" placeholder="Academic / Tech / Collaboration Inquiry" required>
             </div>
 
             <div class="form-group">
               <label for="form-message">Message</label>
-              <textarea id="form-message" rows="4" placeholder="Hello Nausad, I came across your portfolio..." required></textarea>
+              <textarea id="form-message" name="message" rows="4" placeholder="Hello Nausad, I came across your portfolio..." required></textarea>
             </div>
 
             <button type="submit" class="btn btn-primary btn-submit" id="submit-btn">
-              <span>Send Message</span>
+              <span id="submit-btn-text">Send Message</span>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
             </button>
             <div class="form-toast" id="form-toast"></div>
@@ -803,24 +806,70 @@
       });
     }
 
-    // Handle Contact Form Submit -> Pre-filled Mailto
-    function handleFormSubmit(event) {
+    // Handle Contact Form Submit -> Direct submission via FormSubmit AJAX
+    async function handleFormSubmit(event) {
       event.preventDefault();
+      const form = event.target;
+      const submitBtn = document.getElementById('submit-btn');
+      const submitText = document.getElementById('submit-btn-text');
+      const toast = document.getElementById('form-toast');
+
       const name = document.getElementById('form-name').value;
       const email = document.getElementById('form-email').value;
       const subject = document.getElementById('form-subject').value;
       const message = document.getElementById('form-message').value;
-      const toast = document.getElementById('form-toast');
 
-      const mailtoUrl = `mailto:nausadalam9714@gmail.com?subject=${encodeURIComponent(subject + ' - from ' + name)}&body=${encodeURIComponent('From: ' + name + ' (' + email + ')\n\n' + message)}`;
-      window.location.href = mailtoUrl;
+      // Loading state
+      submitBtn.disabled = true;
+      submitBtn.style.opacity = '0.7';
+      submitBtn.style.cursor = 'not-allowed';
+      if (submitText) submitText.textContent = 'Sending Message...';
 
       if (toast) {
-        toast.textContent = '✓ Opening email client with pre-filled message...';
-        toast.style.display = 'block';
+        toast.style.display = 'none';
+        toast.classList.remove('error');
+      }
+
+      try {
+        const formData = new FormData(form);
+        const response = await fetch('https://formsubmit.co/ajax/nausadalam9714@gmail.com', {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
+          }
+        });
+
+        const data = await response.json();
+
+        if (response.ok || data.success === 'true' || data.success === true) {
+          form.reset();
+          if (toast) {
+            toast.classList.remove('error');
+            toast.textContent = '✓ Thank you! Your message has been sent directly to Nausad.';
+            toast.style.display = 'block';
+          }
+          if (submitText) submitText.textContent = 'Message Sent!';
+        } else {
+          throw new Error(data.message || 'Submission failed');
+        }
+      } catch (err) {
+        console.error('Contact Form error:', err);
+        // Fallback for user in case of connection failure
+        const mailtoUrl = `mailto:nausadalam9714@gmail.com?subject=${encodeURIComponent(subject + ' - from ' + name)}&body=${encodeURIComponent('From: ' + name + ' (' + email + ')\n\n' + message)}`;
+        if (toast) {
+          toast.classList.add('error');
+          toast.innerHTML = 'Unable to send online right now. <a href="' + mailtoUrl + '" style="color: #00f0ff; text-decoration: underline; font-weight: 700;">Click here to send via Email client &rarr;</a>';
+          toast.style.display = 'block';
+        }
+        if (submitText) submitText.textContent = 'Failed to Send';
+      } finally {
         setTimeout(() => {
-          toast.style.display = 'none';
-        }, 4000);
+          submitBtn.disabled = false;
+          submitBtn.style.opacity = '1';
+          submitBtn.style.cursor = 'pointer';
+          if (submitText) submitText.textContent = 'Send Message';
+        }, 3500);
       }
     }
 
