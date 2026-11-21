@@ -2753,6 +2753,41 @@ body {
   font-weight: 600;
 }
 
+.ai-wa-direct-btn {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  background: linear-gradient(135deg, rgba(37, 211, 102, 0.18) 0%, rgba(18, 140, 126, 0.28) 100%);
+  border: 1.5px solid #25D366;
+  color: #ffffff !important;
+  padding: 10px 14px;
+  border-radius: 12px;
+  text-decoration: none !important;
+  margin-top: 10px;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 14px rgba(37, 211, 102, 0.2);
+}
+
+.ai-wa-direct-btn:hover {
+  background: #25D366;
+  color: #ffffff !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.45);
+}
+
+.ai-wa-direct-btn span {
+  font-size: 0.76rem;
+  font-weight: 500;
+  opacity: 0.9;
+}
+
+.ai-wa-direct-btn strong {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #ffffff !important;
+  letter-spacing: 0.3px;
+}
+
 .user-bubble {
   background: linear-gradient(135deg, rgba(0, 240, 255, 0.3) 0%, rgba(112, 0, 255, 0.45) 100%);
   border: 1px solid rgba(0, 240, 255, 0.45);
