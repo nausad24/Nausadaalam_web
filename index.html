@@ -732,7 +732,10 @@
       <div class="ai-chat-header">
         <div class="ai-header-left">
           <div class="ai-header-avatar-orb">
-            <img src="robert_robot.png" alt="Robert AI" class="ai-header-robot-img">
+            <div class="robot-avatar-blink-wrapper header-avatar-wrapper">
+              <img src="robert_robot.png" alt="Robert AI" class="ai-header-robot-img img-open">
+              <img src="robert_robot_blink.png" alt="Robert AI Blinking" class="ai-header-robot-img img-blink">
+            </div>
             <span class="header-online-dot"></span>
           </div>
           <div class="ai-header-text">
@@ -838,7 +841,10 @@
       <!-- 3D Cute Robot Character Button -->
       <div class="robot-character-btn">
         <div class="robot-aura-glow"></div>
-        <img src="robert_robot.png" alt="Robert AI" class="robot-character-3d-img">
+        <div class="robot-avatar-blink-wrapper">
+          <img src="robert_robot.png" alt="Robert AI" class="robot-character-3d-img img-open">
+          <img src="robert_robot_blink.png" alt="Robert AI Blinking" class="robot-character-3d-img img-blink">
+        </div>
         <span class="character-online-dot"></span>
         <div class="robot-character-shadow"></div>
       </div>
@@ -1430,7 +1436,10 @@ Be concise, polite, professional, and helpful. Use emojis nicely. If asked for d
       typingDiv.id = 'ai-typing-active';
       typingDiv.innerHTML = `
         <div class="bot-avatar-mini">
-          <img src="robert_robot.png" alt="Robert AI" class="bot-avatar-img">
+          <div class="robot-avatar-blink-wrapper mini-avatar-wrapper">
+            <img src="robert_robot.png" alt="Robert AI" class="bot-avatar-img img-open">
+            <img src="robert_robot_blink.png" alt="Robert AI Blinking" class="bot-avatar-img img-blink">
+          </div>
         </div>
         <div class="ai-typing-bubble">
           <span class="typing-dot"></span>
@@ -1451,7 +1460,10 @@ Be concise, polite, professional, and helpful. Use emojis nicely. If asked for d
         botMsgDiv.className = 'ai-msg-row bot-row';
         botMsgDiv.innerHTML = `
           <div class="bot-avatar-mini">
-            <img src="robert_robot.png" alt="Robert AI" class="bot-avatar-img">
+            <div class="robot-avatar-blink-wrapper mini-avatar-wrapper">
+              <img src="robert_robot.png" alt="Robert AI" class="bot-avatar-img img-open">
+              <img src="robert_robot_blink.png" alt="Robert AI Blinking" class="bot-avatar-img img-blink">
+            </div>
           </div>
           <div class="ai-bubble bot-bubble"><p>${botReply}</p></div>
         `;
@@ -1466,7 +1478,10 @@ Be concise, polite, professional, and helpful. Use emojis nicely. If asked for d
         botMsgDiv.className = 'ai-msg-row bot-row';
         botMsgDiv.innerHTML = `
           <div class="bot-avatar-mini">
-            <img src="robert_robot.png" alt="Robert AI" class="bot-avatar-img">
+            <div class="robot-avatar-blink-wrapper mini-avatar-wrapper">
+              <img src="robert_robot.png" alt="Robert AI" class="bot-avatar-img img-open">
+              <img src="robert_robot_blink.png" alt="Robert AI Blinking" class="bot-avatar-img img-blink">
+            </div>
           </div>
           <div class="ai-bubble bot-bubble"><p>${fallbackReply}</p></div>
         `;

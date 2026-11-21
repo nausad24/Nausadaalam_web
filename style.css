@@ -2313,19 +2313,72 @@ body {
   transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.robot-character-3d-img {
+/* Robot Blinking Eye Container */
+.robot-avatar-blink-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  animation: robotFloat 3.6s ease-in-out infinite;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 2;
+}
+
+.robot-character-btn .robot-character-3d-img {
   width: 74px;
   height: auto;
   object-fit: contain;
   filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.65)) drop-shadow(0 0 16px rgba(0, 240, 255, 0.45));
-  animation: robotFloat 3.6s ease-in-out infinite;
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), filter 0.35s ease;
-  z-index: 2;
+  transition: filter 0.35s ease;
+}
+
+.robot-character-btn:hover .robot-avatar-blink-wrapper {
+  transform: translateY(-8px) scale(1.12);
 }
 
 .robot-character-btn:hover .robot-character-3d-img {
-  transform: translateY(-8px) scale(1.12);
   filter: drop-shadow(0 14px 26px rgba(0, 0, 0, 0.75)) drop-shadow(0 0 24px rgba(0, 240, 255, 0.8));
+}
+
+.robot-avatar-blink-wrapper .img-open {
+  display: block;
+}
+
+.robot-avatar-blink-wrapper .img-blink {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0;
+  pointer-events: none;
+  animation: robotBlinkCycle 3.8s infinite;
+}
+
+.robot-character-btn:hover .img-blink {
+  animation: none;
+  opacity: 1;
+}
+
+.robot-avatar-blink-wrapper.header-avatar-wrapper,
+.robot-avatar-blink-wrapper.mini-avatar-wrapper {
+  animation: none;
+}
+
+@keyframes robotBlinkCycle {
+  0%, 88%, 98%, 100% {
+    opacity: 0;
+  }
+  90%, 93% {
+    opacity: 1;
+  }
+  94%, 95% {
+    opacity: 0;
+  }
+  96%, 97.5% {
+    opacity: 1;
+  }
 }
 
 .robot-aura-glow {
