@@ -7,6 +7,7 @@
 <h3 align="center">Chartered Accountancy Aspirant (ICAI) • IT Competition Winner • +2 Management (GPA 3.72) • Tech Enthusiast</h3>
 
 <p align="center">
+  <a href="https://nausadaalam.com.np"><img src="https://img.shields.io/badge/Live_Site-nausadaalam.com.np-00f0ff?style=for-the-badge&logo=googlechrome&logoColor=black" alt="Live Website"></a>
   <a href="https://github.com/nausad24"><img src="https://img.shields.io/badge/GitHub-nausad24-181717?style=for-the-badge&logo=github" alt="GitHub"></a>
   <a href="https://wa.me/9779816732482"><img src="https://img.shields.io/badge/WhatsApp-Chat-25D366?style=for-the-badge&logo=whatsapp" alt="WhatsApp"></a>
   <a href="http://t.me/Na0241"><img src="https://img.shields.io/badge/Telegram-@Na0241-2CA5E0?style=for-the-badge&logo=telegram" alt="Telegram"></a>
@@ -132,6 +133,7 @@ This portfolio features an immersive cyberpunk / dark-neon aesthetic:
 
 ## 📬 Contact & Connect
 
+- **Website:** [https://nausadaalam.com.np](https://nausadaalam.com.np)
 - **Email:** [nausadalam9714@gmail.com](mailto:nausadalam9714@gmail.com)
 - **WhatsApp:** [+977 9816732482](https://wa.me/9779816732482)
 - **Telegram:** [@Na0241](http://t.me/Na0241)
