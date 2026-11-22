@@ -2232,32 +2232,7 @@ body {
 
 /* Floating Holographic Pill Banner */
 .robot-pill-banner {
-  position: absolute;
-  bottom: calc(100% + 14px);
-  left: 0;
-  background: rgba(12, 17, 30, 0.94);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(0, 240, 255, 0.4);
-  padding: 7px 16px;
-  border-radius: 999px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6), 0 0 18px rgba(0, 240, 255, 0.25);
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  white-space: nowrap;
-  animation: bannerFloat 3.5s ease-in-out infinite;
-  pointer-events: none;
-  transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-.robot-pill-banner::after {
-  content: '';
-  position: absolute;
-  top: 100%;
-  left: 26px;
-  border: 6px solid transparent;
-  border-top-color: rgba(0, 240, 255, 0.4);
+  display: none !important;
 }
 
 .live-status-dot {

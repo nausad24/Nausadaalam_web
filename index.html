@@ -854,14 +854,6 @@
 
     <!-- Floating Robot Trigger Button -->
     <div class="ai-robot-trigger" onclick="toggleAiChat()" id="ai-robot-trigger" title="Chat with Robert AI">
-      <!-- Floating holographic bubble -->
-      <div class="robot-pill-banner" id="robot-speech-bubble">
-        <span class="live-status-dot"></span>
-        <div class="banner-text">
-          <span class="banner-title">Robert • Gemini AI</span>
-          <span class="banner-sub">Ask anything ⚡</span>
-        </div>
-      </div>
       <!-- 3D Cute Robot Character Button -->
       <div class="robot-character-btn">
         <div class="robot-aura-glow"></div>
@@ -1166,16 +1158,12 @@
 
     function toggleAiChat() {
       const windowEl = document.getElementById('ai-chat-window');
-      const speechBubble = document.getElementById('robot-speech-bubble');
       const inputEl = document.getElementById('ai-user-input');
       
       aiChatOpen = !aiChatOpen;
       if (windowEl) {
         windowEl.classList.toggle('chat-active', aiChatOpen);
         windowEl.setAttribute('aria-hidden', !aiChatOpen);
-      }
-      if (speechBubble) {
-        speechBubble.style.display = aiChatOpen ? 'none' : 'flex';
       }
       if (aiChatOpen && inputEl) {
         setTimeout(() => inputEl.focus(), 300);
