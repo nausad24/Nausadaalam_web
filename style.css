@@ -2570,21 +2570,11 @@ body {
 }
 
 .ai-neural-tag {
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
-  font-weight: 700;
-  background: linear-gradient(135deg, rgba(0, 240, 255, 0.25), rgba(112, 0, 255, 0.35));
-  border: 1px solid rgba(0, 240, 255, 0.5);
-  color: var(--accent-cyan);
-  padding: 2px 7px;
-  border-radius: 999px;
-  letter-spacing: 0.5px;
+  display: none !important;
 }
 
 .ai-header-desc {
-  font-size: 0.74rem;
-  color: var(--text-muted);
-  font-weight: 500;
+  display: none !important;
 }
 
 .ai-header-actions {
