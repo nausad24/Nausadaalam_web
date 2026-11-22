@@ -796,7 +796,21 @@
 
       <!-- Chat Stream Body -->
       <div class="ai-chat-messages" id="ai-chat-messages">
-        <div class="ai-prompt-heading">Suggested Topics</div>
+        <!-- Welcoming Robot Greeting -->
+        <div class="ai-msg-row bot-row initial-welcome-row">
+          <div class="bot-avatar-mini">
+            <div class="robot-avatar-blink-wrapper mini-avatar-wrapper">
+              <img src="robert_robot.png" alt="Robert AI" class="bot-avatar-img img-open">
+              <img src="robert_robot_blink.png" alt="Robert AI Blinking" class="bot-avatar-img img-blink">
+            </div>
+          </div>
+          <div class="ai-bubble bot-bubble">
+            👋 <strong>Namaste &amp; Hello! I'm Robert</strong>, Nausad's AI companion powered by <strong>Google Gemini</strong>! 🤖✨<br><br>
+            I can answer <em>any question</em> — from Nausad's CA studies and IT awards to general knowledge, weather, coding, and more. What would you like to know?
+          </div>
+        </div>
+
+        <div class="ai-prompt-heading">💡 Popular Questions</div>
         
         <!-- Quick Action Prompt Chips -->
         <div class="ai-quick-prompts" id="ai-quick-prompts">
@@ -812,17 +826,17 @@
             <span class="chip-icon">🏆</span>
             <span>KIST 1st Prize</span>
           </button>
-          <button type="button" class="quick-chip" onclick="askAiQuestion('What are his academic results?')">
-            <span class="chip-icon">🏫</span>
-            <span>Trinity GPA 3.72</span>
+          <button type="button" class="quick-chip" onclick="askAiQuestion('What is the weather like in Kathmandu?')">
+            <span class="chip-icon">🌤️</span>
+            <span>Kathmandu Weather</span>
           </button>
-          <button type="button" class="quick-chip" onclick="askAiQuestion('What are his key skills?')">
+          <button type="button" class="quick-chip" onclick="askAiQuestion('What are his key skills &amp; tools?')">
             <span class="chip-icon">💡</span>
             <span>Core Skills</span>
           </button>
           <button type="button" class="quick-chip" onclick="askAiQuestion('How can I contact Nausad directly?')">
             <span class="chip-icon">📬</span>
-            <span>Direct Contact</span>
+            <span>Direct WhatsApp</span>
           </button>
         </div>
       </div>
@@ -830,7 +844,7 @@
       <!-- Input Capsule -->
       <form class="ai-chat-input-bar" onsubmit="handleAiSubmit(event)">
         <div class="input-wrapper">
-          <input type="text" id="ai-user-input" placeholder="Ask Robert anything about Nausad..." autocomplete="off">
+          <input type="text" id="ai-user-input" placeholder="Ask Robert anything (studies, general questions, weather...)" autocomplete="off">
           <button type="submit" class="ai-send-btn" id="ai-send-btn" aria-label="Send message">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </button>
@@ -1172,7 +1186,20 @@
       const msgContainer = document.getElementById('ai-chat-messages');
       if (!msgContainer) return;
       msgContainer.innerHTML = `
-        <div class="ai-prompt-heading">Suggested Topics</div>
+        <div class="ai-msg-row bot-row initial-welcome-row">
+          <div class="bot-avatar-mini">
+            <div class="robot-avatar-blink-wrapper mini-avatar-wrapper">
+              <img src="robert_robot.png" alt="Robert AI" class="bot-avatar-img img-open">
+              <img src="robert_robot_blink.png" alt="Robert AI Blinking" class="bot-avatar-img img-blink">
+            </div>
+          </div>
+          <div class="ai-bubble bot-bubble">
+            👋 <strong>Namaste &amp; Hello! I'm Robert</strong>, Nausad's AI companion powered by <strong>Google Gemini</strong>! 🤖✨<br><br>
+            I can answer <em>any question</em> — from Nausad's CA studies and IT awards to general knowledge, weather, coding, and more. What would you like to know?
+          </div>
+        </div>
+
+        <div class="ai-prompt-heading">💡 Popular Questions</div>
         
         <div class="ai-quick-prompts" id="ai-quick-prompts">
           <button type="button" class="quick-chip" onclick="askAiQuestion('Who is Nausad Aalam?')">
@@ -1187,17 +1214,17 @@
             <span class="chip-icon">🏆</span>
             <span>KIST 1st Prize</span>
           </button>
-          <button type="button" class="quick-chip" onclick="askAiQuestion('What are his academic results?')">
-            <span class="chip-icon">🏫</span>
-            <span>Trinity GPA 3.72</span>
+          <button type="button" class="quick-chip" onclick="askAiQuestion('What is the weather like in Kathmandu?')">
+            <span class="chip-icon">🌤️</span>
+            <span>Kathmandu Weather</span>
           </button>
-          <button type="button" class="quick-chip" onclick="askAiQuestion('What are his key skills?')">
+          <button type="button" class="quick-chip" onclick="askAiQuestion('What are his key skills &amp; tools?')">
             <span class="chip-icon">💡</span>
             <span>Core Skills</span>
           </button>
           <button type="button" class="quick-chip" onclick="askAiQuestion('How can I contact Nausad directly?')">
             <span class="chip-icon">📬</span>
-            <span>Direct Contact</span>
+            <span>Direct WhatsApp</span>
           </button>
         </div>
       `;
@@ -1311,7 +1338,27 @@
       },
       {
         patterns: ['thank', 'thanks', 'cool', 'awesome', 'great', 'good', 'nice'],
-        answer: "You're most welcome! 😊 Feel free to explore more, or reach out to Nausad directly via WhatsApp (+977 9816732482)!"
+        answer: "You're most welcome! 😊 Feel free to ask me anything else, explore the awards above, or reach out to Nausad directly via WhatsApp (+977 9816732482)!"
+      },
+      {
+        patterns: ['weather', 'climate', 'temperature', 'rain', 'forecast', 'cold', 'hot', 'sunny'],
+        answer: "🌤️ <strong>Kathmandu &amp; Nepal Weather Overview:</strong><br>Kathmandu generally enjoys pleasant, mild weather! Daytime temperatures are typically around 20°C–25°C with clear mountain skies, while winter evenings can get crisp and cool (around 4°C–9°C). 🏔️<br><br><em>Tip: Activate live Google Gemini to query real-time dynamic forecasts on any city worldwide!</em>"
+      },
+      {
+        patterns: ['kathmandu', 'nepal', 'biratnagar', 'siraha', 'hometown'],
+        answer: "🇳🇵 <strong>Nausad's Roots in Nepal:</strong><br>Nausad hails from <strong>Siraha, Nepal</strong>. He completed his schooling at <strong>Adarsha Secondary School</strong> in Biratnagar (3.50 GPA / Grade A), and graduated with high honors (3.72 GPA) from <strong>Trinity International College</strong> in Kathmandu! 🌟"
+      },
+      {
+        patterns: ['how are you', 'how r u', 'whats up', "what's up", 'how do you do'],
+        answer: "I'm doing wonderful, thank you for asking! 🤖✨ I am powered by Google Gemini and ready to assist you with anything regarding Nausad's portfolio, CA studies, or general questions. How can I help you today?"
+      },
+      {
+        patterns: ['joke', 'funny', 'humor', 'laugh'],
+        answer: "😄 Here is a quick accounting &amp; tech joke:<br><br><em>Why did the accountant cross the road?</em><br>To reconcile the other side! 📊🚀"
+      },
+      {
+        patterns: ['study', 'tips', 'advice', 'prepare', 'exam', 'how to study'],
+        answer: "📚 <strong>Nausad's CA Study Formula:</strong><br>1. <strong>Conceptual Clarity:</strong> Deep understanding of ICAI study material over rote learning.<br>2. <strong>Consistent Daily Practice:</strong> Solving practical sums for Accounts, Costing &amp; Tax.<br>3. <strong>Revision &amp; Mock Tests:</strong> Simulating real exam environments with previous year ICAI papers!"
       }
     ];
 
@@ -1327,15 +1374,16 @@
         }
       }
 
-      // 2. If someone asks ANY NEW THING -> Connect directly to WhatsApp 9816732482!
+      // 2. Helpful response for unknown general questions
       const waQueryUrl = `https://wa.me/9779816732482?text=${encodeURIComponent("Hello Nausad! I have a question from your portfolio: " + userInput)}`;
 
-      return `I don't have the exact answer for that specific question yet, but you can <strong>connect with Nausad directly on WhatsApp</strong>:<br><br>
+      return `I would love to help answer that! 🤖✨<br><br>
+      To unlock unlimited real-time <strong>Google Gemini AI</strong> answers for every general question, please ensure the free <code>GEMINI_API_KEY</code> is active in Vercel (or <a href="javascript:void(0)" onclick="openGeminiModal()" style="color:var(--accent-cyan); font-weight:700; text-decoration:underline;">click here to paste a Gemini API Key directly</a>).<br><br>
+      You can also connect with Nausad directly on WhatsApp:<br>
       <a href="${waQueryUrl}" target="_blank" class="ai-wa-direct-btn">
         <span>💬 Ask Nausad on WhatsApp</span>
         <strong>+977 9816732482 ↗</strong>
-      </a><br>
-      <span style="font-size:0.75rem; color:var(--text-muted);">Clicking above opens WhatsApp with your question ready to send!</span>`;
+      </a>`;
     }
 
     const NAUSAD_SYSTEM_PROMPT = `You are Robert, the official AI companion on Nausad Aalam's personal portfolio.
