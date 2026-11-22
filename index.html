@@ -796,20 +796,6 @@
 
       <!-- Chat Stream Body -->
       <div class="ai-chat-messages" id="ai-chat-messages">
-        <!-- Welcoming Robot Greeting -->
-        <div class="ai-msg-row bot-row initial-welcome-row">
-          <div class="bot-avatar-mini">
-            <div class="robot-avatar-blink-wrapper mini-avatar-wrapper">
-              <img src="robert_robot.png" alt="Robert AI" class="bot-avatar-img img-open">
-              <img src="robert_robot_blink.png" alt="Robert AI Blinking" class="bot-avatar-img img-blink">
-            </div>
-          </div>
-          <div class="ai-bubble bot-bubble">
-            👋 <strong>Namaste &amp; Hello! I'm Robert</strong>, Nausad's AI companion powered by <strong>Google Gemini</strong>! 🤖✨<br><br>
-            I can answer <em>any question</em> — from Nausad's CA studies and IT awards to general knowledge, weather, coding, and more. What would you like to know?
-          </div>
-        </div>
-
         <div class="ai-prompt-heading">💡 Popular Questions</div>
         
         <!-- Quick Action Prompt Chips -->
@@ -1174,19 +1160,6 @@
       const msgContainer = document.getElementById('ai-chat-messages');
       if (!msgContainer) return;
       msgContainer.innerHTML = `
-        <div class="ai-msg-row bot-row initial-welcome-row">
-          <div class="bot-avatar-mini">
-            <div class="robot-avatar-blink-wrapper mini-avatar-wrapper">
-              <img src="robert_robot.png" alt="Robert AI" class="bot-avatar-img img-open">
-              <img src="robert_robot_blink.png" alt="Robert AI Blinking" class="bot-avatar-img img-blink">
-            </div>
-          </div>
-          <div class="ai-bubble bot-bubble">
-            👋 <strong>Namaste &amp; Hello! I'm Robert</strong>, Nausad's AI companion powered by <strong>Google Gemini</strong>! 🤖✨<br><br>
-            I can answer <em>any question</em> — from Nausad's CA studies and IT awards to general knowledge, weather, coding, and more. What would you like to know?
-          </div>
-        </div>
-
         <div class="ai-prompt-heading">💡 Popular Questions</div>
         
         <div class="ai-quick-prompts" id="ai-quick-prompts">
@@ -1331,6 +1304,10 @@
       {
         patterns: ['hello', 'hi', 'hey', 'namaste', 'greetings', 'morning', 'afternoon', 'evening'],
         answer: "Namaste &amp; Greetings! 👋 I'm Robert, Nausad's AI companion. How can I assist you today?"
+      },
+      {
+        patterns: ['sad', 'unhappy', 'depressed', 'cry', 'crying', 'down', 'stress', 'comfort', 'comfortable', 'relax', 'soothing', 'peace', 'song', 'music', 'recommend song', 'recommend a song', 'favorite song', 'listen song'],
+        answer: "When you're feeling down or want comfort, listen to this beautiful, soothing song: 🎵 <a href='https://www.youtube.com/watch?v=Ddm7VUgw5Vw' target='_blank' style='color:#00f0ff; font-weight:700;'>Dilruba Dilnasheen by Rito Riba ↗</a>."
       },
       {
         patterns: ['thank', 'thanks', 'cool', 'awesome', 'great', 'good', 'nice'],
