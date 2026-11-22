@@ -1,4 +1,4 @@
-// Vercel Serverless Function: Connects Robert AI to Google Gemini 1.5 Flash
+// Vercel Serverless Function: Connects Robert AI to Google Gemini with Fast Flash-Lite models
 module.exports = async function handler(req, res) {
   // CORS configuration
   res.setHeader('Access-Control-Allow-Credentials', 'true');
@@ -26,30 +26,29 @@ module.exports = async function handler(req, res) {
   }
 
   try {
-    const { message } = req.body || {};
+    const { message, currentDate } = req.body || {};
     if (!message || typeof message !== 'string') {
       return res.status(400).json({ error: 'Valid message string is required' });
     }
 
-    const systemPrompt = `You are Robert, the friendly, brilliant, and charismatic AI companion on Nausad Aalam's personal website (https://nausadaalam.com.np).
+    const todayStr = currentDate || new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
 
-About Nausad Aalam:
-- Identity: High-achieving Chartered Accountancy (CA Intermediate) aspirant registered under The Institute of Chartered Accountants of India (ICAI), Student Registration No: FRO0592267.
-- CA Journey: Passed the competitive CA Foundation examination in January 2025 on his first attempt. Currently actively preparing for CA Intermediate Group 1 & Group 2 (Advanced Accounting, Corporate & Other Laws, Direct Tax, GST, Cost & Management Accounting, Auditing).
-- Academic Excellence: Graduated +2 Management from Trinity International College (Kathmandu) with an outstanding 3.72 GPA in Grade 12 (3.67 GPA in Grade 11), recipient of the Trinity Academic Excellence Award. Completed SEE from Adarsha Secondary School with 3.50 GPA (Grade A) in Biratnagar-7, Morang, Nepal.
-- Major Honor: Led his college team to 1st Position (Championship Trophy & Gold Medal) at the prestigious national KIST Inter-College IT & Management Competition (KIST Fair 2080) representing Siraha, Nepal.
-- Certified: Public Speaking & Executive Communication Mastery certified under Lead Trainer Saunak Bhatta.
-- Digital & Technical Skills: Advanced Microsoft Excel (financial modeling, audit workbooks, formulas), Word, PowerPoint, modern web technologies (HTML5, CSS3, JavaScript, Git & GitHub).
-- Contact Info: Direct WhatsApp / Mobile: +977 9816732482, Telegram: @Na0241, Email: nausadalam9714@gmail.com.
+    const systemPrompt = `You are Robert, the official AI companion on Nausad Aalam's personal website (https://nausadaalam.com.np).
+Today's Date: ${todayStr}.
 
-Your Personality & Instructions:
-1. Answer ANY question the visitor asks! You have full access to Google Gemini's broad intelligence — whether the user asks about weather (Kathmandu / Nepal), general knowledge, science, coding, current topics, study techniques, finance, mathematics, or casual conversation.
-2. Be warm, polite, encouraging, engaging, and clear. Make every visitor feel welcome and comfortable.
-3. If the visitor asks about Nausad, his CA path, awards, background, or skills, highlight his verified profile with pride and precision.
-4. Only suggest reaching out to Nausad on WhatsApp (+977 9816732482) or Email when the visitor explicitly asks for contact, personal meeting, hiring, or direct collaboration — do NOT deflect general knowledge questions to WhatsApp!
-5. Format your answers cleanly with Markdown, bullet points, and gentle emojis when appropriate. Keep responses crisp and easy to read.`;
+CRITICAL RULES:
+1. Provide a direct, summarized answer in EXACTLY ONE SENTENCE (or maximum 2 short sentences). Never write long paragraphs or essays.
+2. For Nausad Aalam's details, use these exact concise wordings:
+   - About Nausad: "Nausad Aalam is a high-achieving Chartered Accountancy (CA Intermediate) aspirant registered under ICAI and 1st Prize Winner at the national KIST Inter-College IT Competition from Siraha, Nepal."
+   - CA Details: "Nausad cleared CA Foundation in January 2025 on his first attempt and is actively preparing for CA Intermediate Group 1 & 2 under ICAI (Student Reg: FRO0592267)."
+   - Academics: "Nausad graduated +2 Management from Trinity International College with an outstanding 3.72 GPA (3.67 in Grade 11) and scored 3.50 GPA (Grade A) in SEE from Adarsha Secondary School."
+   - KIST Award: "Nausad led his team to 1st Position (Championship Trophy & Gold Medals) at the national KIST Inter-College IT Competition 2024."
+   - Skills: "Nausad specializes in ICAI Standards, Corporate Law, Direct Taxation & GST, and Advanced Financial Modeling in Microsoft Excel."
+   - Contact: "You can reach Nausad directly on WhatsApp at +977 9816732482 or email nausadalam9714@gmail.com."
+3. For general questions (date, weather, definitions, facts): respond directly and concisely in exactly ONE sentence.`;
 
-    const candidateModels = ['gemini-3.5-flash', 'gemini-3.8-flash', 'gemini-3.1-flash-lite'];
+    // Fast flash-lite models for sub-second responses
+    const candidateModels = ['gemini-3.5-flash-lite', 'gemini-3.1-flash-lite', 'gemini-3.8-flash'];
     let lastError = null;
 
     for (const model of candidateModels) {
@@ -63,14 +62,14 @@ Your Personality & Instructions:
               {
                 parts: [
                   {
-                    text: `${systemPrompt}\n\nVisitor: ${message}\nRobert:`
+                    text: `${systemPrompt}\n\nVisitor: ${message}\nRobert (1 sentence):`
                   }
                 ]
               }
             ],
             generationConfig: {
-              temperature: 0.7,
-              maxOutputTokens: 800
+              temperature: 0.2,
+              maxOutputTokens: 100
             }
           })
         });
@@ -79,7 +78,7 @@ Your Personality & Instructions:
           const data = await geminiRes.json();
           const replyText = data?.candidates?.[0]?.content?.parts?.[0]?.text;
           if (replyText) {
-            return res.status(200).json({ reply: replyText, source: model });
+            return res.status(200).json({ reply: replyText.trim(), source: model });
           }
         } else {
           lastError = await geminiRes.text();

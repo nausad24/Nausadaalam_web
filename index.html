@@ -1289,101 +1289,80 @@
 
     const robertKnowledgeBase = [
       {
-        patterns: ['phone', 'mobile', 'number', 'call', 'whatsapp', 'contact', 'reach', 'email', 'mail', 'hire', 'message', 'text'],
-        answer: "📞 <strong>Nausad's Direct Contact:</strong><br><br>• <strong>WhatsApp / Mobile:</strong> <a href='https://wa.me/9779816732482' target='_blank' style='color:#25D366; font-weight:700;'>+977 9816732482 ↗</a><br>• <strong>Telegram:</strong> <a href='https://t.me/Na0241' target='_blank' style='color:#00f0ff; font-weight:700;'>@Na0241 ↗</a><br>• <strong>Direct Email:</strong> <a href='mailto:nausadalam9714@gmail.com' style='color:#00f0ff; font-weight:700;'>nausadalam9714@gmail.com ↗</a><br><br><a href='https://wa.me/9779816732482?text=Hello%20Nausad!%20I%20came%20across%20your%20portfolio%20and%20would%20like%20to%20connect.' target='_blank' class='ai-wa-direct-btn'><span>💬 Chat Directly on WhatsApp</span><strong>+977 9816732482 ↗</strong></a>"
+        patterns: ['today date', "today's date", 'current date', 'what date', 'date today', 'date is today', 'date'],
+        getAnswer: () => `📅 Today is <strong>${new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</strong>.`
       },
       {
-        patterns: ['ca', 'icai', 'intermediate', 'foundation', 'chartered', 'accountancy', 'accountant', 'group 1', 'group 2', 'fro0592267'],
-        answer: "Nausad is registered under <strong>ICAI</strong> (Student Reg: <code>FRO0592267</code>).<br><br>• Passed competitive <strong>CA Foundation</strong> in January 2025 on his first attempt.<br>• Currently preparing for <strong>CA Intermediate</strong> Group 1 &amp; Group 2 (covering Advanced Accounting, Corporate Law, Direct Tax, GST, Cost Accounting, and Auditing Standards). 📚"
-      },
-      {
-        patterns: ['kist', 'it fair', 'competition', '1st prize', 'champion', 'first position', 'trophy', 'award', 'gold medal'],
-        answer: "🏆 <strong>KIST Fair 2080 Champion (1st Prize):</strong><br>Nausad led his college team to <strong>1st Position</strong> among top colleges across Nepal in the national Inter-College IT &amp; Management Competition at KIST College, winning the Championship Trophy, Gold Medals, and national recognition!"
-      },
-      {
-        patterns: ['trinity', 'college', '+2', 'management', 'gpa', '3.72', 'see', 'school', 'adarsha', 'education', 'study', 'academic', 'marks', 'grade 12', 'grade 11'],
-        answer: "<strong>Academic Excellence:</strong><br>• <strong>Trinity International College:</strong> +2 Management &bull; <strong>3.72 GPA</strong> in Grade 12 (3.67 GPA in Grade 11) &bull; College Academic Excellence Award.<br>• <strong>Adarsha Secondary School:</strong> Completed SEE with <strong>3.50 GPA (Grade A)</strong> in Biratnagar-7, Morang, Nepal. 🎓"
-      },
-      {
-        patterns: ['skill', 'skills', 'tools', 'excel', 'word', 'powerpoint', 'software', 'competenc', 'abilities'],
-        answer: "💡 <strong>Key Skills &amp; Capabilities:</strong><br>• <strong>Accounting &amp; Finance:</strong> ICAI Standards, Corporate Law (Companies Act), Financial Statements, Direct Tax/TDS, GST, Auditing.<br>• <strong>Digital Systems:</strong> Advanced Microsoft Excel (Financial modeling, audit sheets, formulas), Word, PowerPoint.<br>• <strong>Leadership:</strong> Team Direction, Inter-College Competition Execution, Public Speaking Mastery."
-      },
-      {
-        patterns: ['certificate', 'cert', 'certif', 'proof', 'achievement', 'speaking'],
-        answer: "📜 <strong>Official Verified Credentials:</strong><br>1. <strong>KIST Fair 2080</strong> &bull; 1st Position Trophy &amp; Certificate<br>2. <strong>Trinity College</strong> &bull; Academic Excellence Award (2nd Position in Grade 12)<br>3. <strong>Public Speaking Mastery</strong> &bull; Lead trainer Saunak Bhatta.<br><br>👉 You can view the enlarged verified certificates directly in the 'Academic Recognition' section above!"
+        patterns: ['current time', 'what time is it', 'time now', 'time today', 'what time'],
+        getAnswer: () => `⏰ The current time is <strong>${new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true })}</strong>.`
       },
       {
         patterns: ['who is nausad', 'who is', 'about nausad', 'tell me about nausad', 'tell me about him', 'bio', 'profile', 'introduce nausad', 'introduction'],
-        answer: "<strong>Nausad Aalam</strong> is a high-achieving Chartered Accountancy (CA Intermediate) aspirant registered with <strong>The Institute of Chartered Accountants of India (ICAI)</strong>.<br><br>He graduated +2 Management from <strong>Trinity International College</strong> with an outstanding <strong>3.72 GPA</strong> and led his team to <strong>1st Position</strong> at the national <strong>KIST Inter-College IT Competition</strong> from Siraha, Nepal! 🌟"
+        answer: "Nausad Aalam is a high-achieving Chartered Accountancy (CA Intermediate) aspirant registered under ICAI and 1st Prize Winner at the national KIST Inter-College IT Competition from Siraha, Nepal. 🌟"
+      },
+      {
+        patterns: ['ca', 'icai', 'intermediate', 'foundation', 'chartered', 'accountancy', 'accountant', 'group 1', 'group 2', 'fro0592267'],
+        answer: "Nausad cleared CA Foundation in January 2025 on his first attempt and is actively preparing for CA Intermediate Group 1 &amp; 2 under ICAI (Student Reg: <code>FRO0592267</code>). 📚"
+      },
+      {
+        patterns: ['kist', 'it fair', 'competition', '1st prize', 'champion', 'first position', 'trophy', 'award', 'gold medal'],
+        answer: "Nausad led his team to 1st Position (Championship Trophy &amp; Gold Medals) at the national KIST Inter-College IT Competition 2024. 🏆"
+      },
+      {
+        patterns: ['trinity', 'college', '+2', 'management', 'gpa', '3.72', 'see', 'school', 'adarsha', 'education', 'study', 'academic', 'marks', 'grade 12', 'grade 11'],
+        answer: "Nausad graduated +2 Management from Trinity International College with an outstanding 3.72 GPA (3.67 in Grade 11) and scored 3.50 GPA (Grade A) in SEE from Adarsha Secondary School. 🎓"
+      },
+      {
+        patterns: ['skill', 'skills', 'tools', 'excel', 'word', 'powerpoint', 'software', 'competenc', 'abilities'],
+        answer: "Nausad specializes in ICAI Standards, Corporate Law, Direct Taxation &amp; GST, and Advanced Financial Modeling in Microsoft Excel. 💡"
+      },
+      {
+        patterns: ['certificate', 'cert', 'certif', 'proof', 'achievement', 'speaking'],
+        answer: "Nausad holds the KIST Fair 1st Prize Trophy, Trinity College Academic Excellence Award, and Executive Public Speaking Certification under Trainer Saunak Bhatta."
+      },
+      {
+        patterns: ['phone', 'mobile', 'number', 'call', 'whatsapp', 'contact', 'reach', 'email', 'mail', 'hire', 'message', 'text'],
+        answer: "You can reach Nausad directly on WhatsApp at <a href='https://wa.me/9779816732482' target='_blank' style='color:#25D366; font-weight:700;'>+977 9816732482 ↗</a> or email <a href='mailto:nausadalam9714@gmail.com' style='color:#00f0ff;'>nausadalam9714@gmail.com</a>."
       },
       {
         patterns: ['robert', 'who are you', 'what are you', 'ai bot', 'what can you do', 'your name', 'gemini'],
-        answer: "I am <strong>Robert</strong>, Nausad's AI Assistant powered by <strong>Google Gemini</strong>! 🤖✨<br><br>I can answer questions regarding Nausad's CA journey, academic awards, technical capabilities, or connect you directly with him on WhatsApp (+977 9816732482)!"
+        answer: "I am Robert, Nausad's AI companion powered by Google Gemini, here to answer your questions accurately in one concise sentence! 🤖⚡"
       },
       {
         patterns: ['hello', 'hi', 'hey', 'namaste', 'greetings', 'morning', 'afternoon', 'evening'],
-        answer: "Namaste &amp; Greetings! 👋 I'm Robert, Nausad's AI Assistant powered by Google Gemini. How can I assist you today? Ask me anything or select a topic above!"
+        answer: "Namaste &amp; Greetings! 👋 I'm Robert, Nausad's AI companion. How can I assist you today?"
       },
       {
         patterns: ['thank', 'thanks', 'cool', 'awesome', 'great', 'good', 'nice'],
-        answer: "You're most welcome! 😊 Feel free to ask me anything else, explore the awards above, or reach out to Nausad directly via WhatsApp (+977 9816732482)!"
-      },
-      {
-        patterns: ['weather', 'climate', 'temperature', 'rain', 'forecast', 'cold', 'hot', 'sunny'],
-        answer: "🌤️ <strong>Kathmandu &amp; Nepal Weather Overview:</strong><br>Kathmandu generally enjoys pleasant, mild weather! Daytime temperatures are typically around 20°C–25°C with clear mountain skies, while winter evenings can get crisp and cool (around 4°C–9°C). 🏔️<br><br><em>Tip: Activate live Google Gemini to query real-time dynamic forecasts on any city worldwide!</em>"
-      },
-      {
-        patterns: ['kathmandu', 'nepal', 'biratnagar', 'siraha', 'hometown'],
-        answer: "🇳🇵 <strong>Nausad's Roots in Nepal:</strong><br>Nausad hails from <strong>Siraha, Nepal</strong>. He completed his schooling at <strong>Adarsha Secondary School</strong> in Biratnagar (3.50 GPA / Grade A), and graduated with high honors (3.72 GPA) from <strong>Trinity International College</strong> in Kathmandu! 🌟"
-      },
-      {
-        patterns: ['how are you', 'how r u', 'whats up', "what's up", 'how do you do'],
-        answer: "I'm doing wonderful, thank you for asking! 🤖✨ I am powered by Google Gemini and ready to assist you with anything regarding Nausad's portfolio, CA studies, or general questions. How can I help you today?"
-      },
-      {
-        patterns: ['joke', 'funny', 'humor', 'laugh'],
-        answer: "😄 Here is a quick accounting &amp; tech joke:<br><br><em>Why did the accountant cross the road?</em><br>To reconcile the other side! 📊🚀"
-      },
-      {
-        patterns: ['study', 'tips', 'advice', 'prepare', 'exam', 'how to study'],
-        answer: "📚 <strong>Nausad's CA Study Formula:</strong><br>1. <strong>Conceptual Clarity:</strong> Deep understanding of ICAI study material over rote learning.<br>2. <strong>Consistent Daily Practice:</strong> Solving practical sums for Accounts, Costing &amp; Tax.<br>3. <strong>Revision &amp; Mock Tests:</strong> Simulating real exam environments with previous year ICAI papers!"
+        answer: "You're most welcome! 😊 Feel free to ask me anything else!"
       }
     ];
 
     function getRobertResponse(userInput) {
       const lower = userInput.toLowerCase();
       
-      // 1. Check known knowledge base
       for (const item of robertKnowledgeBase) {
         for (const pattern of item.patterns) {
           if (lower.includes(pattern)) {
-            return item.answer;
+            return item.getAnswer ? item.getAnswer() : item.answer;
           }
         }
       }
 
-      // 2. Helpful response for unknown general questions
       const waQueryUrl = `https://wa.me/9779816732482?text=${encodeURIComponent("Hello Nausad! I have a question from your portfolio: " + userInput)}`;
 
-      return `I would love to help answer that! 🤖✨<br><br>
-      To unlock unlimited real-time <strong>Google Gemini AI</strong> answers for every general question, please ensure the free <code>GEMINI_API_KEY</code> is active in Vercel (or <a href="javascript:void(0)" onclick="openGeminiModal()" style="color:var(--accent-cyan); font-weight:700; text-decoration:underline;">click here to paste a Gemini API Key directly</a>).<br><br>
-      You can also connect with Nausad directly on WhatsApp:<br>
-      <a href="${waQueryUrl}" target="_blank" class="ai-wa-direct-btn">
-        <span>💬 Ask Nausad on WhatsApp</span>
-        <strong>+977 9816732482 ↗</strong>
-      </a>`;
+      return `You can connect with Nausad directly on WhatsApp at <a href="${waQueryUrl}" target="_blank" style="color:#25D366; font-weight:700;">+977 9816732482 ↗</a> or email him at nausadalam9714@gmail.com.`;
     }
 
     const NAUSAD_SYSTEM_PROMPT = `You are Robert, the official AI companion on Nausad Aalam's personal portfolio.
-Nausad Aalam's Profile:
-- Chartered Accountancy (CA Intermediate) student under ICAI (Student Reg: FRO0592267). Passed CA Foundation in Jan 2025 on first attempt. Preparing for CA Intermediate Group 1 & Group 2.
-- Graduated +2 Management from Trinity International College with 3.72 GPA (3.67 in Grade 11), Academic Excellence Award. SEE from Adarsha Secondary School with 3.50 GPA (Grade A) in Biratnagar-7, Morang, Nepal.
-- 1st Position (Championship Trophy & Gold Medal) at national KIST Inter-College IT Competition (KIST Fair 2080).
-- Certified in Public Speaking Mastery under Saunak Bhatta.
-- Core Skills: ICAI Standards, Corporate Law, Financial Reporting, Direct Tax, GST, Cost Accounting, Auditing, Advanced MS Excel, Word, PowerPoint.
-- Contact: WhatsApp/Mobile +977 9816732482, Telegram @Na0241, Email nausadalam9714@gmail.com.
-Guidelines:
-Be concise, polite, professional, and helpful. Use emojis nicely. If asked for direct contact, meeting, or an unknown question, guide the user to WhatsApp (+977 9816732482).`;
+Answer in EXACTLY ONE concise sentence.
+Nausad Aalam's Details:
+- Chartered Accountancy (CA Intermediate) student under ICAI (Student Reg: FRO0592267). Cleared CA Foundation Jan 2025 on first attempt. Preparing for CA Intermediate Group 1 & 2.
+- Graduated +2 Management from Trinity International College with 3.72 GPA (Class 11: 3.67 GPA). SEE from Adarsha Secondary School with 3.50 GPA (Grade A).
+- 1st Prize Winner at national KIST Inter-College IT Competition 2024.
+- Certified in Executive Public Speaking under Saunak Bhatta.
+- Specializes in ICAI Standards, Corporate Law, Direct Tax/GST, and Advanced Excel modeling.
+- Direct Contact: WhatsApp +977 9816732482, Telegram @Na0241, Email nausadalam9714@gmail.com.`;
 
     function formatMarkdown(text) {
       if (!text) return '';
@@ -1397,12 +1376,24 @@ Be concise, polite, professional, and helpful. Use emojis nicely. If asked for d
     }
 
     async function fetchAiReply(userText) {
-      // 1. Try Vercel Serverless Function /api/chat
+      const lower = userText.trim().toLowerCase();
+
+      // Check instant exact matches first (0ms latency!)
+      for (const item of robertKnowledgeBase) {
+        for (const pattern of item.patterns) {
+          if (lower.includes(pattern)) {
+            return item.getAnswer ? item.getAnswer() : item.answer;
+          }
+        }
+      }
+
+      // 1. Try Vercel Serverless Function /api/chat (super-fast with flash-lite)
       try {
+        const todayDate = new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
         const response = await fetch('/api/chat', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ message: userText })
+          body: JSON.stringify({ message: userText, currentDate: todayDate })
         });
         if (response.ok) {
           const data = await response.json();
@@ -1418,19 +1409,19 @@ Be concise, polite, professional, and helpful. Use emojis nicely. If asked for d
       const customKey = localStorage.getItem('robert_gemini_key');
       if (customKey) {
         try {
-          const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent?key=${encodeURIComponent(customKey)}`;
+          const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash-lite:generateContent?key=${encodeURIComponent(customKey)}`;
           const directRes = await fetch(geminiUrl, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
               contents: [{
                 parts: [{
-                  text: `${NAUSAD_SYSTEM_PROMPT}\n\nVisitor Question: ${userText}\nRobert:`
+                  text: `${NAUSAD_SYSTEM_PROMPT}\n\nUser Question: ${userText}\nRobert (1 sentence):`
                 }]
               }],
               generationConfig: {
-                temperature: 0.7,
-                maxOutputTokens: 800
+                temperature: 0.2,
+                maxOutputTokens: 100
               }
             })
           });
@@ -1438,7 +1429,7 @@ Be concise, polite, professional, and helpful. Use emojis nicely. If asked for d
             const data = await directRes.json();
             const reply = data?.candidates?.[0]?.content?.parts?.[0]?.text;
             if (reply) {
-              return formatMarkdown(reply);
+              return formatMarkdown(reply.trim());
             }
           }
         } catch (err) {
@@ -1446,7 +1437,7 @@ Be concise, polite, professional, and helpful. Use emojis nicely. If asked for d
         }
       }
 
-      // 3. Fallback to Robert's local engine + WhatsApp redirect
+      // 3. Fallback to local 1-sentence response
       return getRobertResponse(userText);
     }
 
