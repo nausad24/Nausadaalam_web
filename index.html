@@ -1418,7 +1418,7 @@ Be concise, polite, professional, and helpful. Use emojis nicely. If asked for d
       const customKey = localStorage.getItem('robert_gemini_key');
       if (customKey) {
         try {
-          const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${encodeURIComponent(customKey)}`;
+          const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent?key=${encodeURIComponent(customKey)}`;
           const directRes = await fetch(geminiUrl, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -1430,7 +1430,7 @@ Be concise, polite, professional, and helpful. Use emojis nicely. If asked for d
               }],
               generationConfig: {
                 temperature: 0.7,
-                maxOutputTokens: 350
+                maxOutputTokens: 800
               }
             })
           });
