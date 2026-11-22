@@ -70,7 +70,7 @@ CRITICAL RULES:
             ],
             generationConfig: {
               temperature: 0.2,
-              maxOutputTokens: 100
+              maxOutputTokens: 180
             }
           })
         });
