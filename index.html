@@ -740,20 +740,6 @@
     <div class="ai-chat-window" id="ai-chat-window" aria-hidden="true">
       <!-- Chat Header -->
       <div class="ai-chat-header">
-        <div class="ai-header-left">
-          <div class="ai-header-avatar-orb">
-            <div class="robot-avatar-blink-wrapper header-avatar-wrapper">
-              <img src="robert_robot.png" alt="Robert AI" class="ai-header-robot-img img-open">
-              <img src="robert_robot_blink.png" alt="Robert AI Blinking" class="ai-header-robot-img img-blink">
-            </div>
-            <span class="header-online-dot"></span>
-          </div>
-          <div class="ai-header-text">
-            <div class="ai-header-title-row">
-              <span class="ai-header-name">ROBERT</span>
-            </div>
-          </div>
-        </div>
         <div class="ai-header-actions">
           <button type="button" class="ai-btn-icon" onclick="openGeminiModal()" title="Gemini AI Settings / API Key" aria-label="Gemini AI Settings">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.4 5.6 5.6 2.4-5.6 2.4L12 18l-2.4-5.6-5.6-2.4 5.6-2.4L12 2zM18 16l1.2 2.8 2.8 1.2-2.8 1.2L18 24l-1.2-2.8-2.8-1.2 2.8-1.2L18 16z"/></svg>
@@ -828,7 +814,7 @@
       <!-- Input Capsule -->
       <form class="ai-chat-input-bar" onsubmit="handleAiSubmit(event)">
         <div class="input-wrapper">
-          <input type="text" id="ai-user-input" placeholder="Ask Robert anything (studies, general questions, weather...)" autocomplete="off">
+          <input type="text" id="ai-user-input" placeholder="Ask anything (studies, general questions, weather...)" autocomplete="off">
           <button type="submit" class="ai-send-btn" id="ai-send-btn" aria-label="Send message">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </button>
