@@ -1246,7 +1246,7 @@
 
     const robertKnowledgeBase = [
       {
-        patterns: ['today date', "today's date", 'current date', 'what date', 'date today', 'date is today', 'date'],
+        patterns: ['today date', "today's date", 'current date', 'what date', 'date today', 'date is today'],
         getAnswer: () => `📅 Today is <strong>${new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</strong>.`
       },
       {
@@ -1254,57 +1254,59 @@
         getAnswer: () => `⏰ The current time is <strong>${new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true })}</strong>.`
       },
       {
-        patterns: ['who is nausad', 'who is', 'about nausad', 'tell me about nausad', 'tell me about him', 'bio', 'profile', 'introduce nausad', 'introduction'],
+        patterns: ['who is nausad', 'about nausad', 'tell me about nausad', 'tell me about him', 'bio', 'profile', 'introduce nausad'],
         answer: "Nausad Aalam is a high-achieving Chartered Accountancy (CA Intermediate) aspirant registered under ICAI and 1st Prize Winner at the national KIST Inter-College IT Competition from Siraha, Nepal. 🌟"
       },
       {
-        patterns: ['ca', 'icai', 'intermediate', 'foundation', 'chartered', 'accountancy', 'accountant', 'group 1', 'group 2', 'fro0592267', 'fro0592xxx'],
+        patterns: ['ca foundation', 'ca intermediate', 'ca studies', 'ca student', 'icai', 'chartered accountancy', 'chartered accountant', 'intermediate group', 'fro0592xxx'],
         answer: "Nausad cleared CA Foundation in January 2025 on his first attempt and is actively preparing for CA Intermediate Group 1 &amp; 2 under ICAI (Student Reg: <code>FRO0592XXX</code>). 📚"
       },
       {
-        patterns: ['kist', 'it fair', 'competition', '1st prize', 'champion', 'first position', 'trophy', 'award', 'gold medal'],
+        patterns: ['kist', 'it fair', 'kist competition', '1st prize', 'champion', 'first position', 'kist trophy', 'gold medal'],
         answer: "Nausad led his team to 1st Position (Championship Trophy &amp; Gold Medals) at the national KIST Inter-College IT Competition 2024. 🏆"
       },
       {
-        patterns: ['trinity', 'college', '+2', 'management', 'gpa', '3.72', 'see', 'school', 'adarsha', 'education', 'study', 'academic', 'marks', 'grade 12', 'grade 11'],
+        patterns: ['trinity', 'trinity college', '+2 management', '3.72 gpa', 'adarsha secondary', 'academic journey', 'academic marks'],
         answer: "Nausad graduated +2 Management from Trinity International College with an outstanding 3.72 GPA (3.67 in Grade 11) and scored 3.50 GPA (Grade A) in SEE from Adarsha Secondary School. 🎓"
       },
       {
-        patterns: ['skill', 'skills', 'tools', 'excel', 'word', 'powerpoint', 'software', 'competenc', 'abilities'],
+        patterns: ['skills', 'skill', 'core skills', 'excel modeling', 'financial modeling', 'taxation', 'gst', 'corporate law'],
         answer: "Nausad specializes in ICAI Standards, Corporate Law, Direct Taxation &amp; GST, and Advanced Financial Modeling in Microsoft Excel. 💡"
       },
       {
-        patterns: ['certificate', 'cert', 'certif', 'proof', 'achievement', 'speaking'],
+        patterns: ['certificate', 'certificates', 'public speaking', 'saunak bhatta'],
         answer: "Nausad holds the KIST Fair 1st Prize Trophy, Trinity College Academic Excellence Award, and Executive Public Speaking Certification under Trainer Saunak Bhatta."
       },
       {
-        patterns: ['phone', 'mobile', 'number', 'call', 'whatsapp', 'contact', 'reach', 'email', 'mail', 'hire', 'message', 'text'],
+        patterns: ['contact', 'whatsapp', 'direct whatsapp', 'phone', 'mobile', 'call', 'reach', 'email', 'hire', 'how can i contact'],
         answer: "You can reach Nausad directly on WhatsApp at <a href='https://wa.me/9779816732482' target='_blank' style='color:#25D366; font-weight:700;'>+977 9816732482 ↗</a> or email <a href='mailto:nausadalam9714@gmail.com' style='color:#00f0ff;'>nausadalam9714@gmail.com</a>."
       },
       {
-        patterns: ['robert', 'who are you', 'what are you', 'ai bot', 'what can you do', 'your name', 'gemini'],
+        patterns: ['robert', 'who are you', 'what are you', 'ai bot', 'what can you do', 'your name'],
         answer: "I am Robert, Nausad's AI companion powered by Google Gemini, here to answer your questions accurately in one concise sentence! 🤖⚡"
       },
       {
-        patterns: ['hello', 'hi', 'hey', 'namaste', 'greetings', 'morning', 'afternoon', 'evening'],
+        patterns: ['hello', 'hi', 'hey', 'namaste', 'greetings'],
         answer: "Namaste &amp; Greetings! 👋 I'm Robert, Nausad's AI companion. How can I assist you today?"
       },
       {
-        patterns: ['sad', 'unhappy', 'depressed', 'cry', 'crying', 'down', 'stress', 'comfort', 'comfortable', 'relax', 'soothing', 'peace', 'song', 'music', 'recommend song', 'recommend a song', 'favorite song', 'listen song'],
+        patterns: ['sad', 'unhappy', 'depressed', 'cry', 'crying', 'down', 'stress', 'comfort', 'comfortable', 'relax', 'soothing', 'peace', 'song', 'music', 'recommend song', 'dilruba'],
         answer: "When you're feeling down or want comfort, listen to this beautiful, soothing song: 🎵 <a href='https://www.youtube.com/watch?v=Ddm7VUgw5Vw' target='_blank' style='color:#00f0ff; font-weight:700;'>Dilruba Dilnasheen by Rito Riba ↗</a>."
       },
       {
-        patterns: ['thank', 'thanks', 'cool', 'awesome', 'great', 'good', 'nice'],
+        patterns: ['thank', 'thanks', 'awesome', 'great', 'good job'],
         answer: "You're most welcome! 😊 Feel free to ask me anything else!"
       }
     ];
 
     function getRobertResponse(userInput) {
-      const lower = userInput.toLowerCase();
+      const lower = userInput.trim().toLowerCase();
       
       for (const item of robertKnowledgeBase) {
         for (const pattern of item.patterns) {
-          if (lower.includes(pattern)) {
+          const escaped = pattern.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+          const regex = new RegExp('(^|\\b)' + escaped + '(\\b|$)', 'i');
+          if (regex.test(lower)) {
             return item.getAnswer ? item.getAnswer() : item.answer;
           }
         }
@@ -1312,7 +1314,7 @@
 
       const waQueryUrl = `https://wa.me/9779816732482?text=${encodeURIComponent("Hello Nausad! I have a question from your portfolio: " + userInput)}`;
 
-      return `You can connect with Nausad directly on WhatsApp at <a href="${waQueryUrl}" target="_blank" style="color:#25D366; font-weight:700;">+977 9816732482 ↗</a> or email him at nausadalam9714@gmail.com.`;
+      return `You can connect with Nausad directly on WhatsApp at <a href="${waQueryUrl}" target="_blank" style="color:#25D366; font-weight:700;">+977 9816732482 ↗</a> or email him at <a href="mailto:nausadalam9714@gmail.com" style="color:#00f0ff;">nausadalam9714@gmail.com</a>.`;
     }
 
     const NAUSAD_SYSTEM_PROMPT = `You are Robert, the official AI companion on Nausad Aalam's personal portfolio.
@@ -1332,23 +1334,17 @@ Nausad Aalam's Details:
       html = html.replace(/\*(.*?)\*/g, '<em>$1</em>');
       html = html.replace(/^\s*[\*\-]\s+(.*)$/gim, '• $1<br>');
       html = html.replace(/\n\n+/g, '<br><br>').replace(/\n/g, '<br>');
+      // URLs
+      html = html.replace(/(https?:\/\/[^\s<]+)/g, '<a href="$1" target="_blank" rel="noopener noreferrer" style="color:#00f0ff; text-decoration:underline; font-weight:600;">$1 ↗</a>');
+      // Emails
+      html = html.replace(/([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})/g, '<a href="mailto:$1" style="color:#00f0ff; font-weight:600;">$1</a>');
+      // WhatsApp
       html = html.replace(/(\+?977\s*9816732482)/g, `<a href="https://wa.me/9779816732482" target="_blank" style="color:#25D366; font-weight:700;">$1 ↗</a>`);
       return html;
     }
 
     async function fetchAiReply(userText) {
-      const lower = userText.trim().toLowerCase();
-
-      // Check instant exact matches first (0ms latency!)
-      for (const item of robertKnowledgeBase) {
-        for (const pattern of item.patterns) {
-          if (lower.includes(pattern)) {
-            return item.getAnswer ? item.getAnswer() : item.answer;
-          }
-        }
-      }
-
-      // 1. Try Vercel Serverless Function /api/chat (super-fast with flash-lite)
+      // 1. Live Google Gemini AI via Vercel Serverless Function /api/chat
       try {
         const todayDate = new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
         const response = await fetch('/api/chat', {
@@ -1363,7 +1359,7 @@ Nausad Aalam's Details:
           }
         }
       } catch (err) {
-        // Fall through to next provider
+        console.warn("Vercel /api/chat call error:", err);
       }
 
       // 2. Try direct client Google Gemini API if user has stored API Key
