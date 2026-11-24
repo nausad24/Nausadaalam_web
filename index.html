@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Nausad Aalam</title>
   <meta name="description" content="Personal Portfolio of Nausad Aalam — Chartered Accountancy (CA Intermediate) student under ICAI, +2 Management graduate from Trinity International College (GPA 3.72), KIST Inter-College IT Competition 1st Prize Winner, and web enthusiast.">
   <meta name="keywords" content="Nausad Aalam, Portfolio, Chartered Accountancy, CA Student, ICAI, Trinity International College, KIST IT Competition Winner, Nepal, Siraha, Web Development">
@@ -634,12 +634,12 @@
 
             <div class="form-group">
               <label for="form-name">Your Name</label>
-              <input type="text" id="form-name" name="name" placeholder="John Doe" required>
+              <input type="text" id="form-name" name="name" placeholder="John Doe" autocomplete="name" required>
             </div>
 
             <div class="form-group">
               <label for="form-email">Your Email</label>
-              <input type="email" id="form-email" name="email" placeholder="name@example.com" required>
+              <input type="email" id="form-email" name="email" placeholder="name@example.com" autocomplete="email" required>
             </div>
 
             <div class="form-group">
@@ -908,6 +908,14 @@
           navMenu.classList.remove('nav-open');
           mobileToggle.classList.remove('active');
         });
+      });
+
+      // Close mobile nav when clicking anywhere outside
+      document.addEventListener('click', (e) => {
+        if (navMenu.classList.contains('nav-open') && !navMenu.contains(e.target) && !mobileToggle.contains(e.target)) {
+          navMenu.classList.remove('nav-open');
+          mobileToggle.classList.remove('active');
+        }
       });
     }
 

@@ -38,6 +38,8 @@
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 body {
@@ -49,7 +51,16 @@ body {
   overflow-x: hidden;
   user-select: auto;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   line-height: 1.6;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Touchscreens: disable cursor trail canvas for battery & smoothness */
+@media (hover: none) and (pointer: coarse) {
+  #cursor-trail {
+    display: none !important;
+  }
 }
 
 /* Custom Scrollbar */
@@ -383,21 +394,48 @@ body {
 
 .mobile-toggle {
   display: none;
-  background: none;
-  border: none;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   cursor: pointer;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   gap: 5px;
-  padding: 6px;
+  width: 44px;
+  height: 44px;
+  padding: 10px;
+  border-radius: 12px;
+  transition: var(--transition);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.mobile-toggle:hover {
+  background: rgba(0, 240, 255, 0.12);
+  border-color: var(--accent-cyan);
 }
 
 .mobile-toggle span {
   display: block;
-  width: 22px;
+  width: 20px;
   height: 2px;
   background-color: var(--text-main);
   border-radius: 2px;
-  transition: var(--transition);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.2s ease;
+  transform-origin: center;
+}
+
+.mobile-toggle.active span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.mobile-toggle.active span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.mobile-toggle.active span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
 }
 
 /* =========================================================
@@ -2087,25 +2125,33 @@ body {
 }
 
 /* =========================================================
-   13. RESPONSIVE BREAKPOINTS
+   13. RESPONSIVE BREAKPOINTS (PC, TABLET, SMARTPHONE)
    ========================================================= */
-@media (max-width: 992px) {
-  .about-grid, .contact-grid, .skills-grid, .sub-projects-grid, .certificates-grid {
+
+/* --- TABLETS & SMALL LAPTOPS (769px to 1024px) --- */
+@media (max-width: 1024px) {
+  .about-grid, .contact-grid {
     grid-template-columns: 1fr;
+    gap: 2rem;
   }
 
   .champion-card {
     grid-template-columns: 1fr;
-    padding: 2.5rem 2rem;
+    padding: 2.2rem 2rem;
     gap: 2rem;
+  }
+
+  .champion-image-col .award-img {
+    max-height: 420px;
+    object-fit: contain;
   }
 
   .content-wrapper {
     flex-direction: column-reverse;
     align-items: center;
     text-align: center;
-    padding: 3rem 2rem;
-    gap: 2.5rem;
+    padding: 2.8rem 2.2rem;
+    gap: 2.2rem;
   }
 
   .profile-info {
@@ -2114,6 +2160,7 @@ body {
 
   .name-display {
     justify-content: center;
+    font-size: clamp(2.4rem, 5.2vw, 3.6rem);
   }
 
   .hero-cta-group {
@@ -2124,11 +2171,34 @@ body {
     justify-content: center;
   }
 
+  /* Keep balanced 2-column grids on tablets */
+  .certificates-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .skills-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .sub-projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
   .metrics-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+
+  .quick-facts-row {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
   }
 }
 
+/* --- SMALL TABLETS & LARGE SMARTPHONES (max-width: 768px) --- */
 @media (max-width: 768px) {
   .mobile-toggle {
     display: flex;
@@ -2136,13 +2206,13 @@ body {
 
   .nav-links {
     position: fixed;
-    top: 75px;
-    left: 1.5rem;
-    right: 1.5rem;
-    background: rgba(12, 16, 26, 0.95);
+    top: calc(72px + env(safe-area-inset-top, 0px));
+    left: 1.25rem;
+    right: 1.25rem;
+    background: rgba(12, 16, 26, 0.96);
     backdrop-filter: blur(25px);
     -webkit-backdrop-filter: blur(25px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 24px;
     padding: 1.5rem;
     flex-direction: column;
@@ -2152,6 +2222,9 @@ body {
     opacity: 0;
     pointer-events: none;
     transition: var(--transition);
+    max-height: calc(100vh - 90px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   .nav-links.nav-open {
@@ -2165,15 +2238,11 @@ body {
   }
 
   .section {
-    padding: 4.5rem 1.2rem;
+    padding: 4rem 1.25rem;
   }
 
   .about-card, .message-form, .skill-group-card, .timeline-card, .sub-project-card {
-    padding: 2rem 1.5rem;
-  }
-
-  .quick-facts-row, .metrics-grid {
-    grid-template-columns: 1fr;
+    padding: 1.8rem 1.4rem;
   }
 
   .timeline {
@@ -2187,37 +2256,220 @@ body {
   .footer-container {
     flex-direction: column;
     text-align: center;
+    gap: 1.5rem;
   }
 
   .footer-nav {
     justify-content: center;
   }
+
+  /* Eliminate iOS Safari auto-zoom on input focus */
+  input, textarea, select {
+    font-size: 16px !important;
+  }
+
+  .footer-bottom {
+    padding-bottom: calc(1.5rem + env(safe-area-inset-bottom, 0px));
+  }
 }
 
+/* --- SMARTPHONES (max-width: 600px) --- */
+@media (max-width: 600px) {
+  .certificates-grid,
+  .skills-grid,
+  .sub-projects-grid,
+  .metrics-grid,
+  .quick-facts-row {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .form-btn-row {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .content-wrapper {
+    padding: 1.85rem 1.15rem;
+    border-radius: 22px;
+    gap: 1.8rem;
+  }
+
+  .avatar-frame {
+    width: 210px;
+    height: 210px;
+  }
+
+  .name-display {
+    font-size: clamp(1.95rem, 7.5vw, 2.7rem);
+  }
+
+  .role-tagline {
+    font-size: 0.94rem;
+    line-height: 1.6;
+  }
+
+  .sub-caption {
+    font-size: 0.85rem;
+  }
+
+  .badges-row {
+    gap: 0.5rem;
+  }
+
+  .badge, .badge-sub {
+    font-size: 0.78rem;
+    padding: 6px 12px;
+  }
+
+  .cert-thumb-wrapper {
+    height: 270px;
+    padding: 10px;
+  }
+
+  .champion-card {
+    padding: 1.6rem 1.2rem;
+    border-radius: 20px;
+    gap: 1.5rem;
+  }
+
+  .champion-image-col .award-img {
+    max-height: 260px;
+    border-radius: 12px;
+  }
+
+  .timeline {
+    padding-left: 1.8rem;
+  }
+
+  .timeline-dot {
+    left: -1.8rem;
+    width: 20px;
+    height: 20px;
+  }
+
+  /* Sleek circular touch floating actions on mobile with safe-area spacing */
+  .floating-actions {
+    bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+    right: calc(14px + env(safe-area-inset-right, 0px));
+    gap: 10px;
+  }
+
+  .contact-btn {
+    width: 46px;
+    height: 46px;
+    padding: 0;
+    border-radius: 50%;
+    justify-content: center;
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.55);
+  }
+
+  .contact-btn .contact-icon {
+    width: 22px;
+    height: 22px;
+  }
+
+  .contact-btn .contact-label {
+    display: none;
+  }
+
+  /* Safe-area positioning for AI Robot container & full-view flyout on mobile */
+  .ai-robot-container {
+    bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+    left: calc(14px + env(safe-area-inset-left, 0px));
+  }
+
+  .ai-chat-window {
+    left: 0;
+    width: calc(100vw - 28px);
+    max-width: 380px;
+    height: min(520px, calc(100vh - 100px - env(safe-area-inset-bottom, 0px)));
+    max-height: 82vh;
+    bottom: 74px;
+  }
+
+  /* Certificate Lightbox on Mobile */
+  .cert-modal-content {
+    max-width: 95vw;
+    max-height: 88vh;
+  }
+
+  .cert-modal-img {
+    max-height: 72vh;
+  }
+
+  .cert-modal-close {
+    top: -42px;
+    right: 2px;
+    width: 36px;
+    height: 36px;
+    font-size: 1.4rem;
+  }
+
+  .cert-modal-caption {
+    font-size: 0.9rem;
+    padding: 8px 10px;
+  }
+}
+
+/* --- MOBILE PHONES (max-width: 480px) --- */
 @media (max-width: 480px) {
   .hero-cta-group {
     flex-direction: column;
     width: 100%;
+    gap: 10px;
   }
 
   .btn {
     width: 100%;
     justify-content: center;
+    padding: 0.8rem 1.4rem;
   }
 
-  .floating-actions {
-    bottom: 18px;
-    right: 18px;
+  .section {
+    padding: 3.5rem 1rem;
+  }
+
+  .about-card, .message-form, .skill-group-card, .timeline-card, .sub-project-card {
+    padding: 1.5rem 1.1rem;
+    border-radius: 18px;
+  }
+}
+
+/* --- ULTRA COMPACT PHONES (max-width: 380px) --- */
+@media (max-width: 380px) {
+  .content-wrapper {
+    padding: 1.4rem 0.85rem;
+    border-radius: 18px;
+  }
+
+  .avatar-frame {
+    width: 175px;
+    height: 175px;
+  }
+
+  .name-display {
+    font-size: clamp(1.75rem, 7vw, 2.2rem);
   }
 
   .contact-btn {
-    padding: 9px 13px;
-    font-size: 0.82rem;
+    width: 42px;
+    height: 42px;
+  }
+
+  .ai-robot-container {
+    transform: scale(0.92);
+    transform-origin: bottom left;
+  }
+
+  .cert-thumb-wrapper {
+    height: 230px;
+    padding: 8px;
   }
 }
 
 /* =========================================================
-   13. AI ROBOT (ROBERT) 2.0 - CYBERNETIC ASSISTANT
+   14. AI ROBOT (ROBERT) 2.0 - CYBERNETIC ASSISTANT
    ========================================================= */
 .ai-robot-container {
   position: fixed;
@@ -3101,19 +3353,20 @@ body {
   text-underline-offset: 2px;
 }
 
-/* Mobile Responsive */
+/* Mobile Responsive for AI Robot */
 @media (max-width: 768px) {
   .ai-robot-container {
-    bottom: 18px;
-    left: 18px;
+    bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+    left: calc(14px + env(safe-area-inset-left, 0px));
   }
 
   .ai-chat-window {
     left: 0;
-    width: calc(100vw - 36px);
+    width: calc(100vw - 28px);
     max-width: 380px;
-    height: 520px;
-    bottom: 76px;
+    height: min(520px, calc(100vh - 100px - env(safe-area-inset-bottom, 0px)));
+    max-height: 82vh;
+    bottom: 74px;
   }
 
   .robot-character-btn {
