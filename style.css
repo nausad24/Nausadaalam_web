@@ -861,141 +861,113 @@ body {
 }
 
 /* =========================================================
-   PULSING HEARTBEAT ANIMATION (BELOW OPEN TO CONNECT)
+   RED ECG / HEART RATE PULSE WAVE ANIMATION
    ========================================================= */
-.heartbeat-badge {
+.ecg-badge {
   position: relative;
   z-index: 2;
   margin-top: 14px;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: rgba(14, 18, 30, 0.88);
-  border: 1.5px solid rgba(255, 0, 122, 0.45);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6), 0 0 16px rgba(255, 0, 122, 0.25);
+  width: 140px;
+  height: 38px;
+  border-radius: 999px;
+  background: rgba(10, 13, 24, 0.92);
+  border: 1.5px solid rgba(255, 23, 68, 0.45);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.65), 0 0 16px rgba(255, 23, 68, 0.22);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
   cursor: pointer;
   user-select: none;
   transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
 }
 
-.heartbeat-badge:hover {
-  transform: translateY(-2px) scale(1.08);
-  border-color: #ff007a;
-  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.7), 0 0 25px rgba(255, 0, 122, 0.5);
+.ecg-badge:hover {
+  transform: translateY(-2px) scale(1.04);
+  border-color: #ff1744;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.75), 0 0 25px rgba(255, 23, 68, 0.45);
 }
 
-.heartbeat-badge.heart-clicked {
-  animation: heartPop 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+/* Cardiogram grid lines */
+.ecg-grid-overlay {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(255, 23, 68, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 23, 68, 0.08) 1px, transparent 1px);
+  background-size: 8px 8px;
+  pointer-events: none;
+  opacity: 0.85;
 }
 
-.heartbeat-icon-wrap {
+.ecg-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
   position: relative;
   z-index: 2;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  animation: heartLubDub 1.5s ease-in-out infinite;
 }
 
-.heartbeat-svg {
-  width: 22px;
-  height: 22px;
-  fill: #ff007a;
-  filter: drop-shadow(0 0 8px rgba(255, 0, 122, 0.85));
-  transition: transform 0.2s ease, filter 0.2s ease;
+/* Background faint red trace line */
+.ecg-track {
+  fill: none;
+  stroke: rgba(255, 23, 68, 0.22);
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
-/* Authentic biological cardiac pulse (Lub-Dub: beat-beat... pause) */
-@keyframes heartLubDub {
+/* Glowing active neon red pulse wave */
+.ecg-pulse {
+  fill: none;
+  stroke: #ff1744;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 0 4px #ff1744) drop-shadow(0 0 10px rgba(255, 23, 68, 0.9));
+  stroke-dasharray: 65 155;
+  stroke-dashoffset: 220;
+  animation: ecgWaveSweep 2s linear infinite;
+}
+
+@keyframes ecgWaveSweep {
   0% {
-    transform: scale(1);
-    filter: drop-shadow(0 0 6px rgba(255, 0, 122, 0.7));
-  }
-  14% {
-    transform: scale(1.3);
-    filter: drop-shadow(0 0 14px rgba(255, 0, 122, 1));
-  }
-  28% {
-    transform: scale(1);
-    filter: drop-shadow(0 0 6px rgba(255, 0, 122, 0.7));
-  }
-  42% {
-    transform: scale(1.22);
-    filter: drop-shadow(0 0 12px rgba(255, 0, 122, 0.95));
-  }
-  70% {
-    transform: scale(1);
-    filter: drop-shadow(0 0 6px rgba(255, 0, 122, 0.7));
+    stroke-dashoffset: 220;
   }
   100% {
-    transform: scale(1);
-    filter: drop-shadow(0 0 6px rgba(255, 0, 122, 0.7));
+    stroke-dashoffset: -220;
   }
 }
 
-@keyframes heartPop {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.35); }
-  100% { transform: scale(1); }
-}
-
-/* Radiating pulse ripple waves */
-.heartbeat-wave {
+/* Scanning monitor sweep line */
+.ecg-scanline {
   position: absolute;
-  inset: -2px;
-  border-radius: 50%;
-  border: 1.5px solid rgba(255, 0, 122, 0.65);
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 32px;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 23, 68, 0.22) 80%, rgba(255, 50, 90, 0.45) 100%);
   pointer-events: none;
-  animation: heartRipple 2.2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
-  z-index: 1;
+  animation: scanlineSweep 2s linear infinite;
+  z-index: 3;
 }
 
-.heartbeat-wave.wave-2 {
-  animation-delay: 1.1s;
+@keyframes scanlineSweep {
+  0% { transform: translateX(-35px); }
+  100% { transform: translateX(145px); }
 }
 
-@keyframes heartRipple {
-  0% {
-    transform: scale(1);
-    opacity: 0.85;
-  }
-  60% {
-    transform: scale(1.65);
-    opacity: 0.25;
-  }
-  100% {
-    transform: scale(2.1);
-    opacity: 0;
-  }
+/* Fast accelerated pulse on click */
+.ecg-badge.ecg-active-pulse .ecg-pulse {
+  animation-duration: 0.85s;
+  stroke: #ff0055;
+  filter: drop-shadow(0 0 8px #ff0055) drop-shadow(0 0 16px rgba(255, 0, 85, 1));
 }
 
-/* Floating Hearts Particle Burst on tap */
-.floating-heart-particle {
-  position: absolute;
-  pointer-events: none;
-  animation: floatHeart 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-  will-change: transform, opacity;
-  filter: drop-shadow(0 0 8px rgba(255, 0, 122, 0.85));
-  z-index: 100;
-}
-
-@keyframes floatHeart {
-  0% {
-    transform: translate(-50%, -50%) scale(0.3) rotate(0deg);
-    opacity: 1;
-  }
-  25% {
-    opacity: 1;
-  }
-  100% {
-    transform: translate(calc(-50% + var(--dx, 0px)), calc(-50% + var(--dy, -60px))) scale(1.1) rotate(var(--rot, 0deg));
-    opacity: 0;
-  }
+.ecg-badge.ecg-active-pulse .ecg-scanline {
+  animation-duration: 0.85s;
 }
 
 /* =========================================================
@@ -2511,15 +2483,10 @@ body {
     height: 210px;
   }
 
-  .heartbeat-badge {
+  .ecg-badge {
     margin-top: 10px;
-    width: 40px;
-    height: 40px;
-  }
-
-  .heartbeat-svg {
-    width: 20px;
-    height: 20px;
+    width: 130px;
+    height: 36px;
   }
 
   .name-display {
@@ -2679,15 +2646,10 @@ body {
     height: 175px;
   }
 
-  .heartbeat-badge {
+  .ecg-badge {
     margin-top: 8px;
-    width: 38px;
-    height: 38px;
-  }
-
-  .heartbeat-svg {
-    width: 18px;
-    height: 18px;
+    width: 120px;
+    height: 34px;
   }
 
   .name-display {

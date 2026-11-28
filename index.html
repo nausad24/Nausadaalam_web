@@ -175,15 +175,16 @@
           <span>Open to Connect</span>
         </div>
 
-        <!-- Pulsing / Beating Heart Icon Animation -->
-        <div class="heartbeat-badge" id="heartbeat-badge" title="Beating Heart" aria-label="Pulsing heart animation">
-          <div class="heartbeat-wave"></div>
-          <div class="heartbeat-wave wave-2"></div>
-          <div class="heartbeat-icon-wrap">
-            <svg class="heartbeat-svg" viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-            </svg>
-          </div>
+        <!-- Red ECG / Heart Rate Pulse Wave Animation -->
+        <div class="ecg-badge" id="ecg-badge" title="Live Heart Rate Pulse" aria-label="ECG heart rate animation">
+          <div class="ecg-grid-overlay"></div>
+          <svg class="ecg-svg" viewBox="0 0 140 38" preserveAspectRatio="none">
+            <!-- Background faint red trace line -->
+            <path class="ecg-track" d="M 0,19 L 20,19 L 25,13 L 30,24 L 35,19 L 46,19 L 51,24 L 58,4 L 65,34 L 71,19 L 79,12 L 87,19 L 102,19 L 107,13 L 112,24 L 117,19 L 140,19" />
+            <!-- Glowing active neon red pulse wave -->
+            <path class="ecg-pulse" d="M 0,19 L 20,19 L 25,13 L 30,24 L 35,19 L 46,19 L 51,24 L 58,4 L 65,34 L 71,19 L 79,12 L 87,19 L 102,19 L 107,13 L 112,24 L 117,19 L 140,19" />
+          </svg>
+          <div class="ecg-scanline"></div>
         </div>
       </div>
     </div>
@@ -949,36 +950,14 @@
       });
     }
 
-    // Pulsing / Beating Heart Icon Animation Logic
-    (function initHeartbeat() {
-      const heartBadge = document.getElementById('heartbeat-badge');
-      if (!heartBadge) return;
+    // Red ECG Heart Rate Pulse Animation Logic
+    (function initEcgPulse() {
+      const ecgBadge = document.getElementById('ecg-badge');
+      if (!ecgBadge) return;
 
-      heartBadge.addEventListener('click', () => {
-        heartBadge.classList.add('heart-clicked');
-        setTimeout(() => heartBadge.classList.remove('heart-clicked'), 600);
-
-        // Spawn gentle mini floating hearts burst on tap
-        const emojis = ['❤️', '💖', '✨', '💕', '💗'];
-        for (let i = 0; i < 6; i++) {
-          const particle = document.createElement('span');
-          particle.className = 'floating-heart-particle';
-          particle.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-
-          const dx = (Math.random() - 0.5) * 60;
-          const dy = -40 - Math.random() * 45;
-          const rot = (Math.random() - 0.5) * 50;
-
-          particle.style.left = '50%';
-          particle.style.top = '50%';
-          particle.style.setProperty('--dx', `${dx}px`);
-          particle.style.setProperty('--dy', `${dy}px`);
-          particle.style.setProperty('--rot', `${rot}deg`);
-          particle.style.fontSize = `${14 + Math.random() * 8}px`;
-
-          heartBadge.appendChild(particle);
-          setTimeout(() => particle.remove(), 1300);
-        }
+      ecgBadge.addEventListener('click', () => {
+        ecgBadge.classList.add('ecg-active-pulse');
+        setTimeout(() => ecgBadge.classList.remove('ecg-active-pulse'), 1800);
       });
     })();
 
