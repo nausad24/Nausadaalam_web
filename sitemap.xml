@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://nausadaalam.com.np/</loc>
+    <lastmod>2026-11-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://nausadaalam.com.np/Nausad_Portrait.jpeg</image:loc>
+      <image:title>Nausad Aalam — Chartered Accountancy (CA / ICI) Student &amp; Web Developer</image:title>
+      <image:caption>Official Portrait of Nausad Aalam, CA Intermediate (ICAI / ICI) Aspirant and KIST IT Fair Winner</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://nausadaalam.com.np/kist_it_winner.jpg</image:loc>
+      <image:title>Nausad Aalam — First Prize Winner at KIST Inter-College IT Competition</image:title>
+      <image:caption>Nausad Aalam and Trinity College team winning the 1st prize at KIST IT Fair</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://nausadaalam.com.np/cert_kist_first_position.jpg</image:loc>
+      <image:title>Nausad Aalam KIST Fair 2080 First Position Certificate</image:title>
+      <image:caption>Certificate of Achievement awarded to Nausad Aalam for securing First Position in KIST Fair 2080</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://nausadaalam.com.np/cert_trinity_second_position.jpg</image:loc>
+      <image:title>Nausad Aalam Trinity College IT Exhibition Certificate</image:title>
+      <image:caption>Certificate of Achievement awarded to Nausad Aalam at Trinity SciTech &amp; Management Expo</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://nausad24.github.io/Nausadaalam_web/</loc>
+    <lastmod>2026-11-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+</urlset>
