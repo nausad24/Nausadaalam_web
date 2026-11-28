@@ -298,6 +298,79 @@ body {
   color: var(--accent-cyan);
 }
 
+/* =========================================================
+   LIVE ACTIVE VISITORS BADGE (NEXT TO NAME IN NAVBAR)
+   ========================================================= */
+.live-watchers-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(0, 255, 136, 0.08);
+  border: 1px solid rgba(0, 255, 136, 0.3);
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  margin-left: 3px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 0 10px rgba(0, 255, 136, 0.12);
+  transition: all 0.3s ease;
+  user-select: none;
+  line-height: 1;
+}
+
+.live-watchers-badge:hover {
+  background: rgba(0, 255, 136, 0.16);
+  border-color: rgba(0, 255, 136, 0.55);
+  box-shadow: 0 0 16px rgba(0, 255, 136, 0.28);
+  transform: scale(1.04);
+}
+
+.live-dot {
+  width: 7.5px;
+  height: 7.5px;
+  border-radius: 50%;
+  background-color: #00ff88;
+  box-shadow: 0 0 8px #00ff88;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.live-dot::after {
+  content: '';
+  position: absolute;
+  inset: -3.5px;
+  border-radius: 50%;
+  border: 1.5px solid #00ff88;
+  opacity: 0.7;
+  animation: liveBeaconPulse 2s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
+}
+
+@keyframes liveBeaconPulse {
+  0% { transform: scale(0.8); opacity: 0.95; }
+  60% { transform: scale(2.2); opacity: 0; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+
+.live-count {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.84rem;
+  color: #ffffff;
+  line-height: 1;
+  letter-spacing: 0.2px;
+  transition: transform 0.25s ease, color 0.25s ease;
+}
+
+.live-count.count-pop {
+  animation: liveCountPop 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes liveCountPop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.25); color: #00ff88; }
+  100% { transform: scale(1); }
+}
+
 .nav-links {
   display: flex;
   align-items: center;
@@ -2590,6 +2663,15 @@ body {
   .content-wrapper {
     padding: 1.4rem 0.85rem;
     border-radius: 18px;
+  }
+
+  .live-watchers-badge {
+    padding: 0.15rem 0.45rem;
+    gap: 4px;
+  }
+
+  .live-count {
+    font-size: 0.76rem;
   }
 
   .avatar-frame {

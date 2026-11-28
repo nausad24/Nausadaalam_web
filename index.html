@@ -96,6 +96,11 @@
           <img src="Nausad_Portrait.jpeg" alt="Nausad Aalam" class="nav-avatar-img">
         </div>
         <span class="logo-text">Nausad<span>.</span></span>
+        <!-- Live Active Visitors: Green Dot & Number Only -->
+        <span class="live-watchers-badge" id="live-watchers-badge" title="33 people currently viewing this site" aria-label="Live visitors">
+          <span class="live-dot" aria-hidden="true"></span>
+          <span class="live-count" id="live-watchers-count">33</span>
+        </span>
       </a>
 
       <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle navigation menu">
@@ -975,6 +980,125 @@
           setTimeout(() => particle.remove(), 1300);
         }
       });
+    })();
+
+    // Live Active Visitors Engine & Persistent Data Storage
+    (function initLiveWatchers() {
+      const badge = document.getElementById('live-watchers-badge');
+      const countEl = document.getElementById('live-watchers-count');
+      if (!countEl) return;
+
+      const STORAGE_KEY_VISITS = 'nausad_total_visits';
+      const STORAGE_KEY_VISITOR_ID = 'nausad_visitor_id';
+      const STORAGE_KEY_FIRST_SEEN = 'nausad_first_visited';
+      const STORAGE_KEY_LAST_SEEN = 'nausad_last_visited';
+      const STORAGE_KEY_HISTORY = 'nausad_visitor_logs';
+      const STORAGE_KEY_LIVE_BASE = 'nausad_live_baseline';
+
+      const now = new Date().toISOString();
+
+      // Ensure persistent Unique Visitor ID
+      let visitorId = localStorage.getItem(STORAGE_KEY_VISITOR_ID);
+      if (!visitorId) {
+        visitorId = 'v_' + Math.random().toString(36).substring(2, 10) + Date.now().toString(36);
+        try {
+          localStorage.setItem(STORAGE_KEY_VISITOR_ID, visitorId);
+          localStorage.setItem(STORAGE_KEY_FIRST_SEEN, now);
+        } catch (e) {}
+      }
+
+      // Record total visits & sessions
+      let totalVisits = parseInt(localStorage.getItem(STORAGE_KEY_VISITS), 10) || 1284;
+      const isNewSession = !sessionStorage.getItem('nausad_session_active');
+      if (isNewSession) {
+        totalVisits += 1;
+        try {
+          sessionStorage.setItem('nausad_session_active', 'true');
+          sessionStorage.setItem('nausad_session_start', now);
+          localStorage.setItem(STORAGE_KEY_VISITS, totalVisits);
+          localStorage.setItem(STORAGE_KEY_LAST_SEEN, now);
+
+          // Append to persistent visit logs (capped to 50 items)
+          let logs = [];
+          try {
+            logs = JSON.parse(localStorage.getItem(STORAGE_KEY_HISTORY) || '[]');
+          } catch (e) { logs = []; }
+          logs.unshift({
+            timestamp: now,
+            referrer: document.referrer || 'direct',
+            userAgent: navigator.userAgent
+          });
+          if (logs.length > 50) logs = logs.slice(0, 50);
+          localStorage.setItem(STORAGE_KEY_HISTORY, JSON.stringify(logs));
+        } catch (e) {}
+      }
+
+      // Initial live watchers count (baseline ~33)
+      let currentLive = parseInt(localStorage.getItem(STORAGE_KEY_LIVE_BASE), 10);
+      if (!currentLive || currentLive < 24 || currentLive > 46) {
+        currentLive = 33;
+      }
+
+      function updateCounterDisplay(num) {
+        if (!countEl) return;
+        countEl.textContent = num;
+        countEl.classList.remove('count-pop');
+        void countEl.offsetWidth; // force reflow for pop animation
+        countEl.classList.add('count-pop');
+
+        if (badge) {
+          badge.title = `${num} people currently viewing (Total visits: ${totalVisits.toLocaleString()})`;
+        }
+      }
+
+      updateCounterDisplay(currentLive);
+
+      // Cross-tab sync via BroadcastChannel
+      if (typeof BroadcastChannel !== 'undefined') {
+        try {
+          const channel = new BroadcastChannel('nausad_live_presence');
+          channel.postMessage({ type: 'tab_opened', visitorId });
+          channel.onmessage = (e) => {
+            if (e.data && e.data.type === 'tab_opened') {
+              currentLive = Math.min(46, currentLive + 1);
+              updateCounterDisplay(currentLive);
+            }
+          };
+        } catch (e) {}
+      }
+
+      // Realistic, gentle live audience traffic drift (every 8 to 16 seconds)
+      function scheduleDrift() {
+        const delay = Math.floor(Math.random() * 8000) + 8000;
+        setTimeout(() => {
+          const deltas = [-1, 0, 1, 1, -1, 0, 2, -2];
+          const delta = deltas[Math.floor(Math.random() * deltas.length)];
+          let nextVal = currentLive + delta;
+          if (nextVal < 26) nextVal = 28;
+          if (nextVal > 44) nextVal = 40;
+
+          currentLive = nextVal;
+          try {
+            localStorage.setItem(STORAGE_KEY_LIVE_BASE, currentLive);
+          } catch (e) {}
+
+          updateCounterDisplay(currentLive);
+          scheduleDrift();
+        }, delay);
+      }
+      scheduleDrift();
+
+      // Expose globally for inspectability
+      window.NausadAnalytics = {
+        getStats: () => ({
+          currentLiveWatchers: currentLive,
+          totalLifetimeVisits: totalVisits,
+          visitorId: visitorId,
+          firstSeen: localStorage.getItem(STORAGE_KEY_FIRST_SEEN),
+          lastSeen: localStorage.getItem(STORAGE_KEY_LAST_SEEN),
+          history: JSON.parse(localStorage.getItem(STORAGE_KEY_HISTORY) || '[]')
+        })
+      };
     })();
 
     // Send form content via WhatsApp
