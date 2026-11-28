@@ -170,31 +170,15 @@
           <span>Open to Connect</span>
         </div>
 
-        <!-- Heart Rating Animation Widget -->
-        <div class="heart-rating-widget" id="heart-rating-widget" title="Click a heart to rate &amp; share love!">
-          <div class="heart-rating-stars" id="heart-rating-stars" role="group" aria-label="Heart rating">
-            <button type="button" class="heart-btn filled" data-rating="1" aria-label="Rate 1 Heart">
-              <svg class="heart-svg" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-            </button>
-            <button type="button" class="heart-btn filled" data-rating="2" aria-label="Rate 2 Hearts">
-              <svg class="heart-svg" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-            </button>
-            <button type="button" class="heart-btn filled" data-rating="3" aria-label="Rate 3 Hearts">
-              <svg class="heart-svg" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-            </button>
-            <button type="button" class="heart-btn filled" data-rating="4" aria-label="Rate 4 Hearts">
-              <svg class="heart-svg" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-            </button>
-            <button type="button" class="heart-btn filled" data-rating="5" aria-label="Rate 5 Hearts">
-              <svg class="heart-svg" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-            </button>
+        <!-- Pulsing / Beating Heart Icon Animation -->
+        <div class="heartbeat-badge" id="heartbeat-badge" title="Beating Heart" aria-label="Pulsing heart animation">
+          <div class="heartbeat-wave"></div>
+          <div class="heartbeat-wave wave-2"></div>
+          <div class="heartbeat-icon-wrap">
+            <svg class="heartbeat-svg" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+            </svg>
           </div>
-          <div class="heart-rating-info">
-            <span class="heart-rating-score" id="heart-score-text">5.0</span>
-            <span class="heart-rating-count" id="heart-count-text">(<span id="heart-count-num">248</span>)</span>
-          </div>
-          <!-- Particle burst container for floating animated hearts -->
-          <div class="floating-hearts-burst" id="floating-hearts-burst" aria-hidden="true"></div>
         </div>
       </div>
     </div>
@@ -960,123 +944,37 @@
       });
     }
 
-    // Heart Rating Animation & Interactive Reaction System
-    (function initHeartRating() {
-      const widget = document.getElementById('heart-rating-widget');
-      const starsContainer = document.getElementById('heart-rating-stars');
-      if (!widget || !starsContainer) return;
+    // Pulsing / Beating Heart Icon Animation Logic
+    (function initHeartbeat() {
+      const heartBadge = document.getElementById('heartbeat-badge');
+      if (!heartBadge) return;
 
-      const heartBtns = starsContainer.querySelectorAll('.heart-btn');
-      const scoreText = document.getElementById('heart-score-text');
-      const countNum = document.getElementById('heart-count-num');
-      const burstContainer = document.getElementById('floating-hearts-burst');
+      heartBadge.addEventListener('click', () => {
+        heartBadge.classList.add('heart-clicked');
+        setTimeout(() => heartBadge.classList.remove('heart-clicked'), 600);
 
-      let currentRating = parseFloat(localStorage.getItem('nausad_heart_rating')) || 5.0;
-      let heartCount = parseInt(localStorage.getItem('nausad_heart_count'), 10) || 248;
-
-      function updateDisplay(rating, count) {
-        heartBtns.forEach((btn, index) => {
-          if (index < rating) {
-            btn.classList.add('filled');
-          } else {
-            btn.classList.remove('filled');
-          }
-        });
-        if (scoreText) scoreText.textContent = rating.toFixed(1);
-        if (countNum) countNum.textContent = count;
-      }
-
-      updateDisplay(currentRating, heartCount);
-
-      // Interactive hover preview
-      heartBtns.forEach(btn => {
-        btn.addEventListener('mouseenter', () => {
-          const hoverVal = parseInt(btn.getAttribute('data-rating'), 10);
-          heartBtns.forEach((b, idx) => {
-            if (idx < hoverVal) {
-              b.classList.add('active-hover');
-            } else {
-              b.classList.remove('active-hover');
-            }
-          });
-          if (scoreText) scoreText.textContent = hoverVal.toFixed(1);
-        });
-
-        btn.addEventListener('mouseleave', () => {
-          heartBtns.forEach(b => b.classList.remove('active-hover'));
-          updateDisplay(currentRating, heartCount);
-        });
-
-        // Click / Tap rating trigger
-        btn.addEventListener('click', (e) => {
-          e.stopPropagation();
-          const selectedVal = parseInt(btn.getAttribute('data-rating'), 10);
-          currentRating = selectedVal;
-          heartCount += 1;
-
-          try {
-            localStorage.setItem('nausad_heart_rating', currentRating);
-            localStorage.setItem('nausad_heart_count', heartCount);
-          } catch (err) {}
-
-          btn.classList.add('popped');
-          setTimeout(() => btn.classList.remove('popped'), 450);
-
-          updateDisplay(currentRating, heartCount);
-
-          // Spawn floating heart particles animation
-          spawnHeartParticles(btn);
-
-          // Flash appreciative badge text
-          if (scoreText) {
-            const originalColor = scoreText.style.color;
-            scoreText.textContent = 'Loved! ❤️';
-            scoreText.style.color = '#00ff88';
-            setTimeout(() => {
-              scoreText.textContent = currentRating.toFixed(1);
-              scoreText.style.color = originalColor || '#ff3388';
-            }, 2200);
-          }
-        });
-      });
-
-      // Floating heart burst particle generator
-      function spawnHeartParticles(originBtn) {
-        if (!burstContainer) return;
-        const rect = originBtn.getBoundingClientRect();
-        const widgetRect = widget.getBoundingClientRect();
-        const originX = rect.left + rect.width / 2 - widgetRect.left;
-        const originY = rect.top + rect.height / 2 - widgetRect.top;
-
-        const emojis = ['❤️', '💖', '✨', '💕', '🔥', '💗', '🥰'];
-        const count = 9;
-
-        for (let i = 0; i < count; i++) {
+        // Spawn gentle mini floating hearts burst on tap
+        const emojis = ['❤️', '💖', '✨', '💕', '💗'];
+        for (let i = 0; i < 6; i++) {
           const particle = document.createElement('span');
           particle.className = 'floating-heart-particle';
           particle.textContent = emojis[Math.floor(Math.random() * emojis.length)];
 
-          const dx = (Math.random() - 0.5) * 80;
-          const dy = -60 - Math.random() * 50;
-          const rot = (Math.random() - 0.5) * 60;
-          const size = 14 + Math.random() * 10;
-          const delay = Math.random() * 0.12;
+          const dx = (Math.random() - 0.5) * 60;
+          const dy = -40 - Math.random() * 45;
+          const rot = (Math.random() - 0.5) * 50;
 
-          particle.style.left = `${originX}px`;
-          particle.style.top = `${originY}px`;
+          particle.style.left = '50%';
+          particle.style.top = '50%';
           particle.style.setProperty('--dx', `${dx}px`);
           particle.style.setProperty('--dy', `${dy}px`);
           particle.style.setProperty('--rot', `${rot}deg`);
-          particle.style.fontSize = `${size}px`;
-          particle.style.animationDelay = `${delay}s`;
+          particle.style.fontSize = `${14 + Math.random() * 8}px`;
 
-          burstContainer.appendChild(particle);
-
-          setTimeout(() => {
-            particle.remove();
-          }, 1400);
+          heartBadge.appendChild(particle);
+          setTimeout(() => particle.remove(), 1300);
         }
-      }
+      });
     })();
 
     // Send form content via WhatsApp
