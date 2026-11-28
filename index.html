@@ -96,10 +96,10 @@
           <img src="Nausad_Portrait.jpeg" alt="Nausad Aalam" class="nav-avatar-img">
         </div>
         <span class="logo-text">Nausad<span>.</span></span>
-        <!-- Live Active Visitors: Green Dot & Number Only -->
-        <span class="live-watchers-badge" id="live-watchers-badge" title="33 people currently viewing this site" aria-label="Live visitors">
+        <!-- Live Active Visitors: Green Dot & Number Only (Real-time live presence) -->
+        <span class="live-watchers-badge" id="live-watchers-badge" title="1 person currently viewing this site" aria-label="Live visitors">
           <span class="live-dot" aria-hidden="true"></span>
-          <span class="live-count" id="live-watchers-count">33</span>
+          <span class="live-count" id="live-watchers-count">1</span>
         </span>
       </a>
 
@@ -862,6 +862,9 @@
     </div>
   </div>
 
+  <!-- Paho MQTT WebSocket Client for Real-Time Live Presence -->
+  <script src="paho-mqtt.min.js"></script>
+
   <!-- Interactive JavaScript Logic -->
   <script>
     // Certificate Lightbox Functions
@@ -982,7 +985,7 @@
       });
     })();
 
-    // Live Active Visitors Engine & Persistent Data Storage
+    // Real-Time Verified Live Visitors Engine & Global Telemetry
     (function initLiveWatchers() {
       const badge = document.getElementById('live-watchers-badge');
       const countEl = document.getElementById('live-watchers-count');
@@ -993,107 +996,254 @@
       const STORAGE_KEY_FIRST_SEEN = 'nausad_first_visited';
       const STORAGE_KEY_LAST_SEEN = 'nausad_last_visited';
       const STORAGE_KEY_HISTORY = 'nausad_visitor_logs';
-      const STORAGE_KEY_LIVE_BASE = 'nausad_live_baseline';
+      const MQTT_TOPIC_BASE = 'nausad_portfolio/live_v1';
 
       const now = new Date().toISOString();
 
-      // Ensure persistent Unique Visitor ID
+      // Persistent Unique Visitor ID (device level)
       let visitorId = localStorage.getItem(STORAGE_KEY_VISITOR_ID);
       if (!visitorId) {
-        visitorId = 'v_' + Math.random().toString(36).substring(2, 10) + Date.now().toString(36);
+        visitorId = 'v_' + Math.random().toString(36).substring(2, 9) + Date.now().toString(36);
         try {
           localStorage.setItem(STORAGE_KEY_VISITOR_ID, visitorId);
           localStorage.setItem(STORAGE_KEY_FIRST_SEEN, now);
         } catch (e) {}
       }
 
-      // Record total visits & sessions
-      let totalVisits = parseInt(localStorage.getItem(STORAGE_KEY_VISITS), 10) || 1284;
+      // Session Client ID (unique per browser session, shared across tabs in same session)
+      let sessionClientId = sessionStorage.getItem('nausad_live_client_id');
+      if (!sessionClientId) {
+        sessionClientId = 'nv_' + Math.random().toString(36).substring(2, 8) + Date.now().toString(36).slice(-4);
+        try { sessionStorage.setItem('nausad_live_client_id', sessionClientId); } catch (e) {}
+      }
+
+      // Real Global Page Hits Counter (Cloud API + Local Fallback)
+      let totalVisits = parseInt(localStorage.getItem(STORAGE_KEY_VISITS), 10) || 0;
       const isNewSession = !sessionStorage.getItem('nausad_session_active');
+
       if (isNewSession) {
-        totalVisits += 1;
         try {
           sessionStorage.setItem('nausad_session_active', 'true');
           sessionStorage.setItem('nausad_session_start', now);
-          localStorage.setItem(STORAGE_KEY_VISITS, totalVisits);
           localStorage.setItem(STORAGE_KEY_LAST_SEEN, now);
 
-          // Append to persistent visit logs (capped to 50 items)
           let logs = [];
-          try {
-            logs = JSON.parse(localStorage.getItem(STORAGE_KEY_HISTORY) || '[]');
-          } catch (e) { logs = []; }
-          logs.unshift({
-            timestamp: now,
-            referrer: document.referrer || 'direct',
-            userAgent: navigator.userAgent
-          });
+          try { logs = JSON.parse(localStorage.getItem(STORAGE_KEY_HISTORY) || '[]'); } catch (e) { logs = []; }
+          logs.unshift({ timestamp: now, referrer: document.referrer || 'direct' });
           if (logs.length > 50) logs = logs.slice(0, 50);
           localStorage.setItem(STORAGE_KEY_HISTORY, JSON.stringify(logs));
         } catch (e) {}
+
+        fetch('https://countapi.mileshilliard.com/api/v1/hit/nausad_aalam_web_total_visits_v1')
+          .then(r => r.json())
+          .then(data => {
+            if (data && typeof data.value === 'number') {
+              totalVisits = data.value;
+              try { localStorage.setItem(STORAGE_KEY_VISITS, totalVisits); } catch (e) {}
+              updateCounterDisplay(currentLive);
+            }
+          })
+          .catch(() => {});
+      } else {
+        fetch('https://countapi.mileshilliard.com/api/v1/get/nausad_aalam_web_total_visits_v1')
+          .then(r => r.json())
+          .then(data => {
+            if (data && typeof data.value === 'number') {
+              totalVisits = data.value;
+              try { localStorage.setItem(STORAGE_KEY_VISITS, totalVisits); } catch (e) {}
+              updateCounterDisplay(currentLive);
+            }
+          })
+          .catch(() => {});
       }
 
-      // Initial live watchers count (baseline ~33)
-      let currentLive = parseInt(localStorage.getItem(STORAGE_KEY_LIVE_BASE), 10);
-      if (!currentLive || currentLive < 24 || currentLive > 46) {
-        currentLive = 33;
-      }
+      // Live Peers Map: peerId -> lastSeenTimestamp
+      const activePeers = new Map();
+      let currentLive = 1; // Default to 1 (the current viewer)
 
       function updateCounterDisplay(num) {
+        currentLive = Math.max(1, num);
         if (!countEl) return;
-        countEl.textContent = num;
+        countEl.textContent = currentLive;
         countEl.classList.remove('count-pop');
-        void countEl.offsetWidth; // force reflow for pop animation
+        void countEl.offsetWidth; // re-trigger pop animation
         countEl.classList.add('count-pop');
 
         if (badge) {
-          badge.title = `${num} people currently viewing (Total visits: ${totalVisits.toLocaleString()})`;
+          const visitsText = totalVisits > 0 ? ` (Total visits: ${totalVisits.toLocaleString()})` : '';
+          badge.title = `${currentLive} ${currentLive === 1 ? 'person' : 'people'} currently viewing${visitsText}`;
         }
       }
 
-      updateCounterDisplay(currentLive);
+      updateCounterDisplay(1);
 
-      // Cross-tab sync via BroadcastChannel
+      // Cross-tab synchronization via BroadcastChannel
+      let bc = null;
       if (typeof BroadcastChannel !== 'undefined') {
         try {
-          const channel = new BroadcastChannel('nausad_live_presence');
-          channel.postMessage({ type: 'tab_opened', visitorId });
-          channel.onmessage = (e) => {
-            if (e.data && e.data.type === 'tab_opened') {
-              currentLive = Math.min(46, currentLive + 1);
-              updateCounterDisplay(currentLive);
+          bc = new BroadcastChannel('nausad_live_presence');
+          bc.onmessage = (e) => {
+            if (e.data && e.data.type === 'live_count_sync' && typeof e.data.count === 'number') {
+              updateCounterDisplay(e.data.count);
             }
           };
         } catch (e) {}
       }
 
-      // Realistic, gentle live audience traffic drift (every 8 to 16 seconds)
-      function scheduleDrift() {
-        const delay = Math.floor(Math.random() * 8000) + 8000;
-        setTimeout(() => {
-          const deltas = [-1, 0, 1, 1, -1, 0, 2, -2];
-          const delta = deltas[Math.floor(Math.random() * deltas.length)];
-          let nextVal = currentLive + delta;
-          if (nextVal < 26) nextVal = 28;
-          if (nextVal > 44) nextVal = 40;
-
-          currentLive = nextVal;
-          try {
-            localStorage.setItem(STORAGE_KEY_LIVE_BASE, currentLive);
-          } catch (e) {}
-
-          updateCounterDisplay(currentLive);
-          scheduleDrift();
-        }, delay);
+      function broadcastLocal(count) {
+        if (bc) {
+          try { bc.postMessage({ type: 'live_count_sync', count }); } catch (e) {}
+        }
       }
-      scheduleDrift();
 
-      // Expose globally for inspectability
+      // Real-Time MQTT Presence Protocol via WebSockets
+      const brokers = [
+        { host: 'broker.emqx.io', port: 8084, path: '/mqtt' },
+        { host: 'broker.hivemq.com', port: 8884, path: '/mqtt' }
+      ];
+      let brokerIdx = 0;
+      let mqttClient = null;
+      let heartbeatTimer = null;
+      let pruneTimer = null;
+      let reconnectAttempts = 0;
+
+      function connectPresence() {
+        if (typeof Paho === 'undefined' || !Paho.MQTT || !Paho.MQTT.Client) {
+          return;
+        }
+
+        const b = brokers[brokerIdx % brokers.length];
+        try {
+          mqttClient = new Paho.MQTT.Client(b.host, b.port, b.path, sessionClientId);
+
+          // Last Will and Testament: broker notifies room immediately if tab/socket closes
+          const willMsg = new Paho.MQTT.Message(JSON.stringify({ id: sessionClientId, action: 'leave', ts: Date.now() }));
+          willMsg.destinationName = `${MQTT_TOPIC_BASE}/${sessionClientId}`;
+          willMsg.qos = 1;
+          willMsg.retained = false;
+
+          mqttClient.onConnectionLost = (responseObject) => {
+            if (heartbeatTimer) clearInterval(heartbeatTimer);
+            if (pruneTimer) clearInterval(pruneTimer);
+            reconnectAttempts++;
+            if (reconnectAttempts % 2 === 0) brokerIdx++; // Fallback to secondary broker
+            const delay = Math.min(30000, Math.pow(2, Math.min(reconnectAttempts, 5)) * 1000);
+            setTimeout(connectPresence, delay);
+          };
+
+          mqttClient.onMessageArrived = (message) => {
+            try {
+              const data = JSON.parse(message.payloadString);
+              if (!data || !data.id || data.id === sessionClientId) return;
+
+              if (data.action === 'join' || data.action === 'heartbeat') {
+                const isNew = !activePeers.has(data.id);
+                activePeers.set(data.id, Date.now());
+
+                // When a new visitor joins, answer back so they discover all currently active viewers
+                if (isNew && data.action === 'join') {
+                  setTimeout(() => {
+                    publishAction('heartbeat');
+                  }, 120 + Math.random() * 250);
+                }
+
+                const liveCount = activePeers.size + 1;
+                updateCounterDisplay(liveCount);
+                broadcastLocal(liveCount);
+              } else if (data.action === 'leave') {
+                if (activePeers.has(data.id)) {
+                  activePeers.delete(data.id);
+                  const liveCount = activePeers.size + 1;
+                  updateCounterDisplay(liveCount);
+                  broadcastLocal(liveCount);
+                }
+              }
+            } catch (e) {}
+          };
+
+          mqttClient.connect({
+            useSSL: true,
+            timeout: 6,
+            keepAliveInterval: 30,
+            cleanSession: true,
+            willMessage: willMsg,
+            onSuccess: () => {
+              reconnectAttempts = 0;
+              mqttClient.subscribe(`${MQTT_TOPIC_BASE}/+`, {
+                qos: 0,
+                onSuccess: () => {
+                  publishAction('join');
+
+                  // Heartbeat every 20 seconds
+                  heartbeatTimer = setInterval(() => {
+                    publishAction('heartbeat');
+                  }, 20000);
+
+                  // Prune stale peers inactive for > 45 seconds
+                  pruneTimer = setInterval(() => {
+                    const cutoff = Date.now() - 45000;
+                    let changed = false;
+                    activePeers.forEach((lastSeen, id) => {
+                      if (lastSeen < cutoff) {
+                        activePeers.delete(id);
+                        changed = true;
+                      }
+                    });
+                    if (changed) {
+                      const liveCount = activePeers.size + 1;
+                      updateCounterDisplay(liveCount);
+                      broadcastLocal(liveCount);
+                    }
+                  }, 5000);
+                }
+              });
+            },
+            onFailure: (err) => {
+              reconnectAttempts++;
+              if (reconnectAttempts % 2 === 0) brokerIdx++;
+              const delay = Math.min(30000, Math.pow(2, Math.min(reconnectAttempts, 5)) * 1000);
+              setTimeout(connectPresence, delay);
+            }
+          });
+        } catch (e) {}
+      }
+
+      function publishAction(act) {
+        if (!mqttClient || !mqttClient.isConnected()) return;
+        try {
+          const msg = new Paho.MQTT.Message(JSON.stringify({ id: sessionClientId, action: act, ts: Date.now() }));
+          msg.destinationName = `${MQTT_TOPIC_BASE}/${sessionClientId}`;
+          msg.qos = 0;
+          mqttClient.send(msg);
+        } catch (e) {}
+      }
+
+      function handleExit() {
+        try {
+          if (mqttClient && mqttClient.isConnected()) {
+            publishAction('leave');
+            mqttClient.disconnect();
+          }
+        } catch (e) {}
+      }
+
+      window.addEventListener('beforeunload', handleExit);
+      window.addEventListener('pagehide', handleExit);
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', connectPresence);
+      } else {
+        connectPresence();
+      }
+
+      // Expose globally for inspecting verified real-time statistics
       window.NausadAnalytics = {
         getStats: () => ({
           currentLiveWatchers: currentLive,
+          activePeers: Array.from(activePeers.keys()),
           totalLifetimeVisits: totalVisits,
           visitorId: visitorId,
+          sessionClientId: sessionClientId,
           firstSeen: localStorage.getItem(STORAGE_KEY_FIRST_SEEN),
           lastSeen: localStorage.getItem(STORAGE_KEY_LAST_SEEN),
           history: JSON.parse(localStorage.getItem(STORAGE_KEY_HISTORY) || '[]')
